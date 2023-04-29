@@ -1,0 +1,237 @@
+import React, { useState, useEffect } from "react";
+import Select from "react-select";
+import { colourOptions } from "../sampleData/data";
+import { API_ENDPOINT } from "../../../constant/constant";
+
+import axios from "axios";
+
+const SubmitPaperPage = () => {
+  const [title, setTitle] = useState("");
+  const [abstarct, setAbstarct] = useState("");
+  const [file, setFile] = useState("");
+  const [keywords, setKeywords] = useState([]);
+  const [susTost, setSussToast] = useState(false);
+  const [susTost1, setSuss1Toast] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [approved, setApproved] = useState("");
+
+  function sendPost(e) {
+    e.preventDefault();
+    axios
+      .post(
+        `${API_ENDPOINT}/project`,
+        {
+          title: title,
+          abstract: abstarct,
+          keyword: keywords,
+          document: file,
+          groupSubmission: isChecked,
+        },
+        myheader
+      )
+      .then(
+        (response) => {
+          if (response.data.status === true) {
+            setSussToast(true);
+            localStorage.removeItem("user-local");
+          } else {
+            alert("Enter all Data");
+            setSuss1Toast(true);
+          }
+        },
+        (error) => {}
+      );
+  }
+
+  function savePost(e) {
+    e.preventDefault();
+    let obj = {};
+    obj.title = title;
+    obj.file = file;
+    obj.abstarct = abstarct;
+    obj.checked = isChecked;
+    obj.keywords = keywords;
+
+    localStorage.setItem("user-local", JSON.stringify(obj));
+  }
+  function withdrawPost(e) {
+    e.preventDefault();
+    if (window.confirm("Are you Sure!")) {
+      axios
+        .post(
+          `${API_ENDPOINT}/withdraw/project`,
+          {
+            title: "",
+            abstract: "",
+            keyword: [],
+            document: "",
+            groupSubmission: false,
+          },
+          myheader
+        )
+        .then(
+          (response) => {
+            if (response.data.status === true) {
+              alert("withdraw successful");
+              GetApi();
+            } else {
+            }
+          },
+          (error) => {}
+        );
+    } else {
+    }
+  }
+  const uploadImage = async (e) => {
+    setLoading(true);
+    let formData = new FormData();
+    formData.append("image", e.target.files[0]);
+    let u = await axios.post(
+      `${API_ENDPOINT}/upload/image`,
+      formData,
+      myheader
+    );
+    if (u.data.status) {
+      setFile(u.data.secureUrl);
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
+  };
+
+  const GetApi = () => {
+    axios.get(`${API_ENDPOINT}/my/project`, myheader).then((response) => {
+      if (response.data.status) {
+        if (response.data.project.title) {
+          setTitle(response.data.project.title);
+          setFile(response.data.project.document);
+          setAbstarct(response.data.project.abstract);
+          setIsChecked(response.data.project.groupSubmission);
+          setKeywords(response.data.project.keyword);
+          setApproved(response.data.project.approved);
+        } else {
+          if (localStorage.getItem("user-local")) {
+            let data = JSON.parse(localStorage.getItem("user-local"));
+            setTitle(data.title);
+            setFile(data.file);
+            setAbstarct(data.abstarct);
+            setIsChecked(data.checked);
+            setKeywords(data.keywords);
+          }
+        }
+      }
+    });
+  };
+  const [myheader] = useState({
+    headers: {
+      token: localStorage.getItem("Usertoken"),
+    },
+  });
+
+  const handleSelectChange = (selectedOption) => {
+    setKeywords(selectedOption);
+  };
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
+
+  useEffect(() => {
+    GetApi();
+    const currentDate = new Date();
+    const targetDate = new Date("2023-05-30");
+
+    if (currentDate > targetDate) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, []);
+
+  return (
+    <div>
+      {approved ? (
+        <>
+          <span>Approved Statusdd</span> <h4>{approved}</h4>{" "}
+        </>
+      ) : null}
+      <form className="form-con">
+        <label htmlFor="">Title</label>
+
+        <input
+          type="text"
+          placeholder="Enter Title"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+        />
+        <label htmlFor="">Keywords</label>
+
+        <Select
+          isMulti
+          name="colors"
+          value={keywords}
+          options={colourOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={handleSelectChange}
+        />
+        <span>
+          Is this a group Submission{" "}
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+          />
+        </span>
+        <label htmlFor="">Abstract</label>
+        <textarea
+          name="message"
+          rows="10"
+          cols="60"
+          onChange={(e) => setAbstarct(e.target.value)}
+          value={abstarct}
+        ></textarea>
+        <label htmlFor="">
+          {" "}
+          Upload your Paper{" "}
+          <h4 style={{ color: "red" }}>{loading ? "loading" : ""}</h4>
+        </label>
+        <input
+          type="file"
+          accept=".pdf,.doc,.docx"
+          onChange={(e) => uploadImage(e)}
+        />
+        <div className="form-btn-con">
+          <div className="form-btns">
+            <button onClick={sendPost} className="submit" disabled={disabled}>
+              Submit
+            </button>
+            <button className="save" onClick={savePost}>
+              Save
+            </button>
+            <button
+              className="withdraw"
+              onClick={withdrawPost}
+              disabled={disabled}
+            >
+              Withdraw
+            </button>
+          </div>
+        </div>
+        {susTost ? (
+          <strong style={{ color: "green" }}>Post Saved Succesfully</strong>
+        ) : (
+          ""
+        )}
+        {susTost1 ? (
+          <strong style={{ color: "red" }}>post Not Sent</strong>
+        ) : (
+          ""
+        )}
+      </form>
+    </div>
+  );
+};
+
+export default SubmitPaperPage;

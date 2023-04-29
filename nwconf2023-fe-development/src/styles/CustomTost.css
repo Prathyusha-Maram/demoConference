@@ -1,0 +1,32 @@
+.base-toast-div{
+    height: 80px;
+    display: flex;
+}
+
+.custom-toast-succes-icon{
+    color: red;
+    font-size: 30px;
+}
+
+.custom-toast-title-success{
+    font-weight: bold;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.custom-toast-body-message {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.custom-toast-title-error {
+    font-weight: bold;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.custom-toast-error-icon {
+    color: red;
+    font-size: 30px;
+}
