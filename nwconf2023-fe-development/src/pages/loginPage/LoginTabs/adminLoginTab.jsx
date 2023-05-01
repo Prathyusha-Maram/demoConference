@@ -240,12 +240,19 @@ export default function FullWidthTabs() {
                     Reviewer's Name : <b>{product.userName}</b>
                   </li>
 
-                  <input
+                  {/* <input
                     value={product.email}
                     type="checkbox"
                     checked={checked.includes(product)}
                     onChange={() => handleCheck(product)}
                     disabled={checkDisable}
+                  /> */}
+                  <input
+                    value={product.email}
+                    type="checkbox"
+                    checked={checked.includes(product)}
+                    onChange={() => handleCheck(product)}
+                    disabled={checked.includes(product) ? false : checked.length >= 3}
                   />
                 </div>
               </div>
@@ -268,8 +275,8 @@ export default function FullWidthTabs() {
         <div className="reviewer-popup">
           {assigned.value.reviewers?.map((product) => (
             <>
-              <div className="assign-card-con popup">
-                <div className="assign-card">
+              <div className="assign-card-con popup vertical-nav-bar">
+                <div className="assign-card ">
                   <li>
                     Reviewer's Name : <b>{product.userName}ddd</b>
                   </li>
