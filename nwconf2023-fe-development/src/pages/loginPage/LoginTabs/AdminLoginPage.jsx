@@ -35,11 +35,13 @@ const AdminLoginPage = () => {
         <h2>Admin Login</h2>
 
         <div className="login-input-con new">
+        <label htmlFor="email">Email Address</label>
           <input
             type="email"
-            placeholder="email"
+            placeholder="Email"
             onChange={(e) => setadminloginUpEmail(e.target.value)}
           />
+          <label htmlFor="email">Password</label>
           <input
             type="password"
             placeholder="Password"

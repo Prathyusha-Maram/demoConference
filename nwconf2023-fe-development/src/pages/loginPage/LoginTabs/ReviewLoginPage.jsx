@@ -41,25 +41,27 @@ const ReviewLoginPage = () => {
         <h2>Reviewer Login</h2>
 
         <div className="login-input-con new">
+        <label htmlFor="email">Email Address</label>
           <input
             type="email"
-            placeholder="email"
+            placeholder="Email"
             onChange={(e) => setreviewerloginUpEmail(e.target.value)}
           />
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             placeholder="Password"
             onChange={(e) => setreviewerloginPassword(e.target.value)}
           />
-          <span>
-            New User <NavLink to="/committee/register">Sign Up</NavLink>
-          </span>
           {login1alert ? (
             <strong style={{ color: "red" }}>Wrong Details</strong>
           ) : (
             ""
           )}
           <button onClick={Reviewerlogin}>Login</button>
+          <span>
+          Don't have a account? <NavLink to="/committee/register">Register here</NavLink>
+          </span>
         </div>
       </div>
     </div>
