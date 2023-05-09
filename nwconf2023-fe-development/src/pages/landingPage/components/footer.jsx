@@ -35,7 +35,7 @@ const footer = () => {
           <li className='li-style'>Maps and Tours</li>
           <li className='li-style'>Consumer Information</li>
           </ul>
-          <button className='footer-reportbutton'>Report an Incident</button>
+          {/* <button className='footer-reportbutton'>Report an Incident</button> */}
         </div>
         {/* <div className="f-second-card">
           <h2>USEFUL LINKS</h2>

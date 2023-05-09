@@ -65,7 +65,7 @@
 }
 
 li .active {
-    border-bottom: 1px solid var(--green);
+    /* border-bottom: 1px solid var(--green); */
     color: var(--blue);
 }
 
@@ -75,14 +75,14 @@ li .active {
 }
 
 .first-card {
-    box-shadow: 7px -4px 5px -1px rgba(0, 0, 0, 0.29);
+    /* box-shadow: 7px -4px 5px -1px rgba(0, 0, 0, 0.29); */
     padding: 15px;
     border-radius: 5px;
 }
 
 @media (min-width:660px) {
     .first-card-container {
-        display: grid;
+        /* display: grid; */
         grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
         grid-gap: 50px;
         padding: 30px;
@@ -138,6 +138,10 @@ li .active {
 }
 
 .heading {
+    text-align: center;
+}
+
+.heading1 {
     text-align: center;
 }
 
@@ -510,7 +514,7 @@ margin-left: 130px;
     margin-left: 135px;
     padding: 5px 0px;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
 }
 
 .table-con li {

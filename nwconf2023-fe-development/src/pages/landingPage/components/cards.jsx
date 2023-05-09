@@ -118,6 +118,16 @@ const cards = () => {
         <div>
             <div className='first-card-container'>
 
+            <div className="first-card">
+                    <h1>Important Dates</h1>
+                    <p>Paper Submission Deadline:<span style={{ color: "red" }}> August 20, 2023</span></p>
+                    <p>Authors Notification: <span style={{ color: "red" }}>Septembert 5, 2023</span></p>
+                    <p>Accept/Reject Paper: <span style={{ color: "red" }}>September 24, 2023</span></p>
+                    <p>Conference on <span style={{ color: "red" }}>October 12 , 2023</span></p>
+                    {/* <div className='my-btn'>
+                        <button className='card-btn'>KNOW MORE</button>
+                    </div> */}
+                </div>
                 <div className="first-card child">
                     <div>
                         <h1>About the Conference</h1>
@@ -125,9 +135,9 @@ const cards = () => {
                             Authors are solicited to contribute to the conference by submitting articles that illustrate research results, projects, surveying works and industrial experiences that describe significant advances in Conference2023.</p>
                         <span>Conference on October 12, 2023</span>
                     </div>
-                    <div className='my-btn'>
+                    {/* <div className='my-btn'>
                         <button className='card-btn'>KNOW MORE</button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="first-card">
                     <h1>Paper Submission</h1>
@@ -138,19 +148,9 @@ const cards = () => {
                     <li>Machine Learning and Applications: An International Journal (MLAIJ)</li>
                     <li>Information Technology in Industry (ITII)</li>
                     <li>International Journal on Information Theory (IJIT)</li>
-                    <div className='my-btn'>
+                    {/* <div className='my-btn'>
                         <button className='card-btn'>KNOW MORE</button>
-                    </div>
-                </div>
-                <div className="first-card">
-                    <h1>Important Dates</h1>
-                    <p>Paper Submission Deadline:<span style={{ color: "red" }}> August 20, 2023</span></p>
-                    <p>Authors Notification: <span style={{ color: "red" }}>Septembert 5, 2023</span></p>
-                    <p>Accept/Reject Paper: <span style={{ color: "red" }}>September 24, 2023</span></p>
-                    <p>Conference on <span style={{ color: "red" }}>October 12 , 2023</span></p>
-                    <div className='my-btn'>
-                        <button className='card-btn'>KNOW MORE</button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="first-card child">
                     <div>
@@ -158,9 +158,9 @@ const cards = () => {
                         <p>Hard copy of the proceedings will be distributed during the Conference. The softcopy will be available on Library.</p>
                         <span>Conference on October 12, 2023</span>
                     </div>
-                    <div className='my-btn'>
+                    {/* <div className='my-btn'>
                         <button className='card-btn'>KNOW MORE</button>
-                    </div>
+                    </div> */}
                 </div>
 
 
@@ -168,7 +168,7 @@ const cards = () => {
 
             <div className="second-card-set">
                 <div className="heading">
-                    <h1>COURSES</h1>
+                    <h1>TOPICS</h1>
                 </div>
                 <div className="second-card-container">
                     {data.map(product => (
@@ -209,11 +209,11 @@ const cards = () => {
                                     <p className='third-btn'> {product.role}</p>
 
                                 </div>
-                                <div className="social-icon">
+                                {/* <div className="social-icon">
                                     <img src={Fb} alt="" />
                                     <img src={Linkdin} alt="" />
                                     <img src={Msg} alt="" />
-                                </div>
+                                </div> */}
                             </div>
                        
                        

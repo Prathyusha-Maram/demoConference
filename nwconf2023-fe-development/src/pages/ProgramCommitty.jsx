@@ -15,6 +15,7 @@ const ProgramCommitty = () => {
   return (
     <div>
        <div>
+        <h1 className="heading1">COMMITTEE MEMBERS</h1>
                 {reviewerEmail.data?.map((product) => (
                   <>
                     <div className="assign-card-con popupnew">
