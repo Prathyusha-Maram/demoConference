@@ -14,19 +14,19 @@ const Accept = () => {
     <div>
       {acceptedd.map((product) => (
         <>
-        <div className="assign-card-con popupnew">
-            <div className="assign-cardNew">
+        {/* <div className="assign-card-con popupnew">
+            <div className="assign-cardNew"> */}
               {/* <li>
                 Reviewer's Name : <b>{product.title}</b>
               </li> */}
-              <li>
+              {/* <li>
               <b> TITLE</b>
               </li>
               <li>
                 <b>STATUS</b>
               </li>
             </div>
-          </div>
+          </div> */}
           <div className="assign-card-con popupnew">
             <div className="assign-cardNew">
               {/* <li>

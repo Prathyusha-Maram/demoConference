@@ -63,7 +63,7 @@ const UserLoginPageTab = () => {
             <tr>
               <td className='InfoHeading'>Date of birth</td>
               <td>&nbsp;:&nbsp;</td>
-              <td>06 June 1999</td>
+              <td>02 March 1995</td>
             </tr>
             <tr>
               <td className='InfoHeading'>Areas of intrest</td>

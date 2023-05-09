@@ -11,13 +11,12 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-
-
 .assign-card li {
   list-style-type: none;
   text-align: start;
   width: 200px;
   padding: 4px 0px;
+
 }
 
 .assign-card button {
@@ -30,26 +29,18 @@
 }
 
 .reviewer-popup {
-  background-color: white;
+  background-color: whitesmoke;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
   z-index: 10;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  border-radius: 10px;
-  border: 1px solid;
-  padding: 10px;
 }
 
 .tabs-global {
   position: relative;
-  height: calc(100vh - 104px);
 }
 
 .assign-card-con.popup {
   width: 500px;
-  margin-top: 70px;
 }
 
 .view-btn {
@@ -58,21 +49,12 @@
   border: none;
   outline: none;
   border-radius: 5px !important;
-  padding: 5px 10px;
-}
-.view-btn-pending {
-  background-color: yellow !important;
-  color: #000 !important;
-  border: none;
-  outline: none;
-  border-radius: 5px !important;
-  padding: 5px 10px;
-  white-space: nowrap;
+  padding: 0px 10px;
 }
 
 .approve-btn {
   background-color: var(--green);
-  color: var(--white);
+  color: var(--white) ;
   border: none;
   outline: none;
   border-radius: 5px !important;
@@ -98,7 +80,7 @@
 .nav-link-logout {
   color: var(--green) !important;
 }
-.table-con {
+.table-con{
   display: flex;
   justify-content: center;
 }

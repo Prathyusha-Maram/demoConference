@@ -144,10 +144,10 @@ const cards = () => {
                 </div>
                 <div className="first-card">
                     <h1>Important Dates</h1>
-                    <p>Paper Submission Deadline: August 20, 2023</p>
-                    <p>Authors Notification: Septembert 5, 2023</p>
-                    <p>Accept/Reject Paper: September 24, 2023</p>
-                    <p>Conference on October 12 , 2023</p>
+                    <p>Paper Submission Deadline:<span style={{ color: "red" }}> August 20, 2023</span></p>
+                    <p>Authors Notification: <span style={{ color: "red" }}>Septembert 5, 2023</span></p>
+                    <p>Accept/Reject Paper: <span style={{ color: "red" }}>September 24, 2023</span></p>
+                    <p>Conference on <span style={{ color: "red" }}>October 12 , 2023</span></p>
                     <div className='my-btn'>
                         <button className='card-btn'>KNOW MORE</button>
                     </div>

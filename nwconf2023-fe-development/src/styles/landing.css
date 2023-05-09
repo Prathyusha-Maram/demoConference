@@ -12,6 +12,7 @@
     font-size: 14px;
     text-decoration: none;
 } */
+
 .logo-data {
     display: flex;
     justify-content: space-around;
@@ -44,7 +45,6 @@
 .lsit-set li {
     list-style: none;
     text-decoration: none;
-
 }
 
 .nav-data {
@@ -80,7 +80,6 @@ li .active {
     border-radius: 5px;
 }
 
-
 @media (min-width:660px) {
     .first-card-container {
         display: grid;
@@ -89,7 +88,6 @@ li .active {
         padding: 30px;
     }
 }
-
 
 .card-btn {
     text-decoration: none;
@@ -556,6 +554,7 @@ margin-left: 130px;
 .submit-new img {
     width: 60px;
     height: 60px;
+   
 }
 
 .optionContainer{
@@ -569,7 +568,6 @@ margin-left: 130px;
     height: 55vh;
     justify-content: space-around;
 }
-
 .user-pag-con {
     display: flex;
     justify-content: space-between;
@@ -578,16 +576,21 @@ margin-left: 130px;
     margin: 30px 40px;
     border-radius: 20px;
     height: 250px;
-    width: max-content;
+    width: auto;
     align-items: center;
 }
 
 .submit-new {
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px;
+    margin: 5px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     width: 250px;
     cursor: pointer;
+    color: #fff;
+    background-color: #006747;
+    height: 120px;
+   
 }
 
 .edit-profile-btn {

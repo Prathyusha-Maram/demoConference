@@ -39,32 +39,63 @@ const UserLoginPageTab = () => {
             <img src={Profile} alt="" />
           </div>
           <div className="user-details">
-            <p>
-              User Name :<b>{userDatas?.userName}</b>
+            <table>
+            {/* <p>
+              Reviewer Name :<b>{userDatas?.userName}</b>
             </p>
             <p>
-              User Email :<b>{userDatas?.email}</b>
-            </p>
-
+              Reviewer Email :<b>{userDatas?.email}</b>
+            </p> */}
+            <tr>
+              <td className='InfoHeading'>Name</td>
+              <td>&nbsp;:&nbsp; </td>
+              <td>&nbsp;{userDatas?.userName}</td>
+            </tr>
+            <tr>
+              <td className='InfoHeading'>Email</td>
+              <td>&nbsp;:&nbsp;</td>
+              <td>{userDatas?.email}</td>
+            </tr>
+            <tr>
+              <td className='authorInfoHeading'>Mobile Number</td>
+              <td>&nbsp;:&nbsp;</td>
+              <td>6605213456</td>
+            </tr>
+            <tr>
+              <td className='authorInfoHeading'>Country</td>
+              <td>&nbsp;:&nbsp;</td>
+              <td>USA</td>
+            </tr>
+            <tr>
+              <td className='authorInfoHeading'>Date of birth</td>
+              <td>&nbsp;:&nbsp;</td>
+              <td>01 May 1989</td>
+            </tr>
+            <tr>
+              <td className='authorInfoHeading'>Areas of intrest</td>
+              <td>&nbsp;:&nbsp;</td>
+              <td>Software engineering, Cloud computing,Machine Learning</td>
+            </tr>
+          </table>
             <button className="edit-profile-btn">Edit Profile</button>
           </div>
         </div>
-        <NavLink to="/createPost">
+        <NavLink to="/Review">
           <div className="submit-new">
             <div className="sub-img">
               <img src={SubmitNew} alt="" />
             </div>
-            <p>Submit a New Paper</p>
+            <p>Review and Evaluate</p>
           </div>
         </NavLink>
-        <button style={{ border: "none" }} disabled={disabled}>
+        {/* <button style={{ border: "none" }} disabled={disabled}>
           <div className="submit-new" onClick={checkStatus}>
             <div className="sub-img">
               <img src={PaperStatus} alt="" />
             </div>
             <p>Check Your Paper Status</p>
           </div>
-        </button>
+        </button> */}
         <div className="submit-new">
           <div className="sub-img">
             <img src={KmowMore} alt="" />

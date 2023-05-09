@@ -27,13 +27,13 @@ const footer = () => {
           </div> */}
         </div>
         <div className="f-second-card">
-          <h2>USEFUL LINKS</h2>
+          <h3>CONFERENCE LINKS</h3>
           <ul className='list-style'>
-          <li className='li-style'>Home</li>
-          <li className='li-style'>About us</li>
-          <li className='li-style'>Services</li>
-          <li className='li-style'>Termes of services</li>
-          <li className='li-style'>Privacy Policy</li>
+          <li className='li-style'>Academic Calendar</li>
+          <li className='li-style'>Emergency Alert Sign Up</li>
+          <li className='li-style'>News and Events</li>
+          <li className='li-style'>Maps and Tours</li>
+          <li className='li-style'>Consumer Information</li>
           </ul>
           <button className='footer-reportbutton'>Report an Incident</button>
         </div>
@@ -48,13 +48,13 @@ const footer = () => {
           </ul>
         </div> */}
         <div className="f-second-card">
-          <h2>USEFUL LINKS</h2>
+          <h3>OUR SERVICES</h3>
           <ul className='list-style'>
-          <li className='li-style'>Home</li>
-          <li className='li-style'>About us</li>
-          <li className='li-style'>Services</li>
-          <li className='li-style'>Termes of services</li>
-          <li className='li-style'>Privacy Policy</li>
+          <li className='li-style'>Cloud Computing</li>
+          <li className='li-style'>Machine Learning</li>
+          <li className='li-style'>Big Data</li>
+          <li className='li-style'>Web Applications</li>
+          <li className='li-style'>Graphic Design</li>
           </ul>
         </div>
       </div>
