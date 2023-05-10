@@ -307,7 +307,7 @@ li .active {
 }
 
 .login-input-con input {
-    width: 70%;
+    /* width: 70%; */
     margin: 0px 0px 10px 0px;
     padding: 5px 0px 5px 10px;
     /* border: none;
@@ -563,24 +563,25 @@ margin-left: 130px;
 }
 
 .profile-container {
-    /* display: flex;
+    display: flex;
     padding: 15px 30px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    width: 500px;
-    height: 200px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    
+    height: 55vh;
     border-radius: 20px;
     align-items: center;
-    justify-content: space-around; */
-    display: flex;
+    justify-content: space-around;
+    /* display: flex;
     gap: 2rem;
     height: 55vh;
     align-items: center;
     justify-content: space-around;
-    margin: 4rem 7rem;
+    margin: 4rem 7rem; */
     /* border: 1px solid black; */
-    border-radius: 1rem;
+    /* border-radius: 1rem;
     background-color: #fff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;}
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+}
 
 .submit-new img {
     width: 60px;
@@ -589,7 +590,7 @@ margin-left: 130px;
 }
 
 .optionContainer{
-    margin:5rem 8rem;
+    margin: 5rem 8rem;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-row-gap: 1.5rem;

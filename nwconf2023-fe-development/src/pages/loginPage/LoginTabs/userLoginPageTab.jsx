@@ -42,8 +42,8 @@ const UserLoginPageTab = () => {
           <table>
             <tr>
               <td className='InfoHeading'>Name</td>
-              <td>&nbsp;:&nbsp; </td>
-              <td>&nbsp;{userDatas?.userName}</td>
+              <td>&nbsp;:&nbsp;</td>
+              <td>&nbsp;{userDatas?.firstName + " " + userDatas?.lastName}</td>
             </tr>
             <tr>
               <td className='InfoHeading'>Email</td>
@@ -51,24 +51,9 @@ const UserLoginPageTab = () => {
               <td>{userDatas?.email}</td>
             </tr>
             <tr>
-              <td className='InfoHeading'>Mobile Number</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>6605213456</td>
-            </tr>
-            <tr>
-              <td className='InfoHeading'>Country</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>India</td>
-            </tr>
-            <tr>
-              <td className='InfoHeading'>Date of birth</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>02 March 1995</td>
-            </tr>
-            <tr>
               <td className='InfoHeading'>Areas of intrest</td>
               <td>&nbsp;:&nbsp;</td>
-              <td>Software engineering, Cloud computing, Block chain</td>
+              <td>{userDatas?.areaOfInterest}</td>
             </tr>
           </table>
             {/* <p>
@@ -77,26 +62,24 @@ const UserLoginPageTab = () => {
             <p>
               User Email :<b>{userDatas?.email}</b>
             </p> */}
-
-            <button className="edit-profile-btn">Edit Profile</button>
           </div>
         </div>
         <div className="optionContainer">
-        <NavLink to="/createPost">
+          <NavLink to="/createPost">
+            <div className="submit-new">
+              <div className="sub-img">
+                <img src={SubmitNew} alt="" />
+              </div>
+              <p>Submit a New Paper</p>
+            </div>
+          </NavLink>
+
           <div className="submit-new">
             <div className="sub-img">
-              <img src={SubmitNew} alt="" />
+              <img src={KmowMore} alt="" />
             </div>
-            <p>Submit a New Paper</p>
+            <p>Know More About Paper Submission</p>
           </div>
-        </NavLink>
-
-        <div className="submit-new">
-          <div className="sub-img">
-            <img src={KmowMore} alt="" />
-          </div>
-          <p>Know More About Paper Submission</p>
-        </div>
         </div>
       </div>
     </div>
