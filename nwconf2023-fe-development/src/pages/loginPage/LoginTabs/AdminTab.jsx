@@ -1,21 +1,49 @@
 import React, { useState } from "react";
 import Profile from "../../../images/profileImage.jpg";
 import SubmitNew from "../../../images/newPaper.png";
+import chatNew from "../../../images/chat.png";
 import PaperStatus from "../../../images/editPaper.png";
 import KmowMore from "../../../images/knowMore.jpg";
 import { NavLink, useNavigate } from "react-router-dom";
+import "../../../styles/landing.css";
 import axios from "axios";
 import { API_ENDPOINT } from "../../../constant/constant";
 import { useEffect } from "react";
+import Modal from "react-modal";
+import ModalContent from "../components/modalContent";
 const UserLoginPageTab = () => {
   const [userDatas, setUserDatas] = useState();
   const [disabled, setDisabled] = useState(true);
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [conversation, setConversation] = useState([]);
+  const [userInput, setUserInput] = useState('');
   const [myheader] = useState({
     headers: {
       token: localStorage.getItem("Usertoken"),
     },
   });
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const userInputMessage = { sender: 'You', message: userInput };
+    const replyMessage = { sender: 'other', message: simulateReply() };
+    setConversation([...conversation, userInputMessage, replyMessage]);
+    setUserInput('');
+  };
+  const simulateReply = () => {
+    // Simulate generating a reply from the other end
+    // Replace this with your logic to fetch a reply from a server or chatbot
+    const replies = ['Hello!', 'How are you?', 'Nice to meet you!'];
+    const randomReply = replies[Math.floor(Math.random() * replies.length)];
+    return randomReply;
+  };
   const GetApi = () => {
     axios.get(`${API_ENDPOINT}/my/project`, myheader).then((response) => {
       setUserDatas(response.data.project);
@@ -94,14 +122,25 @@ const UserLoginPageTab = () => {
             <p>Assign & Evaluate</p>
           </div>
         </NavLink>
-        <button style={{ border: "none" }} disabled={disabled}>
-          <div className="submit-new" onClick={checkStatus}>
+        <div>
+        <button onClick={openModal}>
+          <div className="submit-new">
             <div className="sub-img">
-              <img src={PaperStatus} alt="" />
+              <img src={chatNew} alt="" />
             </div>
             <p>Discussion</p>
           </div>
         </button>
+        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+        <ModalContent
+          conversation={conversation}
+          handleSubmit={handleSubmit}
+          userInput={userInput}
+          setUserInput={setUserInput}
+          closeModal={closeModal}
+        />
+      </Modal>
+        </div>
       </div>
     </div>
   );

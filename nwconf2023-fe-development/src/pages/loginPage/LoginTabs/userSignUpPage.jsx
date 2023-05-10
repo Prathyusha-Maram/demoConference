@@ -92,10 +92,13 @@ const UserSignUpPage = () => {
   }
 
   return (
-    <div className="login-page-container">
-      <div className="login-con">
+    <div className="login-container">
+      <div className="login-con" style={{ margin: "40px 0" }}>
         <h2>Author Registration</h2>
         <div className="login-input-con">
+        <form onSubmit={usersignup}style={{ display:"flex", flexDirection:"column" }}>
+        <div className="nameContainer" style={{ display: 'flex' }}>
+          <div>
           <label htmlFor="firstName">First Name</label>
           <input
             type="text" className={`form-control ${firstNameError ? 'is-invalid' : ''}`} id="firstName"
@@ -103,6 +106,8 @@ const UserSignUpPage = () => {
             onChange={(e) => setFirstName(e.target.value)}
           />
           {firstNameError && <div className="invalid-feedback">{firstNameError}</div>}
+          </div>
+          <div style={{ marginLeft: "20px" }}>
           <label htmlFor="lastName">Last Name</label>
           <input
             type="text" className={`form-control ${lastNameError ? 'is-invalid' : ''}`} id="lastName"
@@ -110,6 +115,10 @@ const UserSignUpPage = () => {
             onChange={(e) => setLastName(e.target.value)}
           />
           {lastNameError && <div className="invalid-feedback">{lastNameError}</div>}
+          </div>
+          </div>
+          <div className="emailContainer" style={{ display: "flex"}}>
+          <div>
           <label htmlFor="email">Email Address</label>
           <input
             type="email" className={`form-control ${emailError ? 'is-invalid' : ''}`} id="email"
@@ -117,6 +126,8 @@ const UserSignUpPage = () => {
             onChange={(e) => setSignUpEmail(e.target.value)}
           />
           {emailError && <div className="invalid-feedback">{emailError}</div>}
+          </div>
+          <div style={{ marginLeft: "20px" }}>
           <label htmlFor="confirmEmail">Confirm Email Address</label>
           <input
             type="email" className={`form-control ${confirmEmailError ? 'is-invalid' : ''}`} id="confirmEmail"
@@ -124,6 +135,10 @@ const UserSignUpPage = () => {
             onChange={(e) => setConfrimSignUpEmail(e.target.value)}
           />
           {confirmEmailError && <div className="invalid-feedback">{confirmEmailError}</div>}
+          </div>
+          </div>
+          <div className="emailContainer" style={{ display: "flex" }}>
+          <div>
           <label htmlFor="password">Passowrd</label>
           <input
             type="password" className={`form-control ${passwordError ? 'is-invalid' : ''}`} id="password"
@@ -131,6 +146,8 @@ const UserSignUpPage = () => {
             onChange={(e) => setSignUpPassword(e.target.value)}
           />
           {passwordError && <div className="invalid-feedback">{passwordError}</div>}
+          </div>
+          <div style={{ marginLeft: "20px" }}>
           <label htmlFor="confrimPassword">Confirm Passowrd</label>
           <input
             type="password" className={`form-control ${confirmPasswordError ? 'is-invalid' : ''}`} id="confirmpassword"
@@ -138,6 +155,8 @@ const UserSignUpPage = () => {
             onChange={(e) => setConfirmSignUpPassword(e.target.value)}
           />
           {confirmPasswordError && <div className="invalid-feedback">{confirmPasswordError}</div>}
+          </div>
+          </div>
           <label htmlFor="areaOfIntrest">Area Of Intrest</label>
           <input
             type="text" className={`form-control ${interestsError ? 'is-invalid' : ''}`} id="interests"
@@ -156,6 +175,7 @@ const UserSignUpPage = () => {
             ""
           )}
           <button onClick={usersignup}>Sign UP</button>
+          </form>
           <p>
             Already have an account? <NavLink to="/author/login">Login Here</NavLink>
           </p>

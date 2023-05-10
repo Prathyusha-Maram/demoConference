@@ -23,6 +23,7 @@ import ViewReview from "./pages/loginPage/components/ViewReview";
 import AdminLoginTab from "./pages/loginPage/LoginTabs/adminLoginTab";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReviewerLoginTab from "./pages/loginPage/LoginTabs/reviewerLoginTab";
+import ReviewerChat from "./pages/loginPage/components/reviewerChat";
 function App() {
   return (
     <div className="App">
@@ -58,6 +59,7 @@ function App() {
             <Route exact path="/Review" element={<ReviewerLoginTab/>}/>
             <Route exact path="/createPost" element={<SubmitPaperPage />} />
             <Route exact path="/evaluate" element={<AdminLoginTab />} />
+            <Route exact path="/discussion" element={<ReviewerChat />} />
             <Route exact path="/checkStatus" element={<CheckStatus />} />
           </Route>
         </Routes>
