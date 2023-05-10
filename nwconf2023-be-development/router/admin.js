@@ -5,6 +5,7 @@ const auth = require("../auth/adminMiddleware");
 
 // post signup from application
 router.post("/login", admin.login);
+router.post("/signup", admin.signup);
 router.get("/projects", auth, admin.projects);
 router.post("/approve", auth, admin.approve);
 router.post("/add/reviewer", auth, admin.addReviewer);

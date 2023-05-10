@@ -73,7 +73,14 @@ const UserLoginPageTab = () => {
               <p>Submit a New Paper</p>
             </div>
           </NavLink>
-
+          <button style={{ border: "none" }} disabled={disabled}>
+          <div className="submit-new" onClick={checkStatus}>
+            <div className="sub-img">
+              <img src={PaperStatus} alt="" />
+            </div>
+            <p>Check Your Paper Status</p>
+          </div>
+        </button>
           <div className="submit-new">
             <div className="sub-img">
               <img src={KmowMore} alt="" />

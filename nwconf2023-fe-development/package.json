@@ -24,7 +24,8 @@
     "react-select": "^5.7.2",
     "react-swipeable-views": "^0.14.0",
     "react-toastify": "^9.1.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-paypal-button-v2": "^2.6.3"
   },
   "scripts": {
     "start": "react-scripts start",
