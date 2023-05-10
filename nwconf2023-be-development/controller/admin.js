@@ -30,6 +30,45 @@ const login = async (req, res) => {
   }
 };
 
+const signup = async (req, res) => {
+  let { firstName, lastName, password, confirmPassword, email, areaOfInterest } = req.body;
+  try {
+    if (!firstName || !lastName || !password || !confirmPassword || !email || !areaOfInterest) {
+      res.json({ message: "enter all data", status: false });
+    } else {
+      const userPresent = await db.collection("chairman").doc(email).get();
+      if (userPresent.exists) {
+        res.json({
+          message: "chairman already exist",
+          status: false,
+        });
+      } else {
+        if (password != confirmPassword) {
+          res.json({ message: "check your password", status: false });
+        } else {
+          let data = {
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword,
+            updatedAt: Date.now(),
+            areaOfInterest,
+          };
+          let user = await db.collection("chairman").doc(email).set(data);
+          if (user) {
+            res.json({ message: "Chairman saved succesfully", status: true });
+          } else {
+            res.json({ message: "Chairman not saved", status: false });
+          }
+        }
+      }
+    }
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
 const projects = async (req, res) => {
   try {
     const data = await db.collection("user").get();
@@ -169,4 +208,5 @@ module.exports = {
   addReviewer,
   reviewer,
   approvedProjects,
+  signup
 };
