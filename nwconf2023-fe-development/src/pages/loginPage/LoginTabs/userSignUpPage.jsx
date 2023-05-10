@@ -155,10 +155,10 @@ const UserSignUpPage = () => {
           ) : (
             ""
           )}
+          <button onClick={usersignup}>Sign UP</button>
           <p>
             Already have an account? <NavLink to="/author/login">Login Here</NavLink>
           </p>
-          <button onClick={usersignup}>Sign UP</button>
         </div>
       </div>
     </div>

@@ -5,8 +5,6 @@ import { API_ENDPOINT } from "../constant/constant";
 const ProgramCommitty = () => {
   const [reviewerEmail, setReviewerDetails] = useState([]);
   useEffect(() => {
-
-
     axios
       .get(`${API_ENDPOINT}/admin/reviewers`)
       .then((response) => setReviewerDetails(response.data));
@@ -14,24 +12,43 @@ const ProgramCommitty = () => {
 
   return (
     <div>
-       <div>
-        <h1 className="heading1">COMMITTEE MEMBERS</h1>
-                {reviewerEmail.data?.map((product) => (
-                  <>
-                    <div className="assign-card-con popupnew">
-                      <div className="assign-cardNew">
-                        <li>
-                          Reviewer's Name : <b>{product.userName}</b>
-                        </li>
+      <div>
+        <h1 className="heading1">PROGRAM COMMITTY</h1>
+        <div className="assign-card-con popupnew">
+          <div className="assign-cardNew">
+            <li>
+              <b>Reviewer's Name</b>
+            </li>
 
-                        <li>
-                          Reviewer's Email : <b>{product.email}</b>
-                        </li>
-                      </div>
-                    </div>
-                  </>
-                ))}
+            <li>
+              <b>Reviewer's Email</b>
+            </li>
+
+            <li>
+              <b>Reviewer's Area Of Interest</b>
+            </li>
+          </div>
+        </div>
+        {reviewerEmail.data?.map((product) => (
+          <>
+            <div className="assign-card-con popupnew">
+              <div className="assign-cardNew">
+                <li>
+                  {product.firstName + " " + product.lastName}
+                </li>
+
+                <li>
+                  {product.email}
+                </li>
+
+                <li>
+                  {product.areaOfInterest}
+                </li>
               </div>
+            </div>
+          </>
+        ))}
+      </div>
     </div>
   )
 }

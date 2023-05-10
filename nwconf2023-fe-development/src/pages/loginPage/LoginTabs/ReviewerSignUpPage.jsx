@@ -154,10 +154,7 @@ const ReviewerSignUpPage = () => {
             ""
           )}
           <button onClick={ReviewverSignup}>Sign UP</button>
-          <p>
-            Already have an account?{" "}
-            <NavLink to="/committee/login">Login Here</NavLink>
-          </p>
+          <p> Already have an account? <NavLink to="/committee/login">Login Here</NavLink> </p>
         </div>
       </div>
     </div>
