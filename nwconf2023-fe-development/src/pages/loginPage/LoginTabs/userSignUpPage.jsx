@@ -97,11 +97,11 @@ const UserSignUpPage = () => {
         <h2>Author Registration</h2>
         <div className="login-input-con">
         <form onSubmit={usersignup}style={{ display:"flex", flexDirection:"column" }}>
-        <div className="nameContainer" style={{ display: 'flex' }}>
+          <div className="nameContainer" style={{ display: 'flex' }}>
           <div>
           <label htmlFor="firstName">First Name</label>
           <input
-            type="text" className={`form-control ${firstNameError ? 'is-invalid' : ''}`} id="firstName"
+            type="email" className={`form-control ${firstNameError ? 'is-invalid' : ''}`} id="firstName"
             placeholder="First Name"
             onChange={(e) => setFirstName(e.target.value)}
           />
@@ -110,8 +110,8 @@ const UserSignUpPage = () => {
           <div style={{ marginLeft: "20px" }}>
           <label htmlFor="lastName">Last Name</label>
           <input
-            type="text" className={`form-control ${lastNameError ? 'is-invalid' : ''}`} id="lastName"
-            placeholder="Last Name"
+            type="email" className={`form-control ${lastNameError ? 'is-invalid' : ''}`} id="lastName"
+            placeholder="Last Name" style={{border :""}}
             onChange={(e) => setLastName(e.target.value)}
           />
           {lastNameError && <div className="invalid-feedback">{lastNameError}</div>}
@@ -180,6 +180,7 @@ const UserSignUpPage = () => {
             Already have an account? <NavLink to="/author/login">Login Here</NavLink>
           </p>
         </div>
+        
       </div>
     </div>
   );
