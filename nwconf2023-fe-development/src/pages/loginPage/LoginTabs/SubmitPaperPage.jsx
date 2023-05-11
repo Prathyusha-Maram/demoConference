@@ -232,13 +232,14 @@ const SubmitPaperPage = () => {
 
   return (
     <div className="paper">
+      <h3 style={{textAlign:"center", color:"var(--green)"}}><b>Submit your Paper</b></h3>
       {/* {approved ? (
         <>
           <span>Approved Statusdd</span> <h4>{approved}</h4>{" "}
         </>
       ) : null} */}
       <form className="form-con" onSubmit={sendPost}>
-        <label htmlFor="">Title</label>
+        <label htmlFor="" style={{color:"white"}}>Title</label>
 
         <input
           type="text"
@@ -247,7 +248,7 @@ const SubmitPaperPage = () => {
           value={title}
           style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
         />
-        <label htmlFor="">Abstract</label>
+        <label htmlFor="" style={{color:"white"}}>Abstract</label>
         <textarea
           name="message"
           rows="10"
@@ -255,7 +256,7 @@ const SubmitPaperPage = () => {
           onChange={(e) => setAbstarct(e.target.value)}
           value={abstarct}
         ></textarea>
-        <label htmlFor="">Keywords</label>
+        <label htmlFor="" style={{color:"white"}}>Keywords</label>
 
         <Select
   isMulti
@@ -288,17 +289,18 @@ const SubmitPaperPage = () => {
   </>
 ) : null}
  
-                    <span>
+                    <div style={{color:"white"}}>
   Is this a group Submission{" "}
   <input
     type="checkbox"
     checked={isChecked}
     onChange={handleCheckboxChange}
+    // style={{width:"100%"}}
   />
-</span>
+</div>
 {isChecked ? (
   <div>
-    <label htmlFor="">Email</label>
+    <label htmlFor="" style={{color:"white"}}>Email</label>
     <input
       placeholder="Enter each email ID.."
       // onChange={(event) => { handleChange(event) }} className={(errors.email) ? "error" : null} id="email" type="email" 
@@ -317,7 +319,7 @@ const SubmitPaperPage = () => {
   </div>
 ) : null}
 
-        <label htmlFor="">
+        <label htmlFor="" style={{color:"white"}}>
           {" "}
           Upload your Paper{" "}
           <h4 style={{ color: "red" }}>{loading ? "loading" : ""}</h4>
