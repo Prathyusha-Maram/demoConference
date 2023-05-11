@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const guest = require("../controller/guest");
-const auth = require("../auth/reviewerMiddleware");
+const auth = require("../auth/guestMiddleware");
 
 // post signup from application
-
-router.post("/guest", guest.guest);
+router.post("/signup", guest.signup);
 
 module.exports = router;

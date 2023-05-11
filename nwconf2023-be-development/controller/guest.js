@@ -5,18 +5,26 @@ const config = require("../config");
 const { db } = require("../firebase");
 const { sentGuestInvation } = require("../mail/mail");
 
-app.post("/guest", (req, res) => {
-    console.log("Geust payment")
-    const itemRef = collection(db, "guest");
+const signup = async (req, res) => {
     var data = { ...req.body };
     console.log(data);
-    addDoc(itemRef, data)
-        .then(() => {
-            sentGuestInvation(data.Email);
-        })
-        .catch((e) => {
-            console.log(e);
+    const userPresent = await db.collection("guest").doc(data.Email).get();
+    if (userPresent.exists) {
+        res.json({
+          message: "reviewer already exist",
+          status: false,
         });
+    } else {
+        let user = await db.collection("guest").doc(data.Email).set(data);
+          if (user) {
+            res.json({ message: "Guest saved succesfully", status: true });
+            sentGuestInvation(data.Email);
+          } else {
+            res.json({ message: "Guest not saved", status: false });
+          }
+    }
+}
 
-    res.status(200).send({ message: "Payment successfull" });
-});
+module.exports = {
+    signup,
+};
