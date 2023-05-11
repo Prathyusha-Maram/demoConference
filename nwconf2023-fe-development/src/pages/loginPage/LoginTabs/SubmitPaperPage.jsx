@@ -211,8 +211,8 @@ const SubmitPaperPage = () => {
   var other = "";
   const handleSelectChange = (selectedOption) => {
     setKeywords(selectedOption);
-    if(selectedOption == "Other")
-      other = selectedOption;
+    if(selectedOption === "Other")
+      other = "selected";
   };
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
@@ -244,7 +244,7 @@ const SubmitPaperPage = () => {
           type="text"
           placeholder="Enter Title"
           onChange={(e) => setTitle(e.target.value)}
-          // value={title}
+          value={title}
           style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
         />
         <label htmlFor="">Abstract</label>
@@ -253,65 +253,70 @@ const SubmitPaperPage = () => {
           rows="10"
           cols="60"
           onChange={(e) => setAbstarct(e.target.value)}
-          // value={abstarct}
+          value={abstarct}
         ></textarea>
         <label htmlFor="">Keywords</label>
 
         <Select
-          isMulti
-          name="colors"
-          // value={keywords}
-          options={colourOptions}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          onChange={handleSelectChange}
-        ></Select>
-        {(other == 'selected') ? <>
-                    <input id="keyws"
-                        className= "colors"
-                        // {(errors.keyws) ? "error" : null}
-                        type="text"
-                        // value={values.keyws}
-                        placeholder="Enter keyword seperated by ,"
-                        // onKeyDown={(event) => { keywordHandle(event) }}
-                        // onChange={(event) => { handleChange(event) }} 
-                        ></input>
-                    {/* <div style={{ width: 'fit-content', background: 'transparent', display: "flex", flexDirection: "row", flexWrap: "wrap", margin: '0 auto' }}>
-                        {test.map((word, index) =>
-                            <div>
-                                <Word iskey={'yes'} word={word} key={index}></Word>
-                            </div>
-                        )}
-                    </div> */}
-                    </> : null} 
-        <span>
-          Is this a group Submission{" "}
-          <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-          />
-        </span>
-        {
-                    checked ? null : <div>
-                        <label htmlFor="">Email</label>
-                        <input
-                            placeholder="Enter each email ID.."
-                            // onChange={(event) => { handleChange(event) }} className={(errors.email) ? "error" : null} id="email" type="email" 
-                            >
+  isMulti
+  name="colors"
+  value={keywords}
+  options={colourOptions}
+  className="basic-multi-select"
+  classNamePrefix="select"
+  onChange={handleSelectChange}
+></Select>
+{other == 'selected' ? (
+  <>
+    <input
+      id="keyws"
+      className="colors"
+      // {(errors.keyws) ? "error" : null}
+      type="text"
+      // value={values.keyws}
+      placeholder="Enter keywords separated by ,"
+      // onKeyDown={(event) => { keywordHandle(event) }}
+      // onChange={(event) => { handleChange(event) }}
+    ></input>
+    {/* <div style={{ width: 'fit-content', background: 'transparent', display: "flex", flexDirection: "row", flexWrap: "wrap", margin: '0 auto' }}>
+      {test.map((word, index) =>
+        <div>
+          <Word iskey={'yes'} word={word} key={index}></Word>
+        </div>
+      )}
+    </div> */}
+  </>
+) : null}
+ 
+                    <span>
+  Is this a group Submission{" "}
+  <input
+    type="checkbox"
+    checked={isChecked}
+    onChange={handleCheckboxChange}
+  />
+</span>
+{isChecked ? (
+  <div>
+    <label htmlFor="">Email</label>
+    <input
+      placeholder="Enter each email ID.."
+      // onChange={(event) => { handleChange(event) }} className={(errors.email) ? "error" : null} id="email" type="email" 
+    ></input>
+    {/* {errEm ? <p className="error">{errEm}</p> : null}
+    <button type="button" className="button" onClick={() => { handleKey("email") }}>
+      Add
+    </button>
+    <div style={{ width: 'fit-content', background: 'transparent', display: "flex", flexDirection: "row", flexWrap: "wrap", margin: '0 auto' }}>
+      {emails.map((em, index) =>
+        <div onClick={() => { remove(index, "email") }}>
+          <Word word={em} key={index}></Word>
+        </div>
+      )}
+    </div> */}
+  </div>
+) : null}
 
-                            </input>
-                        {/* {errEm ? <p className="error">{errEm}</p> : null}
-                        <button type="button" className="button" onClick={() => { handleKey("email") }}>Add</button>
-                        <div style={{ width: 'fit-content', background: 'transparent', display: "flex", flexDirection: "row", flexWrap: "wrap", margin: '0 auto' }}>
-                            {emails.map((em, index) =>
-                                <div onClick={() => { remove(index, "email") }}>
-                                    <Word word={em} key={index}></Word>
-                                </div>
-                            )}
-                        </div> */}
-                    </div>
-                }
         <label htmlFor="">
           {" "}
           Upload your Paper{" "}

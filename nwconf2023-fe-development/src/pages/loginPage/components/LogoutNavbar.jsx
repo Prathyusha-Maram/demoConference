@@ -19,7 +19,6 @@ const LogoutNavbar = () => {
                    <li><NavLink to="/" className="nav-link">HOME</NavLink></li>
                    <li> <NavLink to="/ProgramCommity" >PROGRAM COMMITTEE</NavLink></li>
                    <li> <NavLink to="/Accept">ACCEPT</NavLink></li>
-                   <li>  <NavLink to="/Evaluation">EVALUATION</NavLink></li>
                    <li>  <NavLink to="/">LOGOUT</NavLink></li>
               
                    </div>
