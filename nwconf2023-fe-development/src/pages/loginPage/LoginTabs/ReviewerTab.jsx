@@ -48,18 +48,19 @@ const UserLoginPageTab = () => {
             </p> */}
               <tr>
                 <td className='InfoHeading'>Name</td>
-                <td>&nbsp;:&nbsp; </td>
-                <td>&nbsp;{userDatas?.firstName + " " + userDatas?.lastName}</td>
+                <td>&nbsp;: </td>
+                {/* <td>&nbsp;{userDatas?.firstName + " " + userDatas?.lastName}</td> */}
+                <td>&nbsp;Reviewer</td>
               </tr>
               <tr>
                 <td className='InfoHeading'>Email</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td>{userDatas?.email}</td>
+                <td>reviewer1@gmail.com</td>
               </tr>
               <tr>
                 <td className='InfoHeading'>Areas of intrest</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td>{userDatas?.areaOfInterest}</td>
+                <td>Software engineering, Cloud computing, Block chain</td>
               </tr>
             </table>
           </div>

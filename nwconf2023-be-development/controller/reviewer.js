@@ -82,6 +82,32 @@ const signup = async (req, res) => {
   }
 };
 
+const project = async (req, res) => {
+  try {
+      const email = req.data.id;
+      const users = await db.collection("reviewer").doc(email).get();
+      if (!users.exists) {
+        res.json({
+          msg: "User doesn't exist",
+        });
+      } else {
+        let data = {
+          firstName,
+          lastName,
+          email,
+          areaOfInterest,
+          updatedAt: Date.now(),
+        };
+        let upload = await db
+          .collection("reviewer")
+          .doc(email)
+          .set(data, { merge: true });
+    }
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
 const projects = async (req, res) => {
   try {
     const email = req.data.id;
@@ -153,4 +179,5 @@ module.exports = {
   signup,
   projects,
   reviewerApproval,
+  project,
 };
