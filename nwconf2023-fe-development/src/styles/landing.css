@@ -314,7 +314,7 @@ li .active {
 }
 
 .login-input-con input {
-    width:400px;
+    width:300px;
     margin: 0px 0px 10px 0px;
     padding: 5px 0px 5px 10px;
     border: '1px solid #ccc';
@@ -328,7 +328,7 @@ li .active {
     border-radius: 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     width: 750px;
-    text-align: center;
+    /* text-align: center; */
     /* width: 500px;
     background-color: white;
     border-radius: 20px */

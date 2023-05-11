@@ -94,10 +94,10 @@ const UserSignUpPage = () => {
   return (
     <div className="login-container">
       <div className="login-con" style={{ margin: "40px 0" }}>
-        <h2>Author Registration</h2>
+        <h2 style={{textAlign:"center"}}>Author Registration</h2>
         <div className="login-input-con">
         <form onSubmit={usersignup}style={{ display:"flex", flexDirection:"column" }}>
-          <div className="nameContainer" style={{ display: 'flex' }}>
+          <div className="nameContainer" style={{ display: 'flex', width:"700px" }}>
           <div style={{flex: 1}}>
           <label htmlFor="firstName">First Name</label>
           <input
@@ -119,7 +119,7 @@ const UserSignUpPage = () => {
           {lastNameError && <div className="invalid-feedback">{lastNameError}</div>}
           </div>
           </div>
-          <div className="emailContainer" style={{ display: "flex"}}>
+          <div className="emailContainer" style={{ display: "flex", width:"700px"}}>
           <div style={{flex: 1}}>
           <label htmlFor="email">Email Address</label>
           <input
@@ -141,7 +141,7 @@ const UserSignUpPage = () => {
           {confirmEmailError && <div className="invalid-feedback">{confirmEmailError}</div>}
           </div>
           </div>
-          <div className="emailContainer" style={{ display: "flex" }}>
+          <div className="emailContainer" style={{ display: "flex", width:"700px"}}>
           <div style={{flex: 1}}>
           <label htmlFor="password">Passowrd</label>
           <input

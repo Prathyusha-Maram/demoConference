@@ -30,7 +30,7 @@ const UserLoginPage = () => {
   const navigate = useNavigate();
   return (
     <div className="login-page-container" >
-      <div className="login-con">
+      <div className="login-con" style={{ textAlign: "center"}}>
         <h2>Author Login</h2>
         <div className="login-input-con">
         <label htmlFor="email">Email Address</label>
