@@ -440,6 +440,15 @@ li .active {
     position: relative;
 }
 
+.guestContainer{
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 30vh;
+     /* background-image: url("../images/bg6.jpg"); */
+     background-size: cover;
+    }
 
 .review-container {
     font-weight: 800;
