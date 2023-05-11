@@ -31,7 +31,7 @@ const AdminLoginPage = () => {
 
   return (
     <div className="login-page-container">
-      <div className="login-con">
+      <div className="login-con" style={{ textAlign: "center"}}>
         <h2>Chairman Login</h2>
 
         <div className="login-input-con new">

@@ -162,6 +162,7 @@ const SubmitPaperPage = () => {
     } else {
     }
   }
+  
   const uploadImage = async (e) => {
     setLoading(true);
     let formData = new FormData();
@@ -178,7 +179,7 @@ const SubmitPaperPage = () => {
       setLoading(false);
     }
   };
-
+  const [checked, setChecked] = useState(false);
   const GetApi = () => {
     axios.get(`${API_ENDPOINT}/my/project`, myheader).then((response) => {
       if (response.data.status) {
@@ -207,9 +208,11 @@ const SubmitPaperPage = () => {
       token: localStorage.getItem("Usertoken"),
     },
   });
-
+  var other = "";
   const handleSelectChange = (selectedOption) => {
     setKeywords(selectedOption);
+    if(selectedOption == "Other")
+      other = selectedOption;
   };
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
@@ -257,12 +260,30 @@ const SubmitPaperPage = () => {
         <Select
           isMulti
           name="colors"
-          value={keywords}
+          // value={keywords}
           options={colourOptions}
           className="basic-multi-select"
           classNamePrefix="select"
           onChange={handleSelectChange}
-        />
+        ></Select>
+        {(other == 'selected') ? <>
+                    <input id="keyws"
+                        className= "colors"
+                        // {(errors.keyws) ? "error" : null}
+                        type="text"
+                        // value={values.keyws}
+                        placeholder="Enter keyword seperated by ,"
+                        // onKeyDown={(event) => { keywordHandle(event) }}
+                        // onChange={(event) => { handleChange(event) }} 
+                        ></input>
+                    {/* <div style={{ width: 'fit-content', background: 'transparent', display: "flex", flexDirection: "row", flexWrap: "wrap", margin: '0 auto' }}>
+                        {test.map((word, index) =>
+                            <div>
+                                <Word iskey={'yes'} word={word} key={index}></Word>
+                            </div>
+                        )}
+                    </div> */}
+                    </> : null} 
         <span>
           Is this a group Submission{" "}
           <input
@@ -271,13 +292,16 @@ const SubmitPaperPage = () => {
             onChange={handleCheckboxChange}
           />
         </span>
-        {/* {
+        {
                     checked ? null : <div>
                         <label htmlFor="">Email</label>
                         <input
                             placeholder="Enter each email ID.."
-                            onChange={(event) => { handleChange(event) }} className={(errors.email) ? "error" : null} id="email" type="email" ></input>
-                        {errEm ? <p className="error">{errEm}</p> : null}
+                            // onChange={(event) => { handleChange(event) }} className={(errors.email) ? "error" : null} id="email" type="email" 
+                            >
+
+                            </input>
+                        {/* {errEm ? <p className="error">{errEm}</p> : null}
                         <button type="button" className="button" onClick={() => { handleKey("email") }}>Add</button>
                         <div style={{ width: 'fit-content', background: 'transparent', display: "flex", flexDirection: "row", flexWrap: "wrap", margin: '0 auto' }}>
                             {emails.map((em, index) =>
@@ -285,9 +309,9 @@ const SubmitPaperPage = () => {
                                     <Word word={em} key={index}></Word>
                                 </div>
                             )}
-                        </div>
+                        </div> */}
                     </div>
-                } */}
+                }
         <label htmlFor="">
           {" "}
           Upload your Paper{" "}

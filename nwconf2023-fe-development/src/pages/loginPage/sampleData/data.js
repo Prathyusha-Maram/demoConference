@@ -8,4 +8,5 @@ export const colourOptions = [
   },
   { value: "Data Structures", label: "Data Structures" },
   { value: "Algorithm", label: "Algorithm" },
+  { value: "Other" , label: "Other"},
 ];
