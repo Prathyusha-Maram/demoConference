@@ -361,7 +361,7 @@ export default function FullWidthTabs() {
       <div className="loginRight">
             
       <div className="loginBtn guest">
-             <NavLink to="/author/login">Continue as Guest</NavLink>
+             <NavLink to="/guest/login">Continue as Guest</NavLink>
           </div> 
             <div className="loginBtn author">
              <NavLink to="/author/login">Continue as Author</NavLink>

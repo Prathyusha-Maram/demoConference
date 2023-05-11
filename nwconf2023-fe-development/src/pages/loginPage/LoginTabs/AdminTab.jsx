@@ -73,8 +73,6 @@ const UserLoginPageTab = () => {
             <p>
               User Email :<b>{userDatas?.email}</b>
             </p>
-
-            <button className="edit-profile-btn">Edit Profile</button>
           </div> */}
           <div className="authorInfo">
             <table>
@@ -89,29 +87,11 @@ const UserLoginPageTab = () => {
                 <td>admin@gmail.com</td>
               </tr>
               <tr>
-                <td className='authorInfoHeading'>Mobile Number</td>
-                <td>&nbsp;:&nbsp;</td>
-                <td>6605213456</td>
-              </tr>
-              <tr>
-                <td className='authorInfoHeading'>Country</td>
-                <td>&nbsp;:&nbsp;</td>
-                <td>India</td>
-              </tr>
-              <tr>
-                <td className='authorInfoHeading'>Date of birth</td>
-                <td>&nbsp;:&nbsp;</td>
-                <td>06 June 1999</td>
-              </tr>
-              <tr>
                 <td className='authorInfoHeading'>Areas of intrest</td>
                 <td>&nbsp;:&nbsp;</td>
                 <td>Software engineering, Cloud computing, Block chain</td>
               </tr>
             </table>
-            <div className="editInfoContainer">
-              <button className="edit-profile-btn">Edit Profile</button>
-            </div>
           </div>
         </div>
         <div className="optionContainer">

@@ -6,23 +6,53 @@ const { sendReviewerNotifyMail, sendPaperResponse } = require("../mail/mail");
 const login = async (req, res) => {
   let { email, password } = req.body;
   try {
+    // if (!email || !password) {
+    //   res.json({ message: "Enter email and password", status: false });
+    // } else {
+    //   if (
+    //     email.trim() === "admin@gmail.com" &&
+    //     password.trim() === "admin@123"
+    //   ) {
+    //     const token = await jwt.sign(
+    //       {
+    //         admin: true,
+    //         email,
+    //       },
+    //       config.JWT_TOKEN_KEY
+    //     );
+    //     res.json({ message: "Admin can login", status: true, token });
+    //   } else {
+    //     res.json({ message: "Ivalid credentials", status: false });
+    //   }
+    // }
     if (!email || !password) {
-      res.json({ message: "Enter email and password", status: false });
+      res.json({ message: "enter all data", status: false });
     } else {
-      if (
-        email.trim() === "admin@gmail.com" &&
-        password.trim() === "admin@123"
-      ) {
-        const token = await jwt.sign(
+      const users = await db.collection("chairman").doc(email).get();
+      if (!users.exists) {
+        res.json({
+          msg: "User doesn't exist",
+        });
+      } else {
+        const data = users.data();
+        let token = await jwt.sign(
           {
-            admin: true,
-            email,
+            id: data.email,
           },
           config.JWT_TOKEN_KEY
         );
-        res.json({ message: "Admin can login", status: true, token });
-      } else {
-        res.json({ message: "Ivalid credentials", status: false });
+        if (data.password == password) {
+          res.json({
+            message: "login successfully",
+            token: token,
+            status: true,
+          });
+        } else {
+          res.json({
+            message: "Invalid UserName/password",
+            status: false,
+          });
+        }
       }
     }
   } catch (error) {

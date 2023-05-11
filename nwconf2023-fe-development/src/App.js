@@ -25,6 +25,7 @@ import AdminSignUpPage from "./pages/loginPage/LoginTabs/AdminSignUpPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReviewerLoginTab from "./pages/loginPage/LoginTabs/reviewerLoginTab";
 import ReviewerChat from "./pages/loginPage/components/reviewerChat";
+// import GuestLogin from "./pages/loginPage/LoginTabs/GuestLogin";
 function App() {
   return (
     <div className="App">
@@ -42,6 +43,7 @@ function App() {
             <Route exact path="/committee/register" element={<ReviewerSignUpPage />} />
             <Route exact path="/admin/login" element={<AdminLoginPage />} />
             <Route exact path="/admin/register" element={<AdminSignUpPage />} />
+            {/* <Route exact path="/guest/login" element={<GuestLogin />} /> */}
           </Route>
 
           <Route element={<LogoutNavbar />}>
