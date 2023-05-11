@@ -98,61 +98,67 @@ const UserSignUpPage = () => {
         <div className="login-input-con">
         <form onSubmit={usersignup}style={{ display:"flex", flexDirection:"column" }}>
           <div className="nameContainer" style={{ display: 'flex' }}>
-          <div>
+          <div style={{flex: 1}}>
           <label htmlFor="firstName">First Name</label>
           <input
-            type="email" className={`form-control ${firstNameError ? 'is-invalid' : ''}`} id="firstName"
+            type="text" className={`form-control ${firstNameError ? 'is-invalid' : ''}`} id="firstName"
             placeholder="First Name"
             onChange={(e) => setFirstName(e.target.value)}
+            style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
           />
           {firstNameError && <div className="invalid-feedback">{firstNameError}</div>}
           </div>
-          <div style={{ marginLeft: "20px" }}>
+          <div style={{ marginLeft: "20px", flex:1 }}>
           <label htmlFor="lastName">Last Name</label>
           <input
-            type="email" className={`form-control ${lastNameError ? 'is-invalid' : ''}`} id="lastName"
-            placeholder="Last Name" style={{border :""}}
+            type="text" className={`form-control ${lastNameError ? 'is-invalid' : ''}`} id="lastName"
+            placeholder="Last Name"
             onChange={(e) => setLastName(e.target.value)}
+            style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
           />
           {lastNameError && <div className="invalid-feedback">{lastNameError}</div>}
           </div>
           </div>
           <div className="emailContainer" style={{ display: "flex"}}>
-          <div>
+          <div style={{flex: 1}}>
           <label htmlFor="email">Email Address</label>
           <input
             type="email" className={`form-control ${emailError ? 'is-invalid' : ''}`} id="email"
             placeholder="Email"
             onChange={(e) => setSignUpEmail(e.target.value)}
+			style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
           />
           {emailError && <div className="invalid-feedback">{emailError}</div>}
           </div>
-          <div style={{ marginLeft: "20px" }}>
+          <div style={{ marginLeft: "20px", flex:1 }}>
           <label htmlFor="confirmEmail">Confirm Email Address</label>
           <input
             type="email" className={`form-control ${confirmEmailError ? 'is-invalid' : ''}`} id="confirmEmail"
             placeholder="Confirm Email"
             onChange={(e) => setConfrimSignUpEmail(e.target.value)}
+			style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
           />
           {confirmEmailError && <div className="invalid-feedback">{confirmEmailError}</div>}
           </div>
           </div>
           <div className="emailContainer" style={{ display: "flex" }}>
-          <div>
+          <div style={{flex: 1}}>
           <label htmlFor="password">Passowrd</label>
           <input
             type="password" className={`form-control ${passwordError ? 'is-invalid' : ''}`} id="password"
             placeholder="Password"
             onChange={(e) => setSignUpPassword(e.target.value)}
+			style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
           />
           {passwordError && <div className="invalid-feedback">{passwordError}</div>}
           </div>
-          <div style={{ marginLeft: "20px" }}>
+          <div style={{ marginLeft: "20px", flex:1 }}>
           <label htmlFor="confrimPassword">Confirm Passowrd</label>
           <input
             type="password" className={`form-control ${confirmPasswordError ? 'is-invalid' : ''}`} id="confirmpassword"
             placeholder="Confirm Password"
             onChange={(e) => setConfirmSignUpPassword(e.target.value)}
+			style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
           />
           {confirmPasswordError && <div className="invalid-feedback">{confirmPasswordError}</div>}
           </div>
@@ -162,6 +168,7 @@ const UserSignUpPage = () => {
             type="text" className={`form-control ${interestsError ? 'is-invalid' : ''}`} id="interests"
             placeholder="Area Of Intrest"
             onChange={(e) => setAreaOfInterest(e.target.value)}
+            style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
           />
           {interestsError && <div className="invalid-feedback">{interestsError}</div>}
           {userSignUpTost ? (
@@ -174,7 +181,9 @@ const UserSignUpPage = () => {
           ) : (
             ""
           )}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
           <button onClick={usersignup}>Sign UP</button>
+		  </div>
           </form>
           <p>
             Already have an account? <NavLink to="/author/login">Login Here</NavLink>

@@ -29,7 +29,7 @@ const UserLoginPage = () => {
   const [loginalert, setloginalert] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="login-page-container">
+    <div className="login-page-container" >
       <div className="login-con">
         <h2>Author Login</h2>
         <div className="login-input-con">
@@ -50,7 +50,7 @@ const UserLoginPage = () => {
           ) : (
             ""
           )}
-          <button onClick={userlogin}>Login</button>
+          <button onClick={userlogin} >Login</button>
           <span>
           Don't have a account? <NavLink to="/author/register">Register here</NavLink>
           </span>
