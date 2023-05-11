@@ -86,7 +86,7 @@ const UserLoginPageTab = () => {
             <div className="sub-img">
               <img src={KmowMore} alt="" />
             </div>
-            <p>Know More About Paper Submission</p>
+            <p style={{color:"#006747"}}><b>Know More About Paper Submission</b></p>
           </div>
         </div>
       </div>

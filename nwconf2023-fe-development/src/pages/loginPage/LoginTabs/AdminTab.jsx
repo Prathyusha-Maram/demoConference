@@ -103,16 +103,18 @@ const UserLoginPageTab = () => {
               <p>Assign & Evaluate</p>
             </div>
           </NavLink>
+          <NavLink>
           <div>
           
               <div className="submit-new" onClick={openModal}>
                 <div className="sub-img">
                   <img src={chatNew} alt="" />
                 </div>
-                <p style={{color:"#006747"}}><b>Discussion</b></p>
+                <p>Discussion</p>
               </div>
             
           </div>
+          </NavLink>
           <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
             <ModalContent
               conversation={conversation}
