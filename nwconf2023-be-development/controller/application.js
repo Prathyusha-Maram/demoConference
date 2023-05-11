@@ -7,9 +7,9 @@ const { sendAuthorMail } = require("../mail/mail");
 
 // post for signup
 const signup = async (req, res) => {
-  let { userName, password, confirmPassword, email } = req.body;
+  let { firstName, lastName, password, confirmPassword, email, areaOfInterest } = req.body;
   try {
-    if (!userName || !password || !confirmPassword || !email) {
+    if (!firstName || !lastName || !password || !confirmPassword || !email || !areaOfInterest) {
       res.json({ message: "enter all data", status: false });
     } else {
       const userPresent = await db.collection("user").doc(email).get();
@@ -23,9 +23,11 @@ const signup = async (req, res) => {
           res.json({ message: "check your password", status: false });
         } else {
           let data = {
-            userName,
-            password,
+            firstName,
+            lastName,
             email,
+            password,
+            confirmPassword,
             title: "",
             abstract: "",
             groupSubmission: false,
@@ -35,6 +37,7 @@ const signup = async (req, res) => {
             document: "",
             approved: "Pending",
             updatedAt: Date.now(),
+            areaOfInterest,
           };
           let user = await db.collection("user").doc(email).set(data);
           if (user) {
@@ -87,6 +90,7 @@ const login = async (req, res) => {
     res.json({ message: err.message, status: false });
   }
 };
+
 const project = async (req, res) => {
   let { title, abstract, keyword, document, groupSubmission } = req.body;
   try {
@@ -125,6 +129,7 @@ const project = async (req, res) => {
     res.json({ message: error.message, status: false });
   }
 };
+
 const projectWithdrawal = async (req, res) => {
   let { title, abstract, keyword, document, groupSubmission } = req.body;
   try {
@@ -162,6 +167,7 @@ const projectWithdrawal = async (req, res) => {
     res.json({ message: error.message, status: false });
   }
 };
+
 const myProject = async (req, res) => {
   try {
     const email = req.data.id;
@@ -175,7 +181,9 @@ const myProject = async (req, res) => {
     clean.approved = data.approved;
     clean.reviewerApproval = data.reviewerApproval;
     clean.email = data.email;
-    clean.userName = data.userName;
+    clean.firstName = data.firstName;
+    clean.lastName = data.lastName;
+    clean.areaOfInterest = data.areaOfInterest;
 
     res.json({ project: clean, status: true });
   } catch (error) {

@@ -5,6 +5,14 @@ import { API_ENDPOINT } from "../../../constant/constant";
 
 import axios from "axios";
 
+var gkeyarr = []
+var values = {
+  "title": '',
+  "key": [],
+  "abs": '',
+  'file': ''
+}
+
 const SubmitPaperPage = () => {
   const [title, setTitle] = useState("");
   const [abstarct, setAbstarct] = useState("");
@@ -16,7 +24,77 @@ const SubmitPaperPage = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [approved, setApproved] = useState("");
+//   const handleChange = (event) => {
 
+//     if (event.target == undefined) {
+
+//         var keyarr = []
+//         event.map(o => {
+//             keyarr.push(o.label)
+//         })
+//         setkeyword(keyarr)
+//         setSelectedOptions(keyarr)
+//         gkeyarr = keyarr
+//         values['key'] = keyarr
+
+//         if (gkeyarr.length == 0) {
+//             errors['key'] = 'Keywords are Mandatory'
+//             setkerr('Keywords are Mandatory')
+//         }
+//         else {
+//             errors['key'] = ''
+//             setkerr()
+//         }
+//         if (gkeyarr.indexOf('Other') >= 0) {
+//             console.log("selected other");
+//             setother('selected')
+//         }
+//     }
+
+//     else {
+//         values[event.target.id] = event.target.value
+//         if (values[event.target.id] == '') {
+//             errors[event.target.id] = 'This field cant be Empty'
+//         }
+//         else {
+//             errors[event.target.id] = ''
+
+//         }
+//         if (event.target.id == "title") {
+//             if (event.target.value == '') {
+//                 setterr('This field cant be Empty')
+//             }
+//             else {
+//                 setterr()
+//             }
+//         } if (event.target.id == "abs") {
+//             if (event.target.value == '') {
+//                 setaerr('This field cant be Empty')
+//             }
+//             else {
+//                 setaerr()
+//             }
+//         }
+//         if (event.target.id == "key") {
+//             if (event.target.value == '') {
+//                 setkerr('This field cant be Empty')
+//             }
+//             else {
+//                 setkerr()
+//             }
+//         }
+
+//     }
+//     ec = 0
+//     Object.keys(errors).forEach(er => {
+//         if (errors[er] != '') {
+//             ec++
+//         }
+//     })
+//     console.log(ec);
+//     console.log(errors);
+
+// }
   function sendPost(e) {
     e.preventDefault();
     axios
@@ -150,21 +228,30 @@ const SubmitPaperPage = () => {
   }, []);
 
   return (
-    <div>
-      {approved ? (
+    <div className="paper">
+      {/* {approved ? (
         <>
           <span>Approved Statusdd</span> <h4>{approved}</h4>{" "}
         </>
-      ) : null}
-      <form className="form-con">
+      ) : null} */}
+      <form className="form-con" onSubmit={sendPost}>
         <label htmlFor="">Title</label>
 
         <input
           type="text"
           placeholder="Enter Title"
           onChange={(e) => setTitle(e.target.value)}
-          value={title}
+          // value={title}
+          style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
         />
+        <label htmlFor="">Abstract</label>
+        <textarea
+          name="message"
+          rows="10"
+          cols="60"
+          onChange={(e) => setAbstarct(e.target.value)}
+          // value={abstarct}
+        ></textarea>
         <label htmlFor="">Keywords</label>
 
         <Select
@@ -184,14 +271,23 @@ const SubmitPaperPage = () => {
             onChange={handleCheckboxChange}
           />
         </span>
-        <label htmlFor="">Abstract</label>
-        <textarea
-          name="message"
-          rows="10"
-          cols="60"
-          onChange={(e) => setAbstarct(e.target.value)}
-          value={abstarct}
-        ></textarea>
+        {/* {
+                    checked ? null : <div>
+                        <label htmlFor="">Email</label>
+                        <input
+                            placeholder="Enter each email ID.."
+                            onChange={(event) => { handleChange(event) }} className={(errors.email) ? "error" : null} id="email" type="email" ></input>
+                        {errEm ? <p className="error">{errEm}</p> : null}
+                        <button type="button" className="button" onClick={() => { handleKey("email") }}>Add</button>
+                        <div style={{ width: 'fit-content', background: 'transparent', display: "flex", flexDirection: "row", flexWrap: "wrap", margin: '0 auto' }}>
+                            {emails.map((em, index) =>
+                                <div onClick={() => { remove(index, "email") }}>
+                                    <Word word={em} key={index}></Word>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                } */}
         <label htmlFor="">
           {" "}
           Upload your Paper{" "}
@@ -199,7 +295,7 @@ const SubmitPaperPage = () => {
         </label>
         <input
           type="file"
-          accept=".pdf,.doc,.docx"
+          accept=".pdf"/*,.doc,.docx*/
           onChange={(e) => uploadImage(e)}
         />
         <div className="form-btn-con">

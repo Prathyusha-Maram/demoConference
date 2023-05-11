@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { API_ENDPOINT } from "../../../constant/constant";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 const AdminLoginPage = () => {
   const [adminloginEmail, setadminloginUpEmail] = useState("");
   const [adminloginPassword, setadminloginPassword] = useState("");
@@ -32,14 +32,16 @@ const AdminLoginPage = () => {
   return (
     <div className="login-page-container">
       <div className="login-con">
-        <h2>Admin Login</h2>
+        <h2>Chairman Login</h2>
 
         <div className="login-input-con new">
+        <label htmlFor="email">Email Address</label>
           <input
             type="email"
-            placeholder="email"
+            placeholder="Email"
             onChange={(e) => setadminloginUpEmail(e.target.value)}
           />
+          <label htmlFor="email">Password</label>
           <input
             type="password"
             placeholder="Password"
@@ -52,6 +54,9 @@ const AdminLoginPage = () => {
             ""
           )}
           <button onClick={adminLogin}>Login</button>
+          <span>
+          Don't have a account? <NavLink to="/admin/register">Register here</NavLink>
+          </span>
         </div>
       </div>
     </div>

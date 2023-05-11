@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_ENDPOINT } from "../../../constant/constant";
 import { NavLink } from "react-router-dom";
 
-const ReviewerSignUpPage = () => {
+const AdminSignUpPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [signupReviewerEmail, setSignUpReviewerEmail] = useState("");
@@ -21,7 +21,7 @@ const ReviewerSignUpPage = () => {
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
-  function ReviewverSignup() {
+  function AdminSignup() {
 
     if (firstName.trim() === '') {
       setFirstNameError('First name is required');
@@ -68,7 +68,7 @@ const ReviewerSignUpPage = () => {
 
     if (firstName !== "" && lastName !== "" && signupReviewerEmail !== "" && confirmSignupReviewerEmail !== "" && signUpReviewerPassword !== "" && confirmSignUpReviewerPassword !== "") {
       axios
-        .post(`${API_ENDPOINT}/reviewer/signup`, {
+        .post(`${API_ENDPOINT}/admin/signup`, {
           firstName: firstName,
           lastName: lastName,
           email: signupReviewerEmail,
@@ -92,10 +92,10 @@ const ReviewerSignUpPage = () => {
   }
   return (
     <div className="login-container">
-      <div className="login-con"  style={{ margin: "40px 0" }}>
-        <h2 style={{textAlign:"center"}}>Committee Registration</h2>
+      <div className="login-con" style={{ margin: "40px 0" }}>
+        <h2 style={{textAlign:"center"}}>Chariman Register</h2>
         <div className="login-input-con new">
-		    <form onSubmit={ReviewverSignup}style={{ display:"flex", flexDirection:"column" }}>
+		    <form onSubmit={AdminSignup}style={{ display:"flex", flexDirection:"column" }}>
           <div className="nameContainer" style={{ display: 'flex', width:"700px" }}>
           <div style={{flex: 1}}>
           <label htmlFor="firstName">First Name</label>
@@ -180,15 +180,14 @@ const ReviewerSignUpPage = () => {
             ""
           )}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <button onClick={ReviewverSignup} >Sign UP</button>
-          </div>
+          <button onClick={AdminSignup}>Sign UP</button>
+		  </div>
           </form>
-          <p> Already have an account? <NavLink to="/committee/login">Login Here</NavLink> </p>
+          <p> Already have an account? <NavLink to="/admin/login">Login Here</NavLink> </p>
         </div>
       </div>
     </div>
   );
 };
 
-export default ReviewerSignUpPage;
-	
+export default AdminSignUpPage;

@@ -99,7 +99,7 @@ export default function FullWidthTabs() {
 
   const columns = [
     { id: "name", label: "Authors Name" },
-    { id: "title", label: "title" },
+    { id: "title", label: "Title" },
     {
       id: "keyword",
       label: "View Status",
@@ -237,7 +237,7 @@ export default function FullWidthTabs() {
               <div className="assign-card-con popup">
                 <div className="assign-card">
                   <li>
-                    Reviewer's Name : <b>{product.userName}</b>
+                    Reviewer's Name : <b>{product.firstName + " " + product.lastName}</b>
                   </li>
 
                   {/* <input
@@ -278,7 +278,7 @@ export default function FullWidthTabs() {
               <div className="assign-card-con popup vertical-nav-bar">
                 <div className="assign-card ">
                   <li>
-                    Reviewer's Name : <b>{product.userName}ddd</b>
+                    Reviewer's Name : <b>{product.firstName + " " + product.lastName}</b>
                   </li>
                   {/* {product.email present in assigned.value.reviewerApproval} */}
                   {assigned.value.reviewerApproval.map((ele) => {
@@ -351,7 +351,7 @@ export default function FullWidthTabs() {
                   {/* <div className="assign-card-con">
                       <div className="assign-card">
                         <li>
-                          Author's Name : <b>{product.userName}</b>
+                          Author's Name : <b>{product.firstName + " " + product.lastName}</b>
                         </li>
                         <li>
                           Title: <b>{product.title}</b>
@@ -406,7 +406,7 @@ export default function FullWidthTabs() {
                                     tabIndex={-1}
                                     key={row.code}
                                   >
-                                    <TableCell>{row.userName}</TableCell>
+                                    <TableCell>{row.firstName + " " + row.lastName}</TableCell>
                                     {/* now keyword is array needed to be mapped  ebin*/}
                                     {/* <TableCell >{row.keyword}</TableCell> */}
                                     <TableCell>{row.title}</TableCell>
@@ -482,7 +482,7 @@ export default function FullWidthTabs() {
                       <div className="assign-card">
                         <li>{product.id}</li>
                         <li>
-                          Reviewer's Name : <b>{product.userName}</b>
+                          Reviewer's Name : <b>{product.firstName + " " + product.lastName}</b>
                         </li>
                         <span>
                           {" "}
@@ -545,7 +545,7 @@ export default function FullWidthTabs() {
                                     tabIndex={-1}
                                     key={row.code}
                                   >
-                                    <TableCell>{row.userName}</TableCell>
+                                    <TableCell>{row.firstName + " " + row.lastName}</TableCell>
                                     {/* now keyword is array needed to be mapped ebin*/}
 
                                     {/* <TableCell >{row.keyword}</TableCell> */}
@@ -585,7 +585,7 @@ export default function FullWidthTabs() {
                                     <TableCell>
                                       {row.reviewers.map((ele) => (
                                         <p>
-                                          {ele.userName}, {ele.email}
+                                          {ele.firstName + " " + ele.lastName}, {ele.email}
                                         </p>
                                       ))}
                                     </TableCell>
@@ -611,16 +611,35 @@ export default function FullWidthTabs() {
             </TabPanel>
             <TabPanel value={value} index={2} dir={theme.direction}>
               <div>
+                <div className="assign-card-con popupnew">
+                  <div className="assign-cardNew">
+                    <li>
+                      <b>Reviewer's Name</b>
+                    </li>
+
+                    <li>
+                      <b>Reviewer's Email</b>
+                    </li>
+
+                    <li>
+                      <b>Reviewer's Area Of Interest</b>
+                    </li>
+                  </div>
+                </div>
                 {reviewerEmail.data?.map((product) => (
                   <>
                     <div className="assign-card-con popupnew">
                       <div className="assign-cardNew">
                         <li>
-                          Reviewer's Name : <b>{product.userName}</b>
+                          {product.firstName + " " + product.lastName}
                         </li>
 
                         <li>
-                          Reviewer's Email : <b>{product.email}</b>
+                          {product.email}
+                        </li>
+
+                        <li>
+                          {product.areaOfInterest}
                         </li>
                       </div>
                     </div>

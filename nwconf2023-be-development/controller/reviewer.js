@@ -42,10 +42,11 @@ const login = async (req, res) => {
     res.json({ message: err.message, status: false });
   }
 };
+
 const signup = async (req, res) => {
-  let { userName, password, confirmPassword, email } = req.body;
+  let { firstName, lastName, password, confirmPassword, email, areaOfInterest } = req.body;
   try {
-    if (!userName || !password || !confirmPassword || !email) {
+    if (!firstName || !lastName || !password || !confirmPassword || !email || !areaOfInterest) {
       res.json({ message: "enter all data", status: false });
     } else {
       const userPresent = await db.collection("reviewer").doc(email).get();
@@ -59,10 +60,13 @@ const signup = async (req, res) => {
           res.json({ message: "check your password", status: false });
         } else {
           let data = {
-            userName,
-            password,
+            firstName,
+            lastName,
             email,
+            password,
+            confirmPassword,
             updatedAt: Date.now(),
+            areaOfInterest,
           };
           let user = await db.collection("reviewer").doc(email).set(data);
           if (user) {
@@ -72,6 +76,32 @@ const signup = async (req, res) => {
           }
         }
       }
+    }
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
+const project = async (req, res) => {
+  try {
+      const email = req.data.id;
+      const users = await db.collection("reviewer").doc(email).get();
+      if (!users.exists) {
+        res.json({
+          msg: "User doesn't exist",
+        });
+      } else {
+        let data = {
+          firstName,
+          lastName,
+          email,
+          areaOfInterest,
+          updatedAt: Date.now(),
+        };
+        let upload = await db
+          .collection("reviewer")
+          .doc(email)
+          .set(data, { merge: true });
     }
   } catch (error) {
     res.json({ message: error.message, status: false });
@@ -149,4 +179,5 @@ module.exports = {
   signup,
   projects,
   reviewerApproval,
+  project,
 };

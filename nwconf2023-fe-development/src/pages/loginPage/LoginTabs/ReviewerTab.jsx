@@ -40,55 +40,41 @@ const UserLoginPageTab = () => {
           </div>
           <div className="user-details">
             <table>
-            {/* <p>
+              {/* <p>
               Reviewer Name :<b>{userDatas?.userName}</b>
             </p>
             <p>
               Reviewer Email :<b>{userDatas?.email}</b>
             </p> */}
-            <tr>
-              <td className='InfoHeading'>Name</td>
-              <td>&nbsp;:&nbsp; </td>
-              <td>&nbsp;{userDatas?.userName}</td>
-            </tr>
-            <tr>
-              <td className='InfoHeading'>Email</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>{userDatas?.email}</td>
-            </tr>
-            <tr>
-              <td className='authorInfoHeading'>Mobile Number</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>6605213456</td>
-            </tr>
-            <tr>
-              <td className='authorInfoHeading'>Country</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>USA</td>
-            </tr>
-            <tr>
-              <td className='authorInfoHeading'>Date of birth</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>01 May 1989</td>
-            </tr>
-            <tr>
-              <td className='authorInfoHeading'>Areas of intrest</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>Software engineering, Cloud computing,Machine Learning</td>
-            </tr>
-          </table>
-            <button className="edit-profile-btn">Edit Profile</button>
+              <tr>
+                <td className='InfoHeading'>Name</td>
+                <td>&nbsp;: </td>
+                {/* <td>&nbsp;{userDatas?.firstName + " " + userDatas?.lastName}</td> */}
+                <td>&nbsp;Reviewer</td>
+              </tr>
+              <tr>
+                <td className='InfoHeading'>Email</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>reviewer1@gmail.com</td>
+              </tr>
+              <tr>
+                <td className='InfoHeading'>Areas of intrest</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>Software engineering, Cloud computing, Block chain</td>
+              </tr>
+            </table>
           </div>
         </div>
-        <NavLink to="/Review">
-          <div className="submit-new">
-            <div className="sub-img">
-              <img src={SubmitNew} alt="" />
+        <div className="optionContainer">
+          <NavLink to="/Review">
+            <div className="submit-new">
+              <div className="sub-img">
+                <img src={SubmitNew} alt="" />
+              </div>
+              <p>Review and Evaluate</p>
             </div>
-            <p>Review and Evaluate</p>
-          </div>
-        </NavLink>
-        {/* <button style={{ border: "none" }} disabled={disabled}>
+          </NavLink>
+          {/* <button style={{ border: "none" }} disabled={disabled}>
           <div className="submit-new" onClick={checkStatus}>
             <div className="sub-img">
               <img src={PaperStatus} alt="" />
@@ -96,11 +82,12 @@ const UserLoginPageTab = () => {
             <p>Check Your Paper Status</p>
           </div>
         </button> */}
-        <div className="submit-new">
-          <div className="sub-img">
-            <img src={KmowMore} alt="" />
+          <div className="submit-new">
+            <div className="sub-img">
+              <img src={KmowMore} alt="" />
+            </div>
+            <p>Know More About Paper Submission</p>
           </div>
-          <p>Know More About Paper Submission</p>
         </div>
       </div>
     </div>

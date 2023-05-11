@@ -12,6 +12,7 @@ const Accept = () => {
 
   return (
     <div>
+      <h1 className="heading1">ACCEPTED PAPERS</h1>
       {acceptedd.map((product) => (
         <>
         {/* <div className="assign-card-con popupnew">

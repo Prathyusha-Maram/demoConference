@@ -29,30 +29,31 @@ const UserLoginPage = () => {
   const [loginalert, setloginalert] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="login-page-container">
-      <div className="login-con">
-        <h2>User Login</h2>
-
+    <div className="login-page-container" >
+      <div className="login-con" style={{ textAlign: "center"}}>
+        <h2>Author Login</h2>
         <div className="login-input-con">
+        <label htmlFor="email">Email Address</label>
           <input
             type="email"
-            placeholder="email"
+            placeholder="Email"
             onChange={(e) => setloginUpEmail(e.target.value)}
           />
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             placeholder="Password"
             onChange={(e) => setloginPassword(e.target.value)}
           />
-          <span>
-            Already a User <NavLink to="/author/register">Sign Up</NavLink>
-          </span>
           {loginalert ? (
             <strong style={{ color: "red" }}>Wrong Details</strong>
           ) : (
             ""
           )}
-          <button onClick={userlogin}>Login</button>
+          <button onClick={userlogin} >Login</button>
+          <span>
+          Don't have a account? <NavLink to="/author/register">Register here</NavLink>
+          </span>
         </div>
       </div>
     </div>

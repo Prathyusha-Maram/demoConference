@@ -21,8 +21,11 @@ import SubmitPaperPage from "./pages/loginPage/LoginTabs/SubmitPaperPage";
 import CheckStatus from "./pages/loginPage/LoginTabs/CheckStatus";
 import ViewReview from "./pages/loginPage/components/ViewReview";
 import AdminLoginTab from "./pages/loginPage/LoginTabs/adminLoginTab";
+import AdminSignUpPage from "./pages/loginPage/LoginTabs/AdminSignUpPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReviewerLoginTab from "./pages/loginPage/LoginTabs/reviewerLoginTab";
+import ReviewerChat from "./pages/loginPage/components/reviewerChat";
+import GuestLoginPage from "./pages/loginPage/LoginTabs/GuestLoginPage";
 function App() {
   return (
     <div className="App">
@@ -36,18 +39,13 @@ function App() {
             <Route exact path="/Login" element={<Login />} />
             <Route exact path="/author/login" element={<UserLoginPage />} />
             <Route exact path="/author/register" element={<UserSignUpPage />} />
-            <Route
-              exact
-              path="/committee/login"
-              element={<ReviewLoginPage />}
-            />
-            <Route
-              exact
-              path="/committee/register"
-              element={<ReviewerSignUpPage />}
-            />
+            <Route exact path="/committee/login" element={<ReviewLoginPage />} />
+            <Route exact path="/committee/register" element={<ReviewerSignUpPage />} />
             <Route exact path="/admin/login" element={<AdminLoginPage />} />
+            <Route exact path="/admin/register" element={<AdminSignUpPage />} />
+            <Route exact path="/guest/login" element={<GuestLoginPage />} />
           </Route>
+
           <Route element={<LogoutNavbar />}>
             <Route exact path="/adminLogin" element={<AdminLogin />} />
             <Route exact path="/ReviewerLogin" element={<ReviewerLogin />} />
@@ -55,9 +53,10 @@ function App() {
             <Route exact path="/PostReview" element={<PostReview />} />
             <Route exact path="/viewReview" element={<ViewReview />} />
             <Route exact path="/AdminReview" element={<AdminReview />} />
-            <Route exact path="/Review" element={<ReviewerLoginTab/>}/>
+            <Route exact path="/Review" element={<ReviewerLoginTab />} />
             <Route exact path="/createPost" element={<SubmitPaperPage />} />
             <Route exact path="/evaluate" element={<AdminLoginTab />} />
+            <Route exact path="/discussion" element={<ReviewerChat />} />
             <Route exact path="/checkStatus" element={<CheckStatus />} />
           </Route>
         </Routes>

@@ -200,7 +200,7 @@ export default function FullWidthTabs() {
                                         <div className="assign-card">
                                             <li>{product.id}</li>
                                             <li>Post Title : <b>{product.Title}</b></li>
-                                            <li>Authors's Name : <b>{product.userName}</b>
+                                            <li>Authors's Name : <b>{product.firstName + " " + product.lastName}</b>
                                             </li>
                                             <li></li>
                                             <span>Authors's post:   <button className='view-btn' onClick={() => navigate("/PostReview", { state: { 
@@ -245,7 +245,7 @@ export default function FullWidthTabs() {
                                   tabIndex={-1}
                                   key={row.code}
                                 >
-                                  <TableCell>{row.userName}</TableCell>
+                                  <TableCell>{row.firstName + " " + row.lastName}</TableCell>
                                   <TableCell>
                                     {" "}
                                     {row.keyword.map((ele) => (
@@ -303,7 +303,7 @@ export default function FullWidthTabs() {
                       <div className="assign-card">
                         <li>{product.id}</li>
                         <li>
-                          Reviewer's Name : <b>{product.userName}</b>
+                          Reviewer's Name : <b>{product.firstName + " " + product.lastName}</b>
                         </li>
                         <span>
                           {" "}
@@ -366,7 +366,7 @@ export default function FullWidthTabs() {
                                     tabIndex={-1}
                                     key={row.code}
                                   >
-                                    <TableCell>{row.userName}</TableCell>
+                                    <TableCell>{row.firstName + " " + row.lastName}</TableCell>
                                     {/* now keyword is array needed to be mapped ebin*/}
 
                                     {/* <TableCell >{row.keyword}</TableCell> */}

@@ -6,23 +6,92 @@ const { sendReviewerNotifyMail, sendPaperResponse } = require("../mail/mail");
 const login = async (req, res) => {
   let { email, password } = req.body;
   try {
+    // if (!email || !password) {
+    //   res.json({ message: "Enter email and password", status: false });
+    // } else {
+    //   if (
+    //     email.trim() === "admin@gmail.com" &&
+    //     password.trim() === "admin@123"
+    //   ) {
+    //     const token = await jwt.sign(
+    //       {
+    //         admin: true,
+    //         email,
+    //       },
+    //       config.JWT_TOKEN_KEY
+    //     );
+    //     res.json({ message: "Admin can login", status: true, token });
+    //   } else {
+    //     res.json({ message: "Ivalid credentials", status: false });
+    //   }
+    // }
     if (!email || !password) {
-      res.json({ message: "Enter email and password", status: false });
+      res.json({ message: "enter all data", status: false });
     } else {
-      if (
-        email.trim() === "admin@gmail.com" &&
-        password.trim() === "admin@123"
-      ) {
-        const token = await jwt.sign(
+      const users = await db.collection("chairman").doc(email).get();
+      if (!users.exists) {
+        res.json({
+          msg: "User doesn't exist",
+        });
+      } else {
+        const data = users.data();
+        let token = await jwt.sign(
           {
-            admin: true,
-            email,
+            id: data.email,
           },
           config.JWT_TOKEN_KEY
         );
-        res.json({ message: "Admin can login", status: true, token });
+        if (data.password == password) {
+          res.json({
+            message: "login successfully",
+            token: token,
+            status: true,
+          });
+        } else {
+          res.json({
+            message: "Invalid UserName/password",
+            status: false,
+          });
+        }
+      }
+    }
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
+const signup = async (req, res) => {
+  let { firstName, lastName, password, confirmPassword, email, areaOfInterest } = req.body;
+  try {
+    if (!firstName || !lastName || !password || !confirmPassword || !email || !areaOfInterest) {
+      res.json({ message: "enter all data", status: false });
+    } else {
+      const userPresent = await db.collection("chairman").doc(email).get();
+      if (userPresent.exists) {
+        res.json({
+          message: "chairman already exist",
+          status: false,
+        });
       } else {
-        res.json({ message: "Ivalid credentials", status: false });
+        if (password != confirmPassword) {
+          res.json({ message: "check your password", status: false });
+        } else {
+          let data = {
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword,
+            updatedAt: Date.now(),
+            areaOfInterest,
+          };
+          let user = await db.collection("chairman").doc(email).set(data);
+          if (user) {
+            res.json({ message: "Chairman saved succesfully", status: true });
+          } else {
+            res.json({ message: "Chairman not saved", status: false });
+          }
+        }
       }
     }
   } catch (error) {
@@ -141,6 +210,7 @@ const reviewer = async (req, res) => {
     res.json({ message: error.message, status: false });
   }
 };
+
 const approvedProjects = async (req, res) => {
   try {
     const data = await db.collection("user").get();
@@ -168,4 +238,5 @@ module.exports = {
   addReviewer,
   reviewer,
   approvedProjects,
+  signup
 };
