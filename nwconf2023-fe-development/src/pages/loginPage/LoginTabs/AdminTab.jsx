@@ -77,69 +77,71 @@ const UserLoginPageTab = () => {
             <button className="edit-profile-btn">Edit Profile</button>
           </div> */}
           <div className="authorInfo">
-          <table>
-            <tr>
-              <td className='authorInfoHeading'>Name</td>
-              <td>&nbsp;:&nbsp; </td>
-              <td>&nbsp;Admin</td>
-            </tr>
-            <tr>
-              <td className='authorInfoHeading'>Email</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>admin@gmail.com</td>
-            </tr>
-            <tr>
-              <td className='authorInfoHeading'>Mobile Number</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>6605213456</td>
-            </tr>
-            <tr>
-              <td className='authorInfoHeading'>Country</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>India</td>
-            </tr>
-            <tr>
-              <td className='authorInfoHeading'>Date of birth</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>06 June 1999</td>
-            </tr>
-            <tr>
-              <td className='authorInfoHeading'>Areas of intrest</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>Software engineering, Cloud computing, Block chain</td>
-            </tr>
-          </table>
-          <div className="editInfoContainer">
-          <button className="edit-profile-btn">Edit Profile</button>
+            <table>
+              <tr>
+                <td className='authorInfoHeading'>Name</td>
+                <td>&nbsp;:&nbsp; </td>
+                <td>&nbsp;Admin</td>
+              </tr>
+              <tr>
+                <td className='authorInfoHeading'>Email</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>admin@gmail.com</td>
+              </tr>
+              <tr>
+                <td className='authorInfoHeading'>Mobile Number</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>6605213456</td>
+              </tr>
+              <tr>
+                <td className='authorInfoHeading'>Country</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>India</td>
+              </tr>
+              <tr>
+                <td className='authorInfoHeading'>Date of birth</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>06 June 1999</td>
+              </tr>
+              <tr>
+                <td className='authorInfoHeading'>Areas of intrest</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>Software engineering, Cloud computing, Block chain</td>
+              </tr>
+            </table>
+            <div className="editInfoContainer">
+              <button className="edit-profile-btn">Edit Profile</button>
+            </div>
           </div>
         </div>
-        </div>
-        <NavLink to="/evaluate">
-          <div className="submit-new">
-            <div className="sub-img">
-              <img src={SubmitNew} alt="" />
+        <div className="optionContainer">
+          <NavLink to="/evaluate">
+            <div className="submit-new">
+              <div className="sub-img">
+                <img src={SubmitNew} alt="" />
+              </div>
+              <p>Assign & Evaluate</p>
             </div>
-            <p>Assign & Evaluate</p>
+          </NavLink>
+          <div>
+            <button onClick={openModal}>
+              <div className="submit-new">
+                <div className="sub-img">
+                  <img src={chatNew} alt="" />
+                </div>
+                <p>Discussion</p>
+              </div>
+            </button>
           </div>
-        </NavLink>
-        <div>
-        <button onClick={openModal}>
-          <div className="submit-new">
-            <div className="sub-img">
-              <img src={chatNew} alt="" />
-            </div>
-            <p>Discussion</p>
-          </div>
-        </button>
-        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
-        <ModalContent
-          conversation={conversation}
-          handleSubmit={handleSubmit}
-          userInput={userInput}
-          setUserInput={setUserInput}
-          closeModal={closeModal}
-        />
-      </Modal>
+          <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+            <ModalContent
+              conversation={conversation}
+              handleSubmit={handleSubmit}
+              userInput={userInput}
+              setUserInput={setUserInput}
+              closeModal={closeModal}
+            />
+          </Modal>
         </div>
       </div>
     </div>

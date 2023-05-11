@@ -183,7 +183,7 @@ const AdminSignUpPage = () => {
           <button onClick={AdminSignup}>Sign UP</button>
 		  </div>
           </form>
-          <p> Already have an account? <NavLink to="/committee/login">Login Here</NavLink> </p>
+          <p> Already have an account? <NavLink to="/admin/login">Login Here</NavLink> </p>
         </div>
       </div>
     </div>
