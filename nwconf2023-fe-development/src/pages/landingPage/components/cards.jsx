@@ -158,9 +158,9 @@ const cards = () => {
                         <p>Hard copy of the proceedings will be distributed during the Conference. The softcopy will be available on Library.</p>
                         <span>Conference on October 12, 2023</span>
                     </div>
-                    <div className='my-btn'>
+                    {/* <div className='my-btn'>
                         <button className='card-btn'>KNOW MORE</button>
-                    </div>
+                    </div> */}
                 </div>
 
 
