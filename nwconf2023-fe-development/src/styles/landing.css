@@ -649,11 +649,12 @@ margin-left: 130px;
     align-items: center;
     padding: 10px;
     margin: 5px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     width: 250px;
     cursor: pointer;
-    color: #fff;
-    background-color: #006747;
+    /* color: #fff;
+    background-color: #006747; */
     height: 120px;
    
 }
