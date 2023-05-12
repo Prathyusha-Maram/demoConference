@@ -187,6 +187,9 @@ const PostReview = () => {
   return (
     <div>
       <div className="user-postt">
+      <p>
+          Author Name: <b>{state.userDetails.firstName + " " + state.userDetails.lastName}</b>
+        </p>
         <p>
           Post Title : <b>{state.userDetails.title}</b>
         </p>
@@ -198,7 +201,7 @@ const PostReview = () => {
           </b>{" "}
         </p>
         <p>
-          abstract : <b>{state.userDetails.abstract}</b>
+          Abstract : <b>{state.userDetails.abstract}</b>
         </p>
         <div className="dwn-btn">
           <Link to={pdfFile} target="_blank" download className="download">

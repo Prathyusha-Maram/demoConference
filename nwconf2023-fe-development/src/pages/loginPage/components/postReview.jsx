@@ -6,7 +6,6 @@ import { useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 const PostReview = () => {
   const { state } = useLocation();
-
   const [alreadyApproved, setAlreadyApproved] = useState(false);
   const [objective, setObjective] = useState({ comments: "", points: "" });
   const [relavance, setRelavance] = useState({ comments: "", points: "" });
@@ -211,6 +210,9 @@ const PostReview = () => {
     <div>
       <div className="user-postt">
         <p>
+          Author Name: <b>{state.userDetails.firstName + " " + state.userDetails.lastName}</b>
+        </p>
+        <p>
           Post Title : <b>{state.userDetails.title}</b>
         </p>
         <p>
@@ -221,7 +223,7 @@ const PostReview = () => {
           </b>{" "}
         </p>
         <p>
-          abstract : <b>{state.userDetails.abstract}</b>
+          Abstract : <b>{state.userDetails.abstract}</b>
         </p>
         <div className="dwn-btn">
           <Link to={pdfFile} target="_blank" download className="download">
@@ -436,15 +438,21 @@ const PostReview = () => {
               <div className="review-btn-con">
                 <button
                   className="submit"
-                  onClick={(event) => sendReview(event, "Approved")}
+                  onClick={(event) => sendReview(event, "Strongly Approved")}
+                >
+                  Strongly Accept
+                </button>
+                <button
+                  className="submit"
+                  onClick={(event) => sendReview(event, "Approved", true)}
                 >
                   Accept
                 </button>
                 <button
                   className="submit"
-                  onClick={(event) => sendReview(event, "Strongly Approved", true)}
+                  onClick={(event) => sendReview(event, "Weekly Approved", true)}
                 >
-                  Strong Accept
+                  Weekly Accept
                 </button>
                 <button
                   className="reject"

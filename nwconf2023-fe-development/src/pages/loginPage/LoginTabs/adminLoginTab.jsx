@@ -241,37 +241,35 @@ export default function FullWidthTabs() {
     <div className="tabs-global">
       {assign ? (
         <div className="reviewer-popup">
-          
           {reviewerEmail.data?.map((product) => {
             index++;
             return (
-            <>
-            
-              <div className="assign-card-con popup">
-                <div className="assign-card">
-                  <li>
-                    {/* Reviewer's Name :   */}
-                    <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index})
-                  </li>
-
-                  {/* <input
-                    value={product.email}
-                    type="checkbox"
-                    checked={checked.includes(product)}
-                    onChange={() => handleCheck(product)}
-                    disabled={checkDisable}
-                  /> */}
-                  <input
-                    value={product.email}
-                    type="checkbox"
-                    checked={checked.includes(product)}
-                    onChange={() => handleCheck(product)}
-                    disabled={checked.includes(product) ? false : checked.length >= 3}
-                  />
+              <>
+                <div className="assign-card-con popup">
+                  <div className="assign-card">
+                    <li>
+                      {/* Reviewer's Name :   */}
+                      <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index})
+                    </li>
+                    {/* <input
+                      value={product.email}
+                      type="checkbox"
+                      checked={checked.includes(product)}
+                      onChange={() => handleCheck(product)}
+                      disabled={checkDisable}
+                    /> */}
+                    <input
+                      value={product.email}
+                      type="checkbox"
+                      checked={checked.includes(product)}
+                      onChange={() => handleCheck(product)}
+                      disabled={checked.includes(product) ? false : checked.length >= 3}
+                    />
+                  </div>
                 </div>
-              </div>
-            </>
-          )})}
+              </>
+            )
+          })}
           <div className="wrap-btn">
             <button onClick={() => setAssign(false)} className="withdraw">
               Close

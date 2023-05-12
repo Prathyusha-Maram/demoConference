@@ -41,6 +41,31 @@ const login = async (req, res) => {
   }
 };
 
+const project = async (req, res) => {
+  try {
+    const email = req.data.id;
+    const users = await db.collection("chairman").doc(email).get();
+    if (!users.exists) {
+      res.json({
+        msg: "User doesn't exist",
+      });
+    } else {
+      let data = {
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        updatedAt: Date.now(),
+        areaOfInterest,
+      };
+      res.json({ project: data, status: true});
+    }
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
 const signup = async (req, res) => {
   let { firstName, lastName, password, confirmPassword, email, areaOfInterest } = req.body;
   try {
@@ -94,6 +119,7 @@ const projects = async (req, res) => {
     res.json({ message: error.message, status: false });
   }
 };
+
 const approve = async (req, res) => {
   let { approved, email } = req.body;
   try {
@@ -220,5 +246,6 @@ module.exports = {
   addReviewer,
   reviewer,
   approvedProjects,
-  signup
+  signup,
+  project,
 };

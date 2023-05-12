@@ -45,7 +45,7 @@ const UserLoginPageTab = () => {
     return randomReply;
   };
   const GetApi = () => {
-    axios.get(`${API_ENDPOINT}/my/project`, myheader).then((response) => {
+    axios.get(`${API_ENDPOINT}/admin/project`, myheader).then((response) => {
       setUserDatas(response.data.project);
       setDisabled(false);
     });
