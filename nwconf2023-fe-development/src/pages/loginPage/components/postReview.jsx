@@ -442,9 +442,9 @@ const PostReview = () => {
                 </button>
                 <button
                   className="submit"
-                  onClick={(event) => sendReview(event, "Approved", true)}
+                  onClick={(event) => sendReview(event, "Strongly Approved", true)}
                 >
-                  Accept but needs review
+                  Strong Accept
                 </button>
                 <button
                   className="reject"

@@ -25,6 +25,8 @@
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    
 }
 
 .logo-data-img {
@@ -454,6 +456,7 @@ li .active {
     font-weight: 800;
     flex-direction: column;
     justify-content: center;
+    margin-top: 50px;
     height: calc(100vh - 104px);
     align-items: center;
     display: flex;

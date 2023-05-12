@@ -75,7 +75,9 @@ export default function FullWidthTabs() {
   const [evaluatePaper, setEvaluatePaper] = useState([]);
   const [checkDisable, setCheckdisble] = useState(false);
   const [page, setPage] = React.useState(0);
+  const [checkedCount, setCheckedCount] = useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  var index = 0;
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -171,6 +173,13 @@ export default function FullWidthTabs() {
       });
   };
   const handleCheck = (product) => {
+    const isChecked = checked.includes(product);
+
+    if (isChecked) {
+      setCheckedCount(checkedCount - 1); // Decrease count when unchecked
+    } else {
+      setCheckedCount(checkedCount + 1); // Increase count when checked
+    }
     if (checked.includes(product)) {
       setChecked(checked.filter((e) => e !== product));
     } else {
@@ -232,12 +241,17 @@ export default function FullWidthTabs() {
     <div className="tabs-global">
       {assign ? (
         <div className="reviewer-popup">
-          {reviewerEmail.data?.map((product) => (
+          
+          {reviewerEmail.data?.map((product) => {
+            index++;
+            return (
             <>
+            
               <div className="assign-card-con popup">
                 <div className="assign-card">
                   <li>
-                    Reviewer's Name : <b>{product.firstName + " " + product.lastName}</b>
+                    {/* Reviewer's Name :   */}
+                    <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index})
                   </li>
 
                   {/* <input
@@ -257,7 +271,7 @@ export default function FullWidthTabs() {
                 </div>
               </div>
             </>
-          ))}
+          )})}
           <div className="wrap-btn">
             <button onClick={() => setAssign(false)} className="withdraw">
               Close

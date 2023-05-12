@@ -347,7 +347,7 @@ export default function FullWidthTabs() {
     //             placeholder="Password"
     //             onChange={(e) => setadminloginPassword(e.target.value)}
     //           />
-            
+
     //           {
     //               login2alert ?  <strong style={{ color: "red" }}>Wrong Details</strong> : ""
     //             }
@@ -359,21 +359,25 @@ export default function FullWidthTabs() {
     // </div>
     <>
       <div className="loginRight">
-            
-      <div className="loginBtn guest">
-             <NavLink to="/guest/login">Continue as Guest</NavLink>
-          </div> 
-            <div className="loginBtn author">
-             <NavLink to="/author/login">Continue as Author</NavLink>
-          </div>  
-       
-          <div className="loginBtn committee">
-             <NavLink to="/committee/login">Continue as Committee member</NavLink> 
-          </div>
-     
-          <div className="loginBtn chairman">
-             <NavLink to="/admin/login">Continue as Chairman</NavLink> 
-          </div>
+
+
+        <div className="loginBtn chairman">
+          <NavLink to="/admin/login">Continue as Chairman</NavLink>
+        </div>
+        <div className="loginBtn committee">
+          <NavLink to="/committee/login">Continue as Committee member</NavLink>
+        </div>
+        <div className="loginBtn author">
+          <NavLink to="/author/login">Continue as Author</NavLink>
+        </div>
+        <div className="loginBtn guest">
+          <NavLink to="/guest/login">Continue as Guest</NavLink>
+        </div>
+
+
+
+
+
       </div>
     </>
   );

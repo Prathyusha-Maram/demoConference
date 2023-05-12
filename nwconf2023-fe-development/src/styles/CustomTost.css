@@ -30,3 +30,43 @@
     color: red;
     font-size: 30px;
 }
+.assign-card-con {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .assign-cardNew {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    margin-right: 50px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Set the width to 100% */
+  }
+  
+  .assign-card-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 100%;
+  }
+  
+  .assign-card-field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .assign-card-label,
+  .assign-card-value {
+    flex: 1;
+  }
+  
+  @media (max-width: 768px) {
+    /* Apply responsive styles for smaller screens */
+    .assign-card-info {
+      grid-template-columns: 1fr; /* Set single column layout for smaller screens */
+    }
+  }
