@@ -3,7 +3,7 @@ const bookidgen = require("bookidgen");
 const moment = require("moment");
 const config = require("../config");
 const { db } = require("../firebase");
-const { needReviewAuthor } = require("../mail/mail");
+const { needReviewAuthor, sentRegistrationSuccess } = require("../mail/mail");
 
 const login = async (req, res) => {
   let { email, password } = req.body;
@@ -71,6 +71,7 @@ const signup = async (req, res) => {
           let user = await db.collection("reviewer").doc(email).set(data);
           if (user) {
             res.json({ message: "Reviewer saved succesfully", status: true });
+            sentRegistrationSuccess(email);
           } else {
             res.json({ message: "Reviewer not saved", status: false });
           }

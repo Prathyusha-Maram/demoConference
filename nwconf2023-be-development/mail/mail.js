@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+
 const sendAuthorMail = async (mail) => {
   const body = {
     from: "conference2023@naveenrio.me",
@@ -24,6 +25,7 @@ const sendAuthorMail = async (mail) => {
     }
   });
 };
+
 const sendReviewerNotifyMail = async (email) => {
   const body = {
     from: "conference2023@naveenrio.me",
@@ -131,10 +133,37 @@ const sentGuestInvation = async (email) => {
   });
 };
 
+const sentRegistrationSuccess = async (email) => {
+  const body = {
+    from: "conference2023@naveenrio.me",
+    to: email,
+    subject: `Thanks for registering for northwest conference`,
+    html: `<div>Welcome to the Northwest Conference.</div>`,
+  };
+
+  const transport = nodemailer.createTransport({
+    host: "live.smtp.mailtrap.io", //sandbox.smtp.mailtrap.io",
+    port: 587,
+    auth: {
+      user: "api", //86207576053cfe",
+      pass: "82bc5abcc46929231dcc93949027783b", //df87b6e5a6cb1d"
+    },
+  });
+
+  await transport.sendMail(body, (err) => {
+    if (err) {
+      return console.log("error occurs", err);
+    } else {
+      return console.log("email sent");
+    }
+  });
+};
+
 module.exports = {
   sendAuthorMail,
   sendReviewerNotifyMail,
   sendPaperResponse,
   needReviewAuthor,
   sentGuestInvation,
+  sentRegistrationSuccess,
 };

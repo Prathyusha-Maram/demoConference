@@ -3,7 +3,7 @@ const bookidgen = require("bookidgen");
 const moment = require("moment");
 const config = require("../config");
 const { db } = require("../firebase");
-const { sendAuthorMail } = require("../mail/mail");
+const { sendAuthorMail, sentRegistrationSuccess } = require("../mail/mail");
 
 // post for signup
 const signup = async (req, res) => {
@@ -42,6 +42,7 @@ const signup = async (req, res) => {
           let user = await db.collection("user").doc(email).set(data);
           if (user) {
             res.json({ message: "user saved succesfully", status: true });
+            sentRegistrationSuccess(email);
           } else {
             res.json({ message: "user not saved", status: false });
           }

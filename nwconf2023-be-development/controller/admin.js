@@ -1,30 +1,11 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 const { db } = require("../firebase");
-const { sendReviewerNotifyMail, sendPaperResponse } = require("../mail/mail");
+const { sendReviewerNotifyMail, sendPaperResponse, sentRegistrationSuccess } = require("../mail/mail");
 
 const login = async (req, res) => {
   let { email, password } = req.body;
   try {
-    // if (!email || !password) {
-    //   res.json({ message: "Enter email and password", status: false });
-    // } else {
-    //   if (
-    //     email.trim() === "admin@gmail.com" &&
-    //     password.trim() === "admin@123"
-    //   ) {
-    //     const token = await jwt.sign(
-    //       {
-    //         admin: true,
-    //         email,
-    //       },
-    //       config.JWT_TOKEN_KEY
-    //     );
-    //     res.json({ message: "Admin can login", status: true, token });
-    //   } else {
-    //     res.json({ message: "Ivalid credentials", status: false });
-    //   }
-    // }
     if (!email || !password) {
       res.json({ message: "enter all data", status: false });
     } else {
@@ -88,6 +69,7 @@ const signup = async (req, res) => {
           let user = await db.collection("chairman").doc(email).set(data);
           if (user) {
             res.json({ message: "Chairman saved succesfully", status: true });
+            sentRegistrationSuccess(email);
           } else {
             res.json({ message: "Chairman not saved", status: false });
           }
