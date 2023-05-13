@@ -4,6 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 
 const AdminReview = () => {
   const { state } = useLocation();
+  console.log(state);
   return (
     <div>
       <div className="review-container">
@@ -23,8 +24,8 @@ const AdminReview = () => {
 
           <div className="first-coon">
             <div className="approvalstate">
-              {state.approve ? (
-                <h1 style={{ color: "green" }}>Approved</h1>
+              {state.approve !== "Rejected" ? (
+                <h1 style={{ color: "green" }}>{state.approve}</h1>
               ) : (
                 <h1 style={{ color: "red" }}>Rejected</h1>
               )}
