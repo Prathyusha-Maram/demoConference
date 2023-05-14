@@ -11,6 +11,7 @@ router.get("/project", auth, admin.project);
 router.post("/approve", auth, admin.approve);
 router.post("/add/reviewer", auth, admin.addReviewer);
 router.get("/reviewer", auth, admin.reviewer);
+router.get("/guest", auth, admin.guest);
 router.get("/reviewers", admin.reviewer);
 router.get("/approved/projects", admin.approvedProjects);
 

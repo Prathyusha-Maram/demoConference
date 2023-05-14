@@ -70,6 +70,7 @@ export default function FullWidthTabs() {
   const [postUserEmail, setPostUserEmail] = useState("");
   const [tableDetails, setTableDetails] = useState([]);
   const [reviewerEmail, setReviewerDetails] = useState([]);
+  const [guestEmail, setGuestDetails] = useState([]);
   const [checked, setChecked] = useState([]);
   const [assignPaper, setAssignPaper] = useState([]);
   const [evaluatePaper, setEvaluatePaper] = useState([]);
@@ -151,6 +152,10 @@ export default function FullWidthTabs() {
     axios
       .get(`${API_ENDPOINT}/admin/reviewer`, myadminheader)
       .then((response) => setReviewerDetails(response.data));
+
+      axios
+      .get(`${API_ENDPOINT}/admin/guest`, myadminheader)
+      .then((response) => setGuestDetails(response.data));
   }, []);
 
   const GetPro = () => {
@@ -229,6 +234,8 @@ export default function FullWidthTabs() {
       )
       .then(
         (response) => {
+          setAssign(false)
+          setChecked([]);
           alert("reviewer added successfully");
         },
         (error) => {
@@ -350,6 +357,7 @@ export default function FullWidthTabs() {
               <Tab label="Assign Paper" {...a11yProps(0)} />
               <Tab label="Evaluated Paper" {...a11yProps(1)} />
               <Tab label="Reviewers List" {...a11yProps(2)} />
+              <Tab label="Guest List" {...a11yProps(3)} />
             </Tabs>
           </AppBar>
           <SwipeableViews
@@ -652,6 +660,44 @@ export default function FullWidthTabs() {
 
                         <li>
                           {product.areaOfInterest}
+                        </li>
+                      </div>
+                    </div>
+                  </>
+                ))}
+              </div>
+            </TabPanel>
+            <TabPanel value={value} index={3} dir={theme.direction}>
+              <div>
+                <div className="assign-card-con popupnew">
+                  <div className="assign-cardNew">
+                    <li>
+                      <b>Guest's Name</b>
+                    </li>
+
+                    <li>
+                      <b>Guest's Email</b>
+                    </li>
+
+                    <li>
+                      <b>Guest's Phone No</b>
+                    </li>
+                  </div>
+                </div>
+                {guestEmail.data?.map((product) => (
+                  <>
+                    <div className="assign-card-con popupnew">
+                      <div className="assign-cardNew">
+                        <li>
+                          {product.FirstName + " " + product.LastName}
+                        </li>
+
+                        <li>
+                          {product.Email}
+                        </li>
+
+                        <li>
+                          {product.Phone}
                         </li>
                       </div>
                     </div>

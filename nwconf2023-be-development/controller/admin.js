@@ -219,6 +219,20 @@ const reviewer = async (req, res) => {
   }
 };
 
+const guest = async (req, res) => {
+  try {
+    const data = await db.collection("guest").get();
+    let project = [];
+    data.forEach((doc) => {
+      project.push(doc.data());
+    });
+    let clean = project.map(({ password, ...rest }) => ({ ...rest }));
+    res.json({ data: clean, status: true });
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
 const approvedProjects = async (req, res) => {
   try {
     const data = await db.collection("user").get();
@@ -248,4 +262,5 @@ module.exports = {
   approvedProjects,
   signup,
   project,
+  guest,
 };
