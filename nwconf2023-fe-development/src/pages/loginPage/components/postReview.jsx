@@ -13,6 +13,7 @@ const PostReview = () => {
   const [findings, setFindings] = useState({ comments: "", points: "" });
   const [pdfFile, setPdfFile] = useState(state.userDetails.document);
   const [reviewDone, setReviewDone] = useState(false);
+  const [wantToReview, setWantToReview] = useState({ wantTo: "" });
   const [userEmail, setUserEmail] = useState(state.userDetails.email);
   const [presentation, setPresentation] = useState({
     comments: "",
@@ -106,6 +107,7 @@ const PostReview = () => {
           setFindings(obj.findings);
           setPresentation(obj.presentation);
           setAlreadyApproved(obj.approve);
+          setWantToReview(obj.wantToReview);
         } else {
         }
       });
@@ -200,6 +202,10 @@ const PostReview = () => {
           }
         );
     }
+  }
+
+  function wantToReviewUpdate(response) {
+    setWantToReview(response)
   }
 
   useEffect(() => {
@@ -471,6 +477,7 @@ const PostReview = () => {
           </td>
         </tr>
       </table>
+
       {/* <div className="review-container">
 
 

@@ -278,7 +278,7 @@ export default function FullWidthTabs() {
             )
           })}
           <div className="wrap-btn">
-            <button onClick={() => setAssign(false)} className="withdraw">
+            <button onClick={() => { setAssign(false); setChecked([]); }} className="withdraw">
               Close
             </button>
             <button className="assign-btn" onClick={sendReview}>
