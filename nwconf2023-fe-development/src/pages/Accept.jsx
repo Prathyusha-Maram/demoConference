@@ -13,39 +13,31 @@ const Accept = () => {
   return (
     <div>
       <h1 className="heading1">ACCEPTED PAPERS</h1>
+      <div className="assign-card-con popupnew">
+        <div className="assign-cardNew">
+          <li>
+            <b>Author</b>
+          </li>
+          <li>
+            <b>Title</b>
+          </li>
+          <li>
+            <b>Abstract</b>
+          </li>
+        </div>
+      </div>
       {acceptedd.map((product) => (
         <>
-        {/* <div className="assign-card-con popupnew">
-            <div className="assign-cardNew"> */}
-              {/* <li>
-                Reviewer's Name : <b>{product.title}</b>
-              </li> */}
-              {/* <li>
-              <b> TITLE</b>
-              </li>
-              <li>
-                <b>STATUS</b>
-              </li>
-            </div>
-          </div> */}
           <div className="assign-card-con popupnew">
             <div className="assign-cardNew">
-              {/* <li>
-                Reviewer's Name : <b>{product.title}</b>
-              </li> */}
+            <li>
+                <b>{product.firstName + " " + product.lastName}</b>
+              </li>
               <li>
-              <a href={product.document}>
                 <b>{product.title}</b>
-              </a>
-              </li>
-              {/* <li>
-                Reviewer's Email : <b>{product.email}</b>
               </li>
               <li>
-                abstract : <b>{product.abstract}</b>
-              </li> */}
-              <li>
-                <b>{product.approved}</b>
+                <b>{product.abstract}</b>
               </li>
             </div>
           </div>
