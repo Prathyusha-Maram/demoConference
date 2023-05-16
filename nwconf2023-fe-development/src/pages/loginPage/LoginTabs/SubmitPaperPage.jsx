@@ -24,77 +24,8 @@ const SubmitPaperPage = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [approved, setApproved] = useState("");
-//   const handleChange = (event) => {
-
-//     if (event.target == undefined) {
-
-//         var keyarr = []
-//         event.map(o => {
-//             keyarr.push(o.label)
-//         })
-//         setkeyword(keyarr)
-//         setSelectedOptions(keyarr)
-//         gkeyarr = keyarr
-//         values['key'] = keyarr
-
-//         if (gkeyarr.length == 0) {
-//             errors['key'] = 'Keywords are Mandatory'
-//             setkerr('Keywords are Mandatory')
-//         }
-//         else {
-//             errors['key'] = ''
-//             setkerr()
-//         }
-//         if (gkeyarr.indexOf('Other') >= 0) {
-//             console.log("selected other");
-//             setother('selected')
-//         }
-//     }
-
-//     else {
-//         values[event.target.id] = event.target.value
-//         if (values[event.target.id] == '') {
-//             errors[event.target.id] = 'This field cant be Empty'
-//         }
-//         else {
-//             errors[event.target.id] = ''
-
-//         }
-//         if (event.target.id == "title") {
-//             if (event.target.value == '') {
-//                 setterr('This field cant be Empty')
-//             }
-//             else {
-//                 setterr()
-//             }
-//         } if (event.target.id == "abs") {
-//             if (event.target.value == '') {
-//                 setaerr('This field cant be Empty')
-//             }
-//             else {
-//                 setaerr()
-//             }
-//         }
-//         if (event.target.id == "key") {
-//             if (event.target.value == '') {
-//                 setkerr('This field cant be Empty')
-//             }
-//             else {
-//                 setkerr()
-//             }
-//         }
-
-//     }
-//     ec = 0
-//     Object.keys(errors).forEach(er => {
-//         if (errors[er] != '') {
-//             ec++
-//         }
-//     })
-//     console.log(ec);
-//     console.log(errors);
-
-// }
+  const [other, setOther] = useState("");
+  
   function sendPost(e) {
     e.preventDefault();
     axios
@@ -119,7 +50,7 @@ const SubmitPaperPage = () => {
             setSuss1Toast(true);
           }
         },
-        (error) => {}
+        (error) => { }
       );
   }
 
@@ -157,12 +88,12 @@ const SubmitPaperPage = () => {
             } else {
             }
           },
-          (error) => {}
+          (error) => { }
         );
     } else {
     }
   }
-  
+
   const uploadImage = async (e) => {
     setLoading(true);
     let formData = new FormData();
@@ -179,7 +110,9 @@ const SubmitPaperPage = () => {
       setLoading(false);
     }
   };
+
   const [checked, setChecked] = useState(false);
+
   const GetApi = () => {
     axios.get(`${API_ENDPOINT}/my/project`, myheader).then((response) => {
       if (response.data.status) {
@@ -203,17 +136,27 @@ const SubmitPaperPage = () => {
       }
     });
   };
+
   const [myheader] = useState({
     headers: {
       token: localStorage.getItem("Usertoken"),
     },
   });
-  var other = "";
+
   const handleSelectChange = (selectedOption) => {
     setKeywords(selectedOption);
-    if(selectedOption === "Other")
-      other = "selected";
+    let found = false;
+    selectedOption.forEach(key => {
+      if (key.value === 'Other') {
+        setOther(key.value);
+        found = true;
+      }
+    })
+    if (!found) {
+      setOther("");
+    }
   };
+
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
   };
@@ -232,23 +175,19 @@ const SubmitPaperPage = () => {
 
   return (
     <div className="paper">
-      <h3 style={{textAlign:"center", color:"var(--green)"}}><b>Submit your Paper</b></h3>
-      {/* {approved ? (
-        <>
-          <span>Approved Statusdd</span> <h4>{approved}</h4>{" "}
-        </>
-      ) : null} */}
+      <h3 style={{ textAlign: "center", color: "var(--green)" }}><b>Submit your Paper</b></h3>
       <form className="form-con" onSubmit={sendPost}>
-        <label htmlFor="" style={{color:"white"}}>Title</label>
-
+        
+        <label htmlFor="" style={{ color: "white" }}>Title</label>
         <input
           type="text"
           placeholder="Enter Title"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
-          style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px' , width: "100%" }}
+          style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px', width: "100%" }}
         />
-        <label htmlFor="" style={{color:"white"}}>Abstract</label>
+
+        <label htmlFor="" style={{ color: "white" }}>Abstract</label>
         <textarea
           name="message"
           rows="10"
@@ -256,70 +195,54 @@ const SubmitPaperPage = () => {
           onChange={(e) => setAbstarct(e.target.value)}
           value={abstarct}
         ></textarea>
-        <label htmlFor="" style={{color:"white"}}>Keywords</label>
 
+        <label htmlFor="" style={{ color: "white" }}>Keywords</label>
         <Select
-  isMulti
-  name="colors"
-  value={keywords}
-  options={colourOptions}
-  className="basic-multi-select"
-  classNamePrefix="select"
-  onChange={handleSelectChange}
-></Select>
-{other == 'selected' ? (
-  <>
-    <input
-      id="keyws"
-      className="colors"
-      // {(errors.keyws) ? "error" : null}
-      type="text"
-      // value={values.keyws}
-      placeholder="Enter keywords separated by ,"
-      // onKeyDown={(event) => { keywordHandle(event) }}
-      // onChange={(event) => { handleChange(event) }}
-    ></input>
-    {/* <div style={{ width: 'fit-content', background: 'transparent', display: "flex", flexDirection: "row", flexWrap: "wrap", margin: '0 auto' }}>
-      {test.map((word, index) =>
-        <div>
-          <Word iskey={'yes'} word={word} key={index}></Word>
-        </div>
-      )}
-    </div> */}
-  </>
-) : null}
- 
-                    <div style={{color:"white"}}>
-  Is this a group Submission{" "}
-  <input
-    type="checkbox"
-    checked={isChecked}
-    onChange={handleCheckboxChange}
-    // style={{width:"100%"}}
-  />
-</div>
-{isChecked ? (
-  <div>
-    <label htmlFor="" style={{color:"white"}}>Email</label>
-    <input
-      placeholder="Enter each email ID.."
-      // onChange={(event) => { handleChange(event) }} className={(errors.email) ? "error" : null} id="email" type="email" 
-    ></input>
-    {/* {errEm ? <p className="error">{errEm}</p> : null}
-    <button type="button" className="button" onClick={() => { handleKey("email") }}>
-      Add
-    </button>
-    <div style={{ width: 'fit-content', background: 'transparent', display: "flex", flexDirection: "row", flexWrap: "wrap", margin: '0 auto' }}>
-      {emails.map((em, index) =>
-        <div onClick={() => { remove(index, "email") }}>
-          <Word word={em} key={index}></Word>
-        </div>
-      )}
-    </div> */}
-  </div>
-) : null}
+          isMulti
+          name="colors"
+          value={keywords}
+          options={colourOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={(event) => { handleSelectChange(event) }}
+        ></Select>
 
-        <label htmlFor="" style={{color:"white"}}>
+        {other === 'Other' ? (
+          <>
+            <label htmlFor="" style={{ color: "white" }}>Other Keywords</label>
+            <input
+              name="otherKeywords"
+              className="colors"
+              type="text"
+              placeholder="Enter keywords separated by ,"
+              style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px', width: "100%" }}
+            />
+          </>
+        ) : null}
+
+        <div style={{ color: "white" }}>
+          Is this a group Submission{" "}
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+          />
+        </div>
+
+        {isChecked ? (
+          <div>
+            <label htmlFor="" style={{ color: "white" }}>Email</label>
+            <input
+              name="groupEmail"
+              className="colors"
+              type="text"
+              placeholder="Enter each email ID.."
+              style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px', width: "100%" }}
+            />
+          </div>
+        ) : null}
+
+        <label htmlFor="" style={{ color: "white" }}>
           {" "}
           Upload your Paper{" "}
           <h4 style={{ color: "red" }}>{loading ? "loading" : ""}</h4>
@@ -329,6 +252,7 @@ const SubmitPaperPage = () => {
           accept=".pdf"/*,.doc,.docx*/
           onChange={(e) => uploadImage(e)}
         />
+        
         <div className="form-btn-con">
           <div className="form-btns">
             <button onClick={sendPost} className="submit" disabled={disabled}>

@@ -31,13 +31,13 @@ const Accept = () => {
           <div className="assign-card-con popupnew">
             <div className="assign-cardNew">
             <li>
-                <b>{product.firstName + " " + product.lastName}</b>
+                {product.firstName + " " + product.lastName}
               </li>
               <li>
-                <b>{product.title}</b>
+                {product.title}
               </li>
               <li>
-                <b>{product.abstract}</b>
+                {product.abstract}
               </li>
             </div>
           </div>
