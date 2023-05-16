@@ -31,10 +31,13 @@ const signup = async (req, res) => {
             title: "",
             abstract: "",
             groupSubmission: false,
+            groupEmail: "",
             keyword: "",
+            otherKeyword: "",
             reviewers: [],
             reviewerApproval: [],
             document: "",
+            paperID: "",
             approved: "Pending",
             updatedAt: Date.now(),
             areaOfInterest,
@@ -42,7 +45,7 @@ const signup = async (req, res) => {
           let user = await db.collection("user").doc(email).set(data);
           if (user) {
             res.json({ message: "user saved succesfully", status: true });
-            sentRegistrationSuccess(email);
+            // sentRegistrationSuccess(email);
           } else {
             res.json({ message: "user not saved", status: false });
           }
@@ -93,33 +96,40 @@ const login = async (req, res) => {
 };
 
 const project = async (req, res) => {
-  let { title, abstract, keyword, document, groupSubmission } = req.body;
+  let { title, abstract, keyword, otherKeyword, document, groupSubmission, groupEmail } = req.body;
   try {
     if (!title || !abstract || !keyword) {
       res.json({ message: "enter all data", status: false });
     } else {
       const email = req.data.id;
       const users = await db.collection("user").doc(email).get();
+      let paperID = users._fieldsProto.paperID.stringValue;
       if (!users.exists) {
         res.json({
           msg: "User doesn't exist",
         });
       } else {
+        if (paperID === "") {
+          paperID = generateRandomAlphaNumeric(8);
+        }
         let data = {
           email,
           title,
           abstract,
           keyword,
+          otherKeyword,
           groupSubmission,
+          groupEmail,
           document: document ? document : "",
           updatedAt: Date.now(),
+          paperID,
         };
         let upload = await db
           .collection("user")
           .doc(email)
           .set(data, { merge: true });
         if (upload) {
-          sendAuthorMail(email);
+          // sendAuthorMail(email);
           res.json({ message: "Project saved succesfully", status: true });
         } else {
           res.json({ message: "Project not saved", status: false });
@@ -132,7 +142,7 @@ const project = async (req, res) => {
 };
 
 const projectWithdrawal = async (req, res) => {
-  let { title, abstract, keyword, document, groupSubmission } = req.body;
+  let { title, abstract, keyword, otherKeyword, document, groupSubmission, groupEmail, paperID } = req.body;
   try {
     if (false) {
       res.json({ message: "enter all data", status: false });
@@ -151,7 +161,10 @@ const projectWithdrawal = async (req, res) => {
           keyword,
           groupSubmission,
           document: document ? document : "",
+          otherKeyword,
+          groupEmail,
           updatedAt: Date.now(),
+          paperID,
         };
         let upload = await db
           .collection("user")
@@ -191,6 +204,18 @@ const myProject = async (req, res) => {
     res.json({ message: error.message, status: false });
   }
 };
+
+function generateRandomAlphaNumeric(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(randomIndex);
+  }
+
+  return result;
+}
 
 module.exports = {
   signup,

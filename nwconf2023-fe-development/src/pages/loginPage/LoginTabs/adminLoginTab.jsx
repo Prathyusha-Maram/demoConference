@@ -68,6 +68,7 @@ export default function FullWidthTabs() {
   const [assign, setAssign] = useState(false);
   const [assigned, setAssigned] = useState({ status: false, value: {} });
   const [postUserEmail, setPostUserEmail] = useState("");
+  const [postGroupEmail, setPostGroupEmail] = useState("");
   const [tableDetails, setTableDetails] = useState([]);
   const [reviewerEmail, setReviewerDetails] = useState([]);
   const [guestEmail, setGuestDetails] = useState([]);
@@ -141,10 +142,10 @@ export default function FullWidthTabs() {
     setValue(index);
   };
 
-  function assignReviewer(e, p) {
+  function assignReviewer(e, p, g) {
     setAssign(true);
     setPostUserEmail(p);
-    console.log(postUserEmail);
+    setPostGroupEmail(g);
   }
 
   useEffect(() => {
@@ -246,7 +247,8 @@ export default function FullWidthTabs() {
   }
 
   function sendReviewList(product) {
-    if (postUserEmail !== product.email) {
+    if ((postUserEmail !== product.email) && (postGroupEmail !== product.email)) {
+      index++;
       return (
         <>
           <div className="assign-card-con popup">
@@ -273,7 +275,6 @@ export default function FullWidthTabs() {
       {assign ? (
         <div className="reviewer-popup">
           {reviewerEmail.data?.map((product) => {
-            index++;
             return (
               sendReviewList(product)
               // <>
@@ -449,8 +450,9 @@ export default function FullWidthTabs() {
                                     <TableCell>{row.title}</TableCell>
                                     <TableCell>
                                       {row.keyword.map((ele) => (
-                                        <p>{ele.label}</p>
+                                        ele.label !== "Other" ? <p>{ele.label}</p> : null
                                       ))}
+                                      {row.otherKeyword !== "" ? <p>{row.otherKeyword}</p> : null}
                                     </TableCell>
                                     <TableCell>{row.abstract}</TableCell>
                                     <TableCell>
@@ -486,7 +488,7 @@ export default function FullWidthTabs() {
                                       <button
                                         className="assign-btn"
                                         onClick={(event) =>
-                                          assignReviewer(event, row.email)
+                                          assignReviewer(event, row.email, row.groupEmail)
                                         }
                                       >
                                         Assign Reviewer

@@ -18,6 +18,8 @@ const SubmitPaperPage = () => {
   const [abstarct, setAbstarct] = useState("");
   const [file, setFile] = useState("");
   const [keywords, setKeywords] = useState([]);
+  const [otherKeyword, setOtherKeyword] = useState("");
+  const [groupEmail, setGroupEmail] = useState("");
   const [susTost, setSussToast] = useState(false);
   const [susTost1, setSuss1Toast] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -35,8 +37,10 @@ const SubmitPaperPage = () => {
           title: title,
           abstract: abstarct,
           keyword: keywords,
+          otherKeyword: otherKeyword,
           document: file,
           groupSubmission: isChecked,
+          groupEmail: groupEmail,
         },
         myheader
       )
@@ -62,7 +66,9 @@ const SubmitPaperPage = () => {
     obj.abstarct = abstarct;
     obj.checked = isChecked;
     obj.keywords = keywords;
-
+    obj.isChecked = checked;
+    obj.groupEmail = groupEmail;
+    obj.otherKeyword = otherKeyword;
     localStorage.setItem("user-local", JSON.stringify(obj));
   }
   function withdrawPost(e) {
@@ -77,6 +83,9 @@ const SubmitPaperPage = () => {
             keyword: [],
             document: "",
             groupSubmission: false,
+            groupEmail: "",
+            otherKeyword: "",
+            paperID: "",
           },
           myheader
         )
@@ -123,6 +132,12 @@ const SubmitPaperPage = () => {
           setIsChecked(response.data.project.groupSubmission);
           setKeywords(response.data.project.keyword);
           setApproved(response.data.project.approved);
+          setGroupEmail(response.data.project.groupEmail);
+          setOtherKeyword(response.data.project.otherKeyword);
+          if(otherKeyword !== "") {
+            setOther("Other");
+          }
+          console.log(otherKeyword);
         } else {
           if (localStorage.getItem("user-local")) {
             let data = JSON.parse(localStorage.getItem("user-local"));
@@ -131,6 +146,8 @@ const SubmitPaperPage = () => {
             setAbstarct(data.abstarct);
             setIsChecked(data.checked);
             setKeywords(data.keywords);
+            setGroupEmail(data.groupEmail);
+            setOtherKeyword(data.otherKeyword);
           }
         }
       }
@@ -154,11 +171,15 @@ const SubmitPaperPage = () => {
     })
     if (!found) {
       setOther("");
+      setOtherKeyword("");
     }
   };
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
+    if (!event.target.checked) {
+      setGroupEmail("");
+    }
   };
 
   useEffect(() => {
@@ -215,6 +236,8 @@ const SubmitPaperPage = () => {
               className="colors"
               type="text"
               placeholder="Enter keywords separated by ,"
+              onChange={(e) => setOtherKeyword(e.target.value)}
+              value={otherKeyword}
               style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px', width: "100%" }}
             />
           </>
@@ -237,6 +260,8 @@ const SubmitPaperPage = () => {
               className="colors"
               type="text"
               placeholder="Enter each email ID.."
+              onChange={(e) => setGroupEmail(e.target.value)}
+              value={groupEmail}
               style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '5px', width: "100%" }}
             />
           </div>
