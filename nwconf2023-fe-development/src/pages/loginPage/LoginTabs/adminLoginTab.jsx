@@ -144,6 +144,7 @@ export default function FullWidthTabs() {
   function assignReviewer(e, p) {
     setAssign(true);
     setPostUserEmail(p);
+    console.log(postUserEmail);
   }
 
   useEffect(() => {
@@ -153,7 +154,7 @@ export default function FullWidthTabs() {
       .get(`${API_ENDPOINT}/admin/reviewer`, myadminheader)
       .then((response) => setReviewerDetails(response.data));
 
-      axios
+    axios
       .get(`${API_ENDPOINT}/admin/guest`, myadminheader)
       .then((response) => setGuestDetails(response.data));
   }, []);
@@ -244,68 +245,54 @@ export default function FullWidthTabs() {
       );
   }
 
+  function sendReviewList(product) {
+    if (postUserEmail !== product.email) {
+      return (
+        <>
+          <div className="assign-card-con popup">
+            <div className="assign-card">
+              <li>
+                <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index})
+              </li>
+              <input
+                value={product.email}
+                type="checkbox"
+                checked={checked.includes(product)}
+                onChange={() => handleCheck(product)}
+                disabled={checked.includes(product) ? false : checked.length >= 3}
+              />
+            </div>
+          </div>
+        </>
+      )
+    }
+  }
+
   return (
     <div className="tabs-global">
       {assign ? (
         <div className="reviewer-popup">
           {reviewerEmail.data?.map((product) => {
             index++;
-            console.log(reviewerEmail)
-            {assignPaper.forEach(paper => {
-              <>
-                <div className="assign-card-con popup">
-                  <div className="assign-card">
-                    <li>
-                      <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index})
-                    </li>
-                    <input
-                      value={product.email}
-                      type="checkbox"
-                      checked={checked.includes(product)}
-                      onChange={() => handleCheck(product)}
-                      disabled={checked.includes(product) ? false : checked.length >= 3}
-                    />
-                  </div>
-                </div>
-              </>
-            })}
-                // (paper.email !== product.email ? null : 
-                //   return (
-                //     <>
-                //       <div className="assign-card-con popup">
-                //         <div className="assign-card">
-                //           <li>
-                //             <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index})
-                //           </li>
-                //           <input
-                //             value={product.email}
-                //             type="checkbox"
-                //             checked={checked.includes(product)}
-                //             onChange={() => handleCheck(product)}
-                //             disabled={checked.includes(product) ? false : checked.length >= 3}
-                //           />
-                //         </div>
-                //       </div>
-                //     </>
-                //   ))
-            // return (
-            //   <>
-            //     <div className="assign-card-con popup">
-            //       <div className="assign-card">
-            //         <li>
-            //           <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index})
-            //         </li>
-            //         <input
-            //           value={product.email}
-            //           type="checkbox"
-            //           checked={checked.includes(product)}
-            //           onChange={() => handleCheck(product)}
-            //           disabled={checked.includes(product) ? false : checked.length >= 3}
-            //         />
-            //       </div>
-            //     </div>
-            //   </>
-            // )
+            return (
+              sendReviewList(product)
+              // <>
+              //   <div className="assign-card-con popup">
+              //     <div className="assign-card">
+              //       <li>
+              //         <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index})
+              //       </li>
+              //       <input
+              //         value={product.email}
+              //         type="checkbox"
+              //         checked={checked.includes(product)}
+              //         onChange={() => handleCheck(product)}
+              //         disabled={checked.includes(product) ? false : checked.length >= 3}
+              //       />
+              //     </div>
+              //   </div>
+              // </>
+            )
           })}
           <div className="wrap-btn">
             <button onClick={() => { setAssign(false); setChecked([]); }} className="withdraw">
