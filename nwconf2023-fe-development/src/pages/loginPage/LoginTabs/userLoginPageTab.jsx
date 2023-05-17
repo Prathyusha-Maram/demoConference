@@ -39,29 +39,23 @@ const UserLoginPageTab = () => {
             <img src={Profile} alt="" />
           </div>
           <div className="user-details">
-          <table>
-            <tr>
-              <td className='InfoHeading'>Name</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>&nbsp;{userDatas?.firstName + " " + userDatas?.lastName}</td>
-            </tr>
-            <tr>
-              <td className='InfoHeading'>Email</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>{userDatas?.email}</td>
-            </tr>
-            <tr>
-              <td className='InfoHeading'>Areas of intrest</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>{userDatas?.areaOfInterest}</td>
-            </tr>
-          </table>
-            {/* <p>
-              User Name :<b>{userDatas?.userName}</b>
-            </p>
-            <p>
-              User Email :<b>{userDatas?.email}</b>
-            </p> */}
+            <table>
+              <tr>
+                <td className='InfoHeading'>Name</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>&nbsp;{userDatas?.firstName + " " + userDatas?.lastName}</td>
+              </tr>
+              <tr>
+                <td className='InfoHeading'>Email</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>{userDatas?.email}</td>
+              </tr>
+              <tr>
+                <td className='InfoHeading'>Areas of intrest</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>{userDatas?.areaOfInterest}</td>
+              </tr>
+            </table>
           </div>
         </div>
         <div className="optionContainer">
@@ -73,19 +67,21 @@ const UserLoginPageTab = () => {
               <p>Submit a New Paper</p>
             </div>
           </NavLink>
+          <NavLink to="/editPost">
+            <div className="submit-new">
+              <div className="sub-img">
+                <img src={PaperStatus} alt="" />
+              </div>
+              <p style={{ color: "#006747" }}><b>Edit Paper Submission</b></p>
+            </div>
+          </NavLink>
           <div style={{ border: "none" }} disabled={disabled}>
-          <div className="submit-new" onClick={checkStatus}>
-            <div className="sub-img">
-              <img src={PaperStatus} alt="" />
+            <div className="submit-new" onClick={checkStatus}>
+              <div className="sub-img">
+                <img src={PaperStatus} alt="" />
+              </div>
+              <p style={{ color: "#006747" }}><b>Check Your Paper Status</b></p>
             </div>
-            <p style={{color:"#006747"}}><b>Check Your Paper Status</b></p>
-          </div>
-        </div>
-          <div className="submit-new">
-            <div className="sub-img">
-              <img src={KmowMore} alt="" />
-            </div>
-            <p style={{color:"#006747"}}><b>Know More About Paper Submission</b></p>
           </div>
         </div>
       </div>

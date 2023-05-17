@@ -126,18 +126,19 @@ const SubmitPaperPage = () => {
     axios.get(`${API_ENDPOINT}/my/project`, myheader).then((response) => {
       if (response.data.status) {
         if (response.data.project.title) {
-          // setTitle(response.data.project.title);
-          // setFile(response.data.project.document);
-          // setAbstarct(response.data.project.abstract);
-          // setIsChecked(response.data.project.groupSubmission);
-          // setKeywords(response.data.project.keyword);
-          // setApproved(response.data.project.approved);
-          // setGroupEmail(response.data.project.groupEmail);
-          // setOtherKeyword(response.data.project.otherKeyword);
-          // if(otherKeyword !== "") {
-          //   setOther("Other");
-          // }
+          setTitle(response.data.project.title);
+          setFile(response.data.project.document);
+          setAbstarct(response.data.project.abstract);
+          setIsChecked(response.data.project.groupSubmission);
+          setKeywords(response.data.project.keyword);
+          setApproved(response.data.project.approved);
+          setGroupEmail(response.data.project.groupEmail);
+          setOtherKeyword(response.data.project.otherKeyword);
+          if(response.data.project.otherKeyword !== "") {
+            setOther("Other");
+          }
         } else {
+          alert("Please back after submitting a paper");
           if (localStorage.getItem("user-local")) {
             let data = JSON.parse(localStorage.getItem("user-local"));
             setTitle(data.title);
@@ -195,7 +196,7 @@ const SubmitPaperPage = () => {
 
   return (
     <div className="paper">
-      <h3 style={{ textAlign: "center", color: "var(--green)" }}><b>Submit your Paper</b></h3>
+      <h3 style={{ textAlign: "center", color: "var(--green)" }}><b>Edit Your Submission your Paper</b></h3>
       <form className="form-con" onSubmit={sendPost}>
         
         <label htmlFor="" style={{ color: "white" }}>Title</label>

@@ -198,7 +198,8 @@ const myProject = async (req, res) => {
     clean.firstName = data.firstName;
     clean.lastName = data.lastName;
     clean.areaOfInterest = data.areaOfInterest;
-
+    clean.otherKeyword = data.otherKeyword;
+    clean.groupEmail = data.groupEmail;
     res.json({ project: clean, status: true });
   } catch (error) {
     res.json({ message: error.message, status: false });
