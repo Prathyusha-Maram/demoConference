@@ -41,6 +41,8 @@ const signup = async (req, res) => {
             approved: "Pending",
             updatedAt: Date.now(),
             areaOfInterest,
+            wantToAttend: false,
+            payementStatus: "",
           };
           let user = await db.collection("user").doc(email).set(data);
           if (user) {

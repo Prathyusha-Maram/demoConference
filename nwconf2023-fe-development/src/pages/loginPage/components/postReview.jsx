@@ -13,7 +13,7 @@ const PostReview = () => {
   const [findings, setFindings] = useState({ comments: "", points: "" });
   const [pdfFile, setPdfFile] = useState(state.userDetails.document);
   const [reviewDone, setReviewDone] = useState(false);
-  const [wantToReview, setWantToReview] = useState("No");
+  const [wantToReview, setWantToReview] = useState("");
   const [userEmail, setUserEmail] = useState(state.userDetails.email);
   const [presentation, setPresentation] = useState({
     comments: "",
@@ -174,6 +174,7 @@ const PostReview = () => {
         }
       }
     }
+
     if (!allObjectsHaveValue) {
       alert("Please enter all details");
     } else {
@@ -204,6 +205,10 @@ const PostReview = () => {
     }
   }
 
+  function updatedWantToReviewStatus() {
+    alert("no")
+  }
+
   function wantToReviewUpdate(response) {
     setWantToReview(response)
   }
@@ -231,6 +236,27 @@ const PostReview = () => {
         <p>
           Abstract : <b>{state.userDetails.abstract}</b>
         </p>
+        {/* {
+          wantToReview === "no" ?
+          (
+            <div>
+              <p>Do you want to review?</p>
+              <input type="radio" id="yes" name="wantToReview" value="yes" onClick={setWantToReview("Yes")}/>
+              <label for="yes">Yes</label>
+              <input type="radio" id="no" name="wantToReview" value="no" onClick={setWantToReview("No")}/>
+              <label for="no">No</label>
+            </div>
+          ) 
+          : wantToReview === "Yes" ?
+          (
+            <div className="dwn-btn">
+              <Link to={pdfFile} target="_blank" download className="download">
+                Download
+              </Link>
+            </div>
+          ) 
+          : console.log(wantToReview)
+        } */}
         {/* {wantToReview === "No" ? 
           (
             <div>

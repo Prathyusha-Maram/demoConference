@@ -20,6 +20,7 @@ import AdminLoginPage from "./pages/loginPage/LoginTabs/AdminLoginPage";
 import SubmitPaperPage from "./pages/loginPage/LoginTabs/SubmitPaperPage";
 import EditPaperPage from "./pages/loginPage/LoginTabs/EditSubmitPaperPage";
 import CheckStatus from "./pages/loginPage/LoginTabs/CheckStatus";
+import PaymentPage from "./pages/loginPage/LoginTabs/UserPaymentPage";
 import ViewReview from "./pages/loginPage/components/ViewReview";
 import AdminLoginTab from "./pages/loginPage/LoginTabs/adminLoginTab";
 import AdminSignUpPage from "./pages/loginPage/LoginTabs/AdminSignUpPage";
@@ -57,6 +58,7 @@ function App() {
             <Route exact path="/Review" element={<ReviewerLoginTab />} />
             <Route exact path="/createPost" element={<SubmitPaperPage />} />
             <Route exact path="/editPost" element={<EditPaperPage />} />
+            <Route exact path="/payment" element={<PaymentPage />} />
             <Route exact path="/evaluate" element={<AdminLoginTab />} />
             <Route exact path="/discussion" element={<ReviewerChat />} />
             <Route exact path="/checkStatus" element={<CheckStatus />} />

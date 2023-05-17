@@ -1,33 +1,47 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-
+import { useNavigate, NavLink } from "react-router-dom";
 const CheckStatus = () => {
   const { state } = useLocation();
+  const navigate = useNavigate();
+  function payment() {
+    navigate("/payment");
+  }
 
   return (
     <div>
       {
         <>
           <>
+            <div className="first-coon">
+              <div className="staus-wrap">
+                <p>Overall Approval Status</p>
+                <p>
+                  {state?.approved === "Approved" ? (
+                    <>
+                      <p className="approved">Approved</p>
+                      <button onClick={payment} >Payment to attend conference</button>
+                    </>
+                  ) : state?.approved === "Rejected" ? (
+                    <p className="approved" style={{ background: "red" }}>Rejected</p>
+                  ) : (
+                    <p className="approved" style={{ background: "#F6BE00" }}>Pending</p>
+                  )}
+                </p>
+              </div>
+            </div>
             {state?.reviewerApproval.map((element) => {
               return (
                 <div className="first-coon">
                   <div className="staus-wrap">
                     <p>First Reviewer's Approval</p>
                     <p>
-                      {element.approve === "Approved" ? (
-                        <p className="approved">Approved</p>
-                      ) : "Rejected" ? (
-                        <p className="approved" style={{ background: "red" }}>
-                          Rejected
-                        </p>
+                      {element.approve === "Pending" ? (
+                        <p className="approved" style={{ background: "#F6BE00" }}>Pending</p>
+                      ) : element.approve === "Rejected" ? (
+                        <p className="approved" style={{ background: "red" }}>Rejected</p>
                       ) : (
-                        <p
-                          className="approved"
-                          style={{ background: "Yellow" }}
-                        >
-                          Pending
-                        </p>
+                        <p className="approved">{element.approve}</p>
                       )}
                     </p>
                   </div>
