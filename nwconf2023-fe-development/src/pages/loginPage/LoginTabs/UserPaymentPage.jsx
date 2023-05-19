@@ -7,11 +7,13 @@ import { PayPalButton } from "react-paypal-button-v2"
 const GuestLoginPage = () => {
     const navigate = useNavigate()
     const handleSuccessPayment = async (paymentResults) => {
-        await axios.post(`${API_ENDPOINT}/guest/signup`, {
-            "id": paymentResults.id, "Email": paymentResults.payer.email_address, "FirstName": paymentResults.payer.name.given_name,
-            "LastName": paymentResults.payer.name.surname, "Phone": paymentResults.payer.phone.phone_number.national_number, "Attendance": false
-            , "Amount": paymentResults.purchase_units[0].amount.value, "Address": paymentResults.purchase_units[0].shipping.address.address_line_1, "City": paymentResults.purchase_units[0].shipping.address.admin_area_2, "Status": paymentResults.status
-        })
+        await axios.post(`${API_ENDPOINT}/payment`, {
+            email: paymentResults.payer.email_address, payementStatus: paymentResults.status,
+        }).then(
+            (response) => {
+                console.log(response);
+            }
+        )
         alert("Payment success. You will be recieving an email regarding the payment.")
     }
 

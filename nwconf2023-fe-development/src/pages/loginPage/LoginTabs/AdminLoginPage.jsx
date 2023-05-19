@@ -17,12 +17,7 @@ const AdminLoginPage = () => {
         (response) => {
           localStorage.setItem("Admintoken", response.data.token);
           if (response.data.status === true) {
-            navigate("/adminLogin", {
-              state: {
-                email: adminloginEmail,
-                password: adminloginPassword,
-              }
-            });
+            navigate("/adminLogin");
           } else {
             setlogin2alert(true);
           }
