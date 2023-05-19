@@ -208,6 +208,31 @@ const myProject = async (req, res) => {
   }
 };
 
+const payment = async (req, res) => {
+  let {email, payementStatus} = req.body;
+  const users = await db.collection("user").doc(email).get();
+  if (!users.exists) {
+    res.json({
+      msg: "User doesn't exist",
+    });
+  } else {
+    let data = {
+      email,
+      payementStatus,
+    };
+    let upload = await db
+      .collection("user")
+      .doc(email)
+      .set(data, { merge: true });
+    if (upload) {
+      res.json({ message: "Guest saved succesfully", status: true });
+      // sentGuestInvation(email);
+    } else {
+      res.json({ message: "Guest not saved", status: false });
+    }
+  }
+}
+
 function generateRandomAlphaNumeric(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
@@ -226,4 +251,5 @@ module.exports = {
   project,
   myProject,
   projectWithdrawal,
+  payment,
 };

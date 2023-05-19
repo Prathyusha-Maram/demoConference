@@ -9,5 +9,6 @@ router.post("/login", application.login);
 router.post("/project", auth, application.project);
 router.post("/withdraw/project", auth, application.projectWithdrawal);
 router.get("/my/project", auth, application.myProject);
+router.post("/payment", application.payment);
 
 module.exports = router;
