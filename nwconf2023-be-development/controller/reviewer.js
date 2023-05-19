@@ -26,6 +26,7 @@ const login = async (req, res) => {
         );
         if (data.password == password) {
           res.json({
+            clean: data,
             message: "login successfully",
             token: token,
             status: true,
