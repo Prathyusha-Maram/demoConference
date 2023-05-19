@@ -23,6 +23,7 @@ const ReviewLoginPage = () => {
             navigate("/ReviewerLogin", {
               state: {
                 ReviewerEmail: reviewerloginEmail,
+                ReviewerPassword: reviewerloginPassword,
               },
             });
           } else {

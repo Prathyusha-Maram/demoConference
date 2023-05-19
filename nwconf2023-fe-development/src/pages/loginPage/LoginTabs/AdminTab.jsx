@@ -4,7 +4,7 @@ import SubmitNew from "../../../images/newPaper.png";
 import chatNew from "../../../images/chat.png";
 import PaperStatus from "../../../images/editPaper.png";
 import KmowMore from "../../../images/knowMore.jpg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "../../../styles/landing.css";
 import axios from "axios";
 import { API_ENDPOINT } from "../../../constant/constant";
@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import Modal from "react-modal";
 import ModalContent from "../components/modalContent";
 const UserLoginPageTab = () => {
+  const { state } = useLocation();
+  const [adminDetails, setAdminDetails] = useState();
   const [userDatas, setUserDatas] = useState();
   const [disabled, setDisabled] = useState(true);
   const navigate = useNavigate();
@@ -49,6 +51,19 @@ const UserLoginPageTab = () => {
       setUserDatas(response.data.project);
       setDisabled(false);
     });
+
+    axios.post(`${API_ENDPOINT}/admin/login`, {
+      email: state.email,
+      password: state.password,
+    })
+    .then(
+      (response) => {   
+        setAdminDetails(response.data.clean);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
 
   useEffect(() => {
@@ -79,17 +94,17 @@ const UserLoginPageTab = () => {
               <tr>
                 <td className='authorInfoHeading'>Name</td>
                 <td>&nbsp;:&nbsp; </td>
-                <td>&nbsp;Admin</td>
+                <td>&nbsp;{adminDetails.firstName + " " + adminDetails.lastName}</td>
               </tr>
               <tr>
                 <td className='authorInfoHeading'>Email</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td>admin@gmail.com</td>
+                <td>{adminDetails.email}</td>
               </tr>
               <tr>
                 <td className='authorInfoHeading'>Areas of intrest</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td>Software engineering, Cloud computing, Block chain</td>
+                <td>{adminDetails.areaOfInterest}</td>
               </tr>
             </table>
           </div>

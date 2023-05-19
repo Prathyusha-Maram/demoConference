@@ -3,11 +3,13 @@ import Profile from "../../../images/profileImage.jpg";
 import SubmitNew from "../../../images/newPaper.png";
 import PaperStatus from "../../../images/editPaper.png";
 import KmowMore from "../../../images/knowMore.jpg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_ENDPOINT } from "../../../constant/constant";
 import { useEffect } from "react";
 const UserLoginPageTab = () => {
+  const {state} = useLocation();
+  const [reviewerDetails, setReviewerDetails] = useState();
   const [userDatas, setUserDatas] = useState();
   const [disabled, setDisabled] = useState(true);
   const navigate = useNavigate();
@@ -21,6 +23,20 @@ const UserLoginPageTab = () => {
       setUserDatas(response.data.project);
       setDisabled(false);
     });
+
+    axios
+      .post(`${API_ENDPOINT}/reviewer/login`, {
+        email: state.ReviewerEmail,
+        password: state.ReviewerPassword,
+      })
+      .then(
+        (response) => {
+          setReviewerDetails(response.data.clean);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   useEffect(() => {
@@ -50,17 +66,17 @@ const UserLoginPageTab = () => {
                 <td className='InfoHeading'>Name</td>
                 <td>&nbsp;: </td>
                 {/* <td>&nbsp;{userDatas?.firstName + " " + userDatas?.lastName}</td> */}
-                <td>&nbsp;Reviewer</td>
+                <td>&nbsp;{reviewerDetails.firstName + " " + reviewerDetails.lastName}</td>
               </tr>
               <tr>
                 <td className='InfoHeading'>Email</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td>reviewer1@gmail.com</td>
+                <td>{reviewerDetails.email}</td>
               </tr>
               <tr>
                 <td className='InfoHeading'>Areas of intrest</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td>Software engineering, Cloud computing, Block chain</td>
+                <td>{reviewerDetails.areaOfInterest}</td>
               </tr>
             </table>
           </div>
