@@ -4,7 +4,7 @@ import SubmitNew from "../../../images/newPaper.png";
 import chatNew from "../../../images/chat.png";
 import PaperStatus from "../../../images/editPaper.png";
 import KmowMore from "../../../images/knowMore.jpg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "../../../styles/landing.css";
 import axios from "axios";
 import { API_ENDPOINT } from "../../../constant/constant";
@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import Modal from "react-modal";
 import ModalContent from "../components/modalContent";
 const UserLoginPageTab = () => {
+  const { state } = useLocation();
   const [userDatas, setUserDatas] = useState();
   const [disabled, setDisabled] = useState(true);
   const navigate = useNavigate();
@@ -79,17 +80,17 @@ const UserLoginPageTab = () => {
               <tr>
                 <td className='authorInfoHeading'>Name</td>
                 <td>&nbsp;:&nbsp; </td>
-                <td>&nbsp;Admin</td>
+                <td>{state.name}</td>
               </tr>
               <tr>
                 <td className='authorInfoHeading'>Email</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td>admin@gmail.com</td>
+                <td>{state.email}</td>
               </tr>
               <tr>
                 <td className='authorInfoHeading'>Areas of intrest</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td>Software engineering, Cloud computing, Block chain</td>
+                <td>{state.areaOfInterest}</td>
               </tr>
             </table>
           </div>

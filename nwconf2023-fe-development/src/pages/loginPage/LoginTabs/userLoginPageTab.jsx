@@ -43,7 +43,7 @@ const UserLoginPageTab = () => {
               <tr>
                 <td className='InfoHeading'>Name</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td>&nbsp;{userDatas?.firstName + " " + userDatas?.lastName}</td>
+                <td>{userDatas?.firstName + " " + userDatas?.lastName}</td>
               </tr>
               <tr>
                 <td className='InfoHeading'>Email</td>

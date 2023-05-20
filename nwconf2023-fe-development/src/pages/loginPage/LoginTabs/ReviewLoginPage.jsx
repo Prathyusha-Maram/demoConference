@@ -23,6 +23,8 @@ const ReviewLoginPage = () => {
             navigate("/ReviewerLogin", {
               state: {
                 ReviewerEmail: reviewerloginEmail,
+                name: response.data.clean.firstName + " " + response.data.clean.lastName,
+                areaOfInterest: response.data.clean.areaOfInterest,
               },
             });
           } else {

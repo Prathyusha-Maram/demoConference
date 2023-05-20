@@ -15,9 +15,16 @@ const AdminLoginPage = () => {
       })
       .then(
         (response) => {
+          console.log(response)
           localStorage.setItem("Admintoken", response.data.token);
           if (response.data.status === true) {
-            navigate("/adminLogin");
+            navigate("/adminLogin", {
+              state: {
+                name: response.data.clean.firstName + " " + response.data.clean.lastName,
+                email: response.data.clean.email,
+                areaOfInterest: response.data.clean.areaOfInterest,
+              },
+            });
           } else {
             setlogin2alert(true);
           }
