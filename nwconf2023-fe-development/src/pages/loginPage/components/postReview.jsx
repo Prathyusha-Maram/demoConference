@@ -93,6 +93,11 @@ const PostReview = () => {
   }
 
   useEffect(() => {
+    state.userDetails.reviewers.forEach((reviewer) => {
+      if(reviewer.email === state.ReviewerEmail) {
+        setWantToReview(reviewer.wantToReview);
+      }
+    });
     let obj;
     if (state.userDetails.reviewerApproval.length > 0) {
       let flag = true;
