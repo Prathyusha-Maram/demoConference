@@ -105,15 +105,32 @@ const project = async (req, res) => {
     } else {
       const email = req.data.id;
       const users = await db.collection("user").doc(email).get();
+      let id = 0;
       let paperID = users._fieldsProto.paperID.stringValue;
+      if (paperID === "") {
+        const allUsers = await db.collection("user").get().then(
+          (snapshot) => {
+            snapshot.forEach((doc) => {
+              if( doc._fieldsProto.abstract.stringValue !== '' ) {
+                id++;
+              }
+            })
+          }
+        );
+        id++;
+        if (id.toString().length === 1) {
+          paperID = "00" + id;
+        } else if (id.toString().length === 2) {
+          paperID = "0" + id;
+        } else {
+          paperID = id;
+        }
+      }
       if (!users.exists) {
         res.json({
           msg: "User doesn't exist",
         });
       } else {
-        if (paperID === "") {
-          paperID = generateRandomAlphaNumeric(8);
-        }
         let data = {
           email,
           title,
