@@ -176,6 +176,72 @@ const reviewerApproval = async (req, res) => {
     res.json({ message: error.message, status: false });
   }
 };
+const studentProjects = async (req, res) => {
+  try {
+    const email = req.data.id;
+    const data = await db.collection("student").get();
+    let project = [];
+    data.forEach((doc) => {
+      project.push(doc.data());
+    });
+    let clean = project.map(({ password, ...rest }) => ({ ...rest }));
+    let value = [];
+    clean.forEach((e) => {
+      e.reviewers?.forEach((d) => {
+        if (d.email === email) {
+          value.push(e);
+        } else {
+        }
+      });
+    });
+    res.json({ project: value, status: true });
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+const studentReviewerApproval = async (req, res) => {
+  let { reviewerApproval, email, needReview } = req.body;
+
+  try {
+    if (!reviewerApproval || !email) {
+      res.json({ message: "Enter all Data", status: false });
+    } else {
+      const users = await db.collection("student").doc(email).get();
+      if (!users.exists) {
+        res.json({
+          msg: "User doesn't exist",
+        });
+      } else {
+        let data = {
+          reviewerApproval,
+          updatedAt: Date.now(),
+        };
+        let upload = await db
+          .collection("student")
+          .doc(email)
+          .set(data, { merge: true });
+        if (upload) {
+          if (needReview) {
+            needReviewAuthor(email);
+          } else {
+          }
+          res.json({
+            message: "Status updated successfully",
+            status: true,
+          });
+        } else {
+          res.json({
+            message: "Approval/Rejection process failed",
+            status: false,
+          });
+        }
+      }
+    }
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
 
 module.exports = {
   login,
@@ -183,4 +249,6 @@ module.exports = {
   projects,
   reviewerApproval,
   project,
+  studentProjects,
+  studentReviewerApproval
 };

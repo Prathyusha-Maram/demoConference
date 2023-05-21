@@ -254,6 +254,105 @@ const approvedProjects = async (req, res) => {
   }
 };
 
+const studentAddReviewer = async (req, res) => {
+  let { reviewers, email } = req.body;
+  try {
+    if (!email || !reviewers) {
+      res.json({ message: "Enter all data", status: false });
+    } else {
+      if (reviewers.length < 1)
+        return res.json({
+          message: "Please add Reviewers",
+          status: false,
+        });
+      const users = await db.collection("student").doc(email).get();
+      if (!users.exists) {
+        res.json({
+          msg: "User doesn't exist",
+        });
+      } else {
+        let upload = await db.collection("student").doc(email).set(
+          {
+            reviewers: reviewers,
+          },
+          { merge: true }
+        );
+        if (upload) {
+          let emails = reviewers.map((user) => user.email);
+          sendReviewerNotifyMail(emails);
+          res.json({
+            message: "updated successfully",
+            status: true,
+          });
+        } else {
+          res.json({
+            message: "process failed",
+            status: false,
+          });
+        }
+      }
+    }
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
+const studentProjects = async (req, res) => {
+  try {
+    const data = await db.collection("student").get();
+    let project = [];
+    data.forEach((doc) => {
+      project.push(doc.data());
+    });
+    let clean = project.map(({ password, ...rest }) => ({ ...rest }));
+    res.json({ project: clean, status: true });
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+const studentApprove = async (req, res) => {
+  let { approved, email } = req.body;
+  try {
+    if (!email) {
+      res.json({ message: "Enter email id", status: false });
+    } else {
+      const users = await db.collection("student").doc(email).get();
+      if (!users.exists) {
+        res.json({
+          msg: "User doesn't exist",
+        });
+      } else {
+        let data = {
+          approved,
+          updatedAt: Date.now(),
+        };
+        let upload = await db
+          .collection("student")
+          .doc(email)
+          .set(data, { merge: true });
+        if (upload) {
+          sendPaperResponse(email, approved);
+          res.json({
+            message:
+              approved === "Approved"
+                ? "Approved Successfully"
+                : "Rejected Successfully",
+            status: true,
+          });
+        } else {
+          res.json({
+            message: "Approval/Rejection process failed",
+            status: false,
+          });
+        }
+      }
+    }
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
+
 module.exports = {
   login,
   projects,
@@ -264,4 +363,7 @@ module.exports = {
   signup,
   project,
   guest,
+  studentProjects,
+  studentApprove,
+  studentAddReviewer
 };

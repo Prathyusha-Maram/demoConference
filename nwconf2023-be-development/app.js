@@ -5,6 +5,7 @@ const app = express();
 // const config = require("./config");
 const admin = require("./router/admin");
 const application = require("./router/application");
+const student = require("./router/student");
 const reviewer = require("./router/reviewer");
 const guest = require("./router/guest");
 const meta = require("./router/meta");
@@ -25,6 +26,7 @@ app.get("/", (req, res) => res.send("success"));
 app.use("/api", application);
 app.use("/api", meta);
 
+app.use("/api/student", student);
 app.use("/api/admin", admin);
 app.use("/api/reviewer", reviewer);
 app.use("/api/guest", guest);
