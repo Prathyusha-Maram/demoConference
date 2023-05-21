@@ -370,6 +370,9 @@ export default function FullWidthTabs() {
         <div className="loginBtn author">
           <NavLink to="/author/login">Continue as Author</NavLink>
         </div>
+        <div className="loginBtn author">
+          <NavLink to="/student/login">Continue as Student</NavLink>
+        </div>
         <div className="loginBtn guest">
           <NavLink to="/guest/login">Continue as Guest</NavLink>
         </div>

@@ -25,49 +25,57 @@ const cards = () => {
             id: 1,
             title: "Cloud computing",
             content: "Explore More",
-            image: Cloudcomputing
+            image: Cloudcomputing,
+            link: "https://en.wikipedia.org/wiki/Cloud_computing"
         },
         {
             id: 2,
             title: "Block Chain",
             content: "Explore More",
-            image: BlockChain
+            image: BlockChain,
+            link: "https://en.wikipedia.org/wiki/Blockchain"
         },
         {
             id: 3,
             title: "Big Data",
             content: "Explore More",
-            image: BigData
+            image: BigData,
+            link: "https://en.wikipedia.org/wiki/Bigdata"
         },
         {
             id: 4,
             title: "Cryptography",
             content: "Explore More",
-            image: Cryptography
+            image: Cryptography,
+            link: "https://en.wikipedia.org/wiki/Cryptography"
         },
         {
             id: 5,
             title: "Software Engineering",
             content: "Explore More",
-            image: SoftwareEngineering
+            image: SoftwareEngineering,
+            link: "https://en.wikipedia.org/wiki/Softwareengineering"
         },
         {
             id: 6,
             title: "Machine Learning",
             content: "Explore More",
-            image: MachineLearning
+            image: MachineLearning,
+            link: "https://en.wikipedia.org/wiki/Machinelearning"
         },
         {
             id: 7,
             title: "Data Analytics",
             content: "Explore More",
-            image: DataAnalytics
+            image: DataAnalytics,
+            link: "https://en.wikipedia.org/wiki/Dataanalytics"
         },
         {
             id: 8,
             title: "Cyber Security",
             content: "Explore More",
-            image: CyberSecurity
+            image: CyberSecurity,
+            link: "https://en.wikipedia.org/wiki/Cyber-security_regulation"
         },
     ]
     const Users = [
@@ -181,15 +189,8 @@ const cards = () => {
 
                                 </div>
                             </div>
-
-
-
-
                         </>
-
-
                     ))}
-
 
                 </div>
                 <div className="third-card-container">
