@@ -69,6 +69,7 @@ export default function FullWidthTabs() {
   const [assigned, setAssigned] = useState({ status: false, value: {} });
   const [postUserEmail, setPostUserEmail] = useState("");
   const [postGroupEmail, setPostGroupEmail] = useState("");
+  const [submisstionType, setSubmisstionType] = useState("");
   const [tableDetails, setTableDetails] = useState([]);
   const [reviewerEmail, setReviewerDetails] = useState([]);
   const [guestEmail, setGuestDetails] = useState([]);
@@ -142,10 +143,11 @@ export default function FullWidthTabs() {
     setValue(index);
   };
 
-  function assignReviewer(e, p, g) {
+  function assignReviewer(e, p, g, s) {
     setAssign(true);
     setPostUserEmail(p);
     setPostGroupEmail(g);
+    setSubmisstionType(s);
   }
 
   useEffect(() => {
@@ -231,6 +233,7 @@ export default function FullWidthTabs() {
         {
           reviewers: checked,
           email: postUserEmail,
+          submisstionType: submisstionType,
         },
         myadminheader
       )
@@ -488,7 +491,7 @@ export default function FullWidthTabs() {
                                       <button
                                         className="assign-btn"
                                         onClick={(event) =>
-                                          assignReviewer(event, row.email, row.groupEmail)
+                                          assignReviewer(event, row.email, row.groupEmail, row.submisstionType)
                                         }
                                       >
                                         Assign Reviewer

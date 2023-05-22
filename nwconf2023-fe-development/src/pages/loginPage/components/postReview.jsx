@@ -191,6 +191,7 @@ const PostReview = () => {
             email: state.userDetails.email,
             reviewerApproval: array,
             needReview: bool,
+            submisstionType: state.userDetails.submisstionType,
           },
           myReviewerheader
         )
@@ -492,7 +493,7 @@ const PostReview = () => {
                 <div className="review-btn-con">
                   <button
                     className="submit"
-                    onClick={(event) => sendReview(event, "Strongly Approved")}
+                    onClick={(event) => sendReview(event, "Strongly Approved", true)}
                   >
                     Strongly Accept
                   </button>
