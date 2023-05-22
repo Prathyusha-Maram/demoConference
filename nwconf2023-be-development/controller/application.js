@@ -43,6 +43,7 @@ const signup = async (req, res) => {
             areaOfInterest,
             wantToAttend: false,
             payementStatus: "",
+            submisstionType: "user",
           };
           let user = await db.collection("user").doc(email).set(data);
           if (user) {

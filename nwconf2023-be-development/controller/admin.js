@@ -110,8 +110,12 @@ const signup = async (req, res) => {
 const projects = async (req, res) => {
   try {
     const data = await db.collection("user").get();
+    const studentData = await db.collection("student").get();
     let project = [];
     data.forEach((doc) => {
+      project.push(doc.data());
+    });
+    studentData.forEach((doc) => {
       project.push(doc.data());
     });
     let clean = project.map(({ password, ...rest }) => ({ ...rest }));
@@ -164,9 +168,9 @@ const approve = async (req, res) => {
 };
 
 const addReviewer = async (req, res) => {
-  let { reviewers, email } = req.body;
+  let { reviewers, email, submisstionType } = req.body;
   try {
-    if (!email || !reviewers) {
+    if (!email || !reviewers || !submisstionType) {
       res.json({ message: "Enter all data", status: false });
     } else {
       if (reviewers.length < 1)
@@ -174,13 +178,13 @@ const addReviewer = async (req, res) => {
           message: "Please add Reviewers",
           status: false,
         });
-      const users = await db.collection("user").doc(email).get();
+      const users = await db.collection(submisstionType).doc(email).get();
       if (!users.exists) {
         res.json({
           msg: "User doesn't exist",
         });
       } else {
-        let upload = await db.collection("user").doc(email).set(
+        let upload = await db.collection(submisstionType).doc(email).set(
           {
             reviewers: reviewers,
           },
@@ -237,8 +241,12 @@ const guest = async (req, res) => {
 const approvedProjects = async (req, res) => {
   try {
     const data = await db.collection("user").get();
+    const studentData = await db.collection("student").get();
     let project = [];
     data.forEach((doc) => {
+      project.push(doc.data());
+    });
+    studentData.forEach((doc) => {
       project.push(doc.data());
     });
     let clean = project.map(({ password, ...rest }) => ({ ...rest }));
@@ -297,19 +305,6 @@ const studentAddReviewer = async (req, res) => {
   }
 };
 
-const studentProjects = async (req, res) => {
-  try {
-    const data = await db.collection("student").get();
-    let project = [];
-    data.forEach((doc) => {
-      project.push(doc.data());
-    });
-    let clean = project.map(({ password, ...rest }) => ({ ...rest }));
-    res.json({ project: clean, status: true });
-  } catch (error) {
-    res.json({ message: error.message, status: false });
-  }
-};
 const studentApprove = async (req, res) => {
   let { approved, email } = req.body;
   try {
@@ -363,7 +358,6 @@ module.exports = {
   signup,
   project,
   guest,
-  studentProjects,
   studentApprove,
   studentAddReviewer
 };

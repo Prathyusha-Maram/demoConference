@@ -115,8 +115,12 @@ const projects = async (req, res) => {
   try {
     const email = req.data.id;
     const data = await db.collection("user").get();
+    const studentData = await db.collection("student").get();
     let project = [];
     data.forEach((doc) => {
+      project.push(doc.data());
+    });
+    studentData.forEach((doc) => {
       project.push(doc.data());
     });
     let clean = project.map(({ password, ...rest }) => ({ ...rest }));
@@ -135,13 +139,13 @@ const projects = async (req, res) => {
   }
 };
 const reviewerApproval = async (req, res) => {
-  let { reviewerApproval, email, needReview } = req.body;
+  let { reviewerApproval, email, needReview, submisstionType } = req.body;
 
   try {
-    if (!reviewerApproval || !email) {
+    if (!reviewerApproval || !email || !submisstionType) {
       res.json({ message: "Enter all Data", status: false });
     } else {
-      const users = await db.collection("user").doc(email).get();
+      const users = await db.collection(submisstionType).doc(email).get();
       if (!users.exists) {
         res.json({
           msg: "User doesn't exist",
@@ -152,7 +156,7 @@ const reviewerApproval = async (req, res) => {
           updatedAt: Date.now(),
         };
         let upload = await db
-          .collection("user")
+          .collection(submisstionType)
           .doc(email)
           .set(data, { merge: true });
         if (upload) {
