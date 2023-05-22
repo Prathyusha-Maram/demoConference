@@ -269,7 +269,7 @@ const StudentSubmitPaperPage = () => {
 
         <label htmlFor="" style={{ color: "white" }}>
           {" "}
-          Upload your Paper{" "}
+          Upload your Paper{" "}Camera Ready Template Format{" "}<a href="https://res.cloudinary.com/dd1uzjqg8/raw/upload/v1684623035/CameraReadyTemplate_j41fpr.docx">DOCX</a>{" "}<a href="https://res.cloudinary.com/dd1uzjqg8/image/upload/v1684623091/CameraReadyTemplate_tut5sj.pdf" target="_blank">PDF</a>
           <h4 style={{ color: "red" }}>{loading ? "loading" : ""}</h4>
         </label>
         <input
