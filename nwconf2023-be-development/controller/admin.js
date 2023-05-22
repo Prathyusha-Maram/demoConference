@@ -95,7 +95,7 @@ const signup = async (req, res) => {
           let user = await db.collection("chairman").doc(email).set(data);
           if (user) {
             res.json({ message: "Chairman saved succesfully", status: true });
-            sentRegistrationSuccess(email);
+            // sentRegistrationSuccess(email);
           } else {
             res.json({ message: "Chairman not saved", status: false });
           }
@@ -146,7 +146,7 @@ const approve = async (req, res) => {
           .doc(email)
           .set(data, { merge: true });
         if (upload) {
-          sendPaperResponse(email, approved);
+          // sendPaperResponse(email, approved);
           res.json({
             message:
               approved === "Approved"
@@ -192,7 +192,7 @@ const addReviewer = async (req, res) => {
         );
         if (upload) {
           let emails = reviewers.map((user) => user.email);
-          sendReviewerNotifyMail(emails);
+          // sendReviewerNotifyMail(emails);
           res.json({
             message: "updated successfully",
             status: true,
@@ -287,7 +287,7 @@ const studentAddReviewer = async (req, res) => {
         );
         if (upload) {
           let emails = reviewers.map((user) => user.email);
-          sendReviewerNotifyMail(emails);
+          // sendReviewerNotifyMail(emails);
           res.json({
             message: "updated successfully",
             status: true,
@@ -326,7 +326,7 @@ const studentApprove = async (req, res) => {
           .doc(email)
           .set(data, { merge: true });
         if (upload) {
-          sendPaperResponse(email, approved);
+          // sendPaperResponse(email, approved);
           res.json({
             message:
               approved === "Approved"

@@ -73,7 +73,7 @@ const signup = async (req, res) => {
           let user = await db.collection("reviewer").doc(email).set(data);
           if (user) {
             res.json({ message: "Reviewer saved succesfully", status: true });
-            sentRegistrationSuccess(email);
+            // sentRegistrationSuccess(email);
           } else {
             res.json({ message: "Reviewer not saved", status: false });
           }
@@ -161,7 +161,7 @@ const reviewerApproval = async (req, res) => {
           .set(data, { merge: true });
         if (upload) {
           if (needReview) {
-            needReviewAuthor(email);
+            // needReviewAuthor(email);
           } else {
           }
           res.json({
@@ -226,7 +226,7 @@ const studentReviewerApproval = async (req, res) => {
           .set(data, { merge: true });
         if (upload) {
           if (needReview) {
-            needReviewAuthor(email);
+            // needReviewAuthor(email);
           } else {
           }
           res.json({
