@@ -406,13 +406,13 @@ export default function FullWidthTabs() {
                                       </li> */}
                                       {row.reviewerApproval.map((ele) => {
                                         if (ele.email === reviewerEmail) {
-                                          return ele.approve === "Approved" ? (
-                                            <p style={{ color: "Green" }}>
-                                              Approved
-                                            </p>
-                                          ) : (
+                                          return ele.approve === "Rejected" ? (
                                             <p style={{ color: "Red" }}>
                                               Rejected
+                                            </p>
+                                          ) : (
+                                            <p style={{ color: "Green" }}>
+                                              {ele.approve}
                                             </p>
                                           );
                                         }
