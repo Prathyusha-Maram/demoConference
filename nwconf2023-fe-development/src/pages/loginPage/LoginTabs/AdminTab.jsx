@@ -104,7 +104,7 @@ const UserLoginPageTab = () => {
               <p>Assign & Evaluate</p>
             </div>
           </NavLink>
-          <NavLink>
+          {/* <NavLink>
           <div>
           
               <div className="submit-new" onClick={openModal}>
@@ -115,7 +115,7 @@ const UserLoginPageTab = () => {
               </div>
             
           </div>
-          </NavLink>
+          </NavLink> */}
           <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
             <ModalContent
               conversation={conversation}

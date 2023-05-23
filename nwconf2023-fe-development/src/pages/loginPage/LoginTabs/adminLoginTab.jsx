@@ -350,13 +350,13 @@ export default function FullWidthTabs() {
                 }))
               }
             >
-              close
-            </button>
-            <button className="save" onClick={() => Approval("Approved")}>
-              Accept{" "}
+              Close
             </button>
             <button className="reject" onClick={() => Approval("Rejected")}>
               Reject{" "}
+            </button>
+            <button className="submit" onClick={() => Approval("Approved")}>
+              Accept{" "}
             </button>
           </div>
         </div>

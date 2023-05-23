@@ -151,16 +151,20 @@ export default function FullWidthTabs() {
         });
         let newArray = [];
         array.forEach((ele) => {
+          let found = false;
           if (ele.reviewerApproval.length === 0) {
             newArray.push(ele);
+          } else {
+            ele.reviewerApproval.forEach((r) => {
+              if (r.email === reviewerEmail) {
+                found = true;
+                evalArray.push(ele);
+              }
+            });
           }
-          ele.reviewerApproval.forEach((r) => {
-            if (r.email !== reviewerEmail) {
-              newArray.push(ele);
-            } else {
-              evalArray.push(ele);
-            }
-          });
+          if (found === false) {
+            newArray.push(ele);
+          }
         });
         setEvaluatedPaper(evalArray);
         setFilteredReviewTable(newArray);
@@ -285,7 +289,7 @@ export default function FullWidthTabs() {
                     <TablePagination
                       rowsPerPageOptions={[10, 25, 100]}
                       component="div"
-                      count={reviewerTableDetail.length}
+                      count={fiteredReviewTable.length}
                       rowsPerPage={rowsPerPage}
                       page={page}
                       onPageChange={handleChangePage}
