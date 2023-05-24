@@ -126,12 +126,12 @@ const projects = async (req, res) => {
 };
 
 const approve = async (req, res) => {
-  let { approved, email } = req.body;
+  let { approved, email, submisstionType } = req.body;
   try {
-    if (!email) {
+    if (!email || !submisstionType) {
       res.json({ message: "Enter email id", status: false });
     } else {
-      const users = await db.collection("user").doc(email).get();
+      const users = await db.collection(submisstionType).doc(email).get();
       if (!users.exists) {
         res.json({
           msg: "User doesn't exist",
@@ -142,7 +142,7 @@ const approve = async (req, res) => {
           updatedAt: Date.now(),
         };
         let upload = await db
-          .collection("user")
+          .collection(submisstionType)
           .doc(email)
           .set(data, { merge: true });
         if (upload) {
