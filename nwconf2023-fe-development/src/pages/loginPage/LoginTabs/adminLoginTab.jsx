@@ -258,7 +258,7 @@ export default function FullWidthTabs() {
           <div className="assign-card-con popup">
             <div className="assign-card">
               <li>
-                <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index})
+                <b>{product.firstName + " " + product.lastName}</b> (Reviewer {index}) (Number Of Papers Assigned: {product.numberOfPapersAssigned})
               </li>
               <input
                 value={product.email}
