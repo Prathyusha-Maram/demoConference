@@ -141,7 +141,6 @@ export default function FullWidthTabs() {
 
       .then((response) => {
         let array = [];
-        let evalArray = [];
         response.data.project.forEach((ele) => {
           ele.reviewers.forEach((p) => {
             if (p.email === reviewerEmail) {
@@ -150,9 +149,11 @@ export default function FullWidthTabs() {
           });
         });
         let newArray = [];
+        let evalArray = [];
         array.forEach((ele) => {
           let found = false;
           if (ele.reviewerApproval.length === 0) {
+            found = true;
             newArray.push(ele);
           } else {
             ele.reviewerApproval.forEach((r) => {
