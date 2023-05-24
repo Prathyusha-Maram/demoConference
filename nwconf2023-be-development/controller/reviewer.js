@@ -69,6 +69,7 @@ const signup = async (req, res) => {
             updatedAt: Date.now(),
             areaOfInterest,
             wantToReview: "",
+            numberOfPapersAssigned: 0,
           };
           let user = await db.collection("reviewer").doc(email).set(data);
           if (user) {

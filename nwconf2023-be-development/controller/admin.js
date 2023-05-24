@@ -190,6 +190,16 @@ const addReviewer = async (req, res) => {
           },
           { merge: true }
         );
+        reviewers.forEach(async (reviewer) => {
+          const reviewer1 = await db.collection("reviewer").doc(reviewer.email).get();
+          var numberOfPapersAssigned = reviewer1._fieldsProto.numberOfPapersAssigned.integerValue;
+          let addReviewerCount = await db.collection("reviewer").doc(reviewer.email).set( 
+            {
+              numberOfPapersAssigned: parseInt(numberOfPapersAssigned) + 1,
+            },
+            { merge: true }
+          );
+        });
         if (upload) {
           let emails = reviewers.map((user) => user.email);
           // sendReviewerNotifyMail(emails);
