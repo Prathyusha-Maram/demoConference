@@ -207,6 +207,7 @@ export default function FullWidthTabs() {
         {
           approved: approval,
           email: assigned.value.email,
+          submisstionType: assigned.value.submisstionType,
         },
         myadminheader
       )
