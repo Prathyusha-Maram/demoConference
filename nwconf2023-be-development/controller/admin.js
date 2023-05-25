@@ -126,7 +126,7 @@ const projects = async (req, res) => {
 };
 
 const approve = async (req, res) => {
-  let { approved, email, submisstionType } = req.body;
+  let { approved, email, submisstionType, title, paperID } = req.body;
   try {
     if (!email || !submisstionType) {
       res.json({ message: "Enter email id", status: false });
@@ -146,7 +146,7 @@ const approve = async (req, res) => {
           .doc(email)
           .set(data, { merge: true });
         if (upload) {
-          // sendPaperResponse(email, approved);
+          //  sendPaperResponse(email, approved, title, paperID);
           res.json({
             message:
               approved === "Approved"
@@ -168,7 +168,7 @@ const approve = async (req, res) => {
 };
 
 const addReviewer = async (req, res) => {
-  let { reviewers, email, submisstionType } = req.body;
+  let { reviewers, email, submisstionType, title, paperID } = req.body;
   try {
     if (!email || !reviewers || !submisstionType) {
       res.json({ message: "Enter all data", status: false });
@@ -202,7 +202,7 @@ const addReviewer = async (req, res) => {
         });
         if (upload) {
           let emails = reviewers.map((user) => user.email);
-          // sendReviewerNotifyMail(emails);
+          // sendReviewerNotifyMail(emails, title, paperID);
           res.json({
             message: "updated successfully",
             status: true,

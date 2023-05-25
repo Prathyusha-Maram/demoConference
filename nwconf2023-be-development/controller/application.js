@@ -149,7 +149,7 @@ const project = async (req, res) => {
           .doc(email)
           .set(data, { merge: true });
         if (upload) {
-          // sendAuthorMail(email);
+          // sendAuthorMail(email, document, title, paperID);
           res.json({ message: "Project saved succesfully", status: true });
         } else {
           res.json({ message: "Project not saved", status: false });
