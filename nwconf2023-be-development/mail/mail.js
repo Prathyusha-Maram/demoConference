@@ -48,15 +48,23 @@ const sendAuthorMail = async (mail, document, title, paperID) => {
   });
 };
 
-const sendReviewerNotifyMail = async (email) => {
+const sendReviewerNotifyMail = async (email, title, paperID) => {
   const body = {
     from: "conference2023@naveenrio.me",
     to: email,
     subject: `New paper assigned for review`,
     html: `<div> 
       <p>Hi,</p>
+      <br>
       <p>A new paper has been assigned for you to review on NWCONF2023. Please review it as soon as possible.</p>
-      <p>The details of the paper goes as follows: </div>`,
+      <p>The details of the paper goes as follows: 
+      <p>Title : <b>"${title}"</b></p>
+      <Paper ID : <b>"${paperID}"</b>
+      <br>
+      <p>Sincerely,</p>
+      <p style="font-family: Arial, sans-serif; font-size: 12px; color: #555555; margin-bottom: 4px;">The Chair Person</p>
+      <p style="font-fa
+      </div>`,
   };
 
   const transport = nodemailer.createTransport({
