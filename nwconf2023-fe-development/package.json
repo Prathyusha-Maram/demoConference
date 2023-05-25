@@ -29,7 +29,7 @@
     "react-paypal-button-v2": "^2.6.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm start",
     "build": "npm i",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
