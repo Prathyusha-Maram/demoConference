@@ -118,6 +118,15 @@ const project = async (req, res) => {
             })
           }
         );
+        const allUsers1 = await db.collection("student").get().then(
+          (snapshot) => {
+            snapshot.forEach((doc) => {
+              if( doc._fieldsProto.abstract.stringValue !== '' ) {
+                id++;
+              }
+            })
+          }
+        );
         id++;
         if (id.toString().length === 1) {
           paperID = "00" + id;

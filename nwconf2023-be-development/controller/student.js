@@ -37,6 +37,7 @@ const signup = async (req, res) => {
             reviewers: [],
             reviewerApproval: [],
             document: "",
+            poster: "",
             paperID: "",
             approved: "Pending",
             updatedAt: Date.now(),
@@ -99,7 +100,7 @@ const login = async (req, res) => {
 };
 
 const project = async (req, res) => {
-  let { title, abstract, keyword, otherKeyword, document, groupSubmission, groupEmail } = req.body;
+  let { title, abstract, keyword, otherKeyword, document, groupSubmission, groupEmail, poster } = req.body;
   try {
     if (!title || !abstract || !keyword) {
       res.json({ message: "enter all data", status: false });
@@ -109,7 +110,16 @@ const project = async (req, res) => {
       let id = 0;
       let paperID = users._fieldsProto.paperID.stringValue;
       if (paperID === "") {
-        const allUsers = await db.collection("student").get().then(
+        const allUsers = await db.collection("user").get().then(
+          (snapshot) => {
+            snapshot.forEach((doc) => {
+              if( doc._fieldsProto.abstract.stringValue !== '' ) {
+                id++;
+              }
+            })
+          }
+        );
+        const allUsers1 = await db.collection("student").get().then(
           (snapshot) => {
             snapshot.forEach((doc) => {
               if( doc._fieldsProto.abstract.stringValue !== '' ) {
@@ -143,6 +153,7 @@ const project = async (req, res) => {
           document: document ? document : "",
           updatedAt: Date.now(),
           paperID,
+          poster,
         };
         let upload = await db
           .collection("student")
@@ -226,6 +237,31 @@ const myProject = async (req, res) => {
   }
 };
 
+const payment = async (req, res) => {
+  let {email, payementStatus} = req.body;
+  const users = await db.collection("student").doc(email).get();
+  if (!users.exists) {
+    res.json({
+      msg: "User doesn't exist",
+    });
+  } else {
+    let data = {
+      email,
+      payementStatus,
+    };
+    let upload = await db
+      .collection("student")
+      .doc(email)
+      .set(data, { merge: true });
+    if (upload) {
+      res.json({ message: "Guest saved succesfully", status: true });
+      // sentGuestInvation(email);
+    } else {
+      res.json({ message: "Guest not saved", status: false });
+    }
+  }
+}
+
 function generateRandomAlphaNumeric(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
@@ -244,4 +280,5 @@ module.exports = {
   project,
   myProject,
   projectWithdrawal,
+  payment,
 };

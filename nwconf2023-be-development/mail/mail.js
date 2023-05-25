@@ -245,6 +245,84 @@ const sentRegistrationSuccess = async (email) => {
   });
 };
 
+const thanksForReview = async (email) => {
+  const body = {
+    from: "conference2023@naveenrio.me",
+    to: email,
+    subject: `Thanks for reviewing the paper`,
+    html: `<div>Thanks</div>`,
+  };
+
+  const transport = nodemailer.createTransport({
+    host: "live.smtp.mailtrap.io", //sandbox.smtp.mailtrap.io",
+    port: 587,
+    auth: {
+      user: "api", //86207576053cfe",
+      pass: "82bc5abcc46929231dcc93949027783b", //df87b6e5a6cb1d"
+    },
+  });
+
+  await transport.sendMail(body, (err) => {
+    if (err) {
+      return console.log("error occurs", err);
+    } else {
+      return console.log("email sent");
+    }
+  });
+};
+
+const reviewerApproved = async (email) => {
+  const body = {
+    from: "conference2023@naveenrio.me",
+    to: email,
+    subject: `Your request is approved by chair`,
+    html: `<div>Thanks</div>`,
+  };
+
+  const transport = nodemailer.createTransport({
+    host: "live.smtp.mailtrap.io", //sandbox.smtp.mailtrap.io",
+    port: 587,
+    auth: {
+      user: "api", //86207576053cfe",
+      pass: "82bc5abcc46929231dcc93949027783b", //df87b6e5a6cb1d"
+    },
+  });
+
+  await transport.sendMail(body, (err) => {
+    if (err) {
+      return console.log("error occurs", err);
+    } else {
+      return console.log("email sent");
+    }
+  });
+};
+
+const reviewerRejected = async (email) => {
+  const body = {
+    from: "conference2023@naveenrio.me",
+    to: email,
+    subject: `Your request is rejected by chair`,
+    html: `<div>Thanks</div>`,
+  };
+
+  const transport = nodemailer.createTransport({
+    host: "live.smtp.mailtrap.io", //sandbox.smtp.mailtrap.io",
+    port: 587,
+    auth: {
+      user: "api", //86207576053cfe",
+      pass: "82bc5abcc46929231dcc93949027783b", //df87b6e5a6cb1d"
+    },
+  });
+
+  await transport.sendMail(body, (err) => {
+    if (err) {
+      return console.log("error occurs", err);
+    } else {
+      return console.log("email sent");
+    }
+  });
+};
+
 module.exports = {
   sendAuthorMail,
   sendReviewerNotifyMail,
@@ -252,4 +330,7 @@ module.exports = {
   needReviewAuthor,
   sentGuestInvation,
   sentRegistrationSuccess,
+  thanksForReview,
+  reviewerApproved,
+  reviewerRejected,
 };

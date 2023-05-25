@@ -3,7 +3,7 @@ const bookidgen = require("bookidgen");
 const moment = require("moment");
 const config = require("../config");
 const { db } = require("../firebase");
-const { needReviewAuthor, sentRegistrationSuccess } = require("../mail/mail");
+const { needReviewAuthor, sentRegistrationSuccess, thanksForReview } = require("../mail/mail");
 
 const login = async (req, res) => {
   let { email, password } = req.body;
@@ -24,7 +24,7 @@ const login = async (req, res) => {
           },
           config.JWT_TOKEN_KEY
         );
-        if (data.password == password) {
+        if (data.password == password && data.acceptedByChair === true) {
           res.json({
             clean: data,
             message: "login successfully",
@@ -70,6 +70,7 @@ const signup = async (req, res) => {
             areaOfInterest,
             wantToReview: "",
             numberOfPapersAssigned: 0,
+            acceptedByChair: false,
           };
           let user = await db.collection("reviewer").doc(email).set(data);
           if (user) {
@@ -165,6 +166,7 @@ const reviewerApproval = async (req, res) => {
             // needReviewAuthor(email);
           } else {
           }
+          thanksForReview(reviewerApproval[0].email)
           res.json({
             message: "Status updated successfully",
             status: true,

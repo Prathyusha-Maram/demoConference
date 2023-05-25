@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 const { db } = require("../firebase");
-const { sendReviewerNotifyMail, sendPaperResponse, sentRegistrationSuccess } = require("../mail/mail");
+const { sendReviewerNotifyMail, sendPaperResponse, sentRegistrationSuccess, reviewerApproved, reviewerRejected } = require("../mail/mail");
 
 const login = async (req, res) => {
   let { email, password } = req.body;
@@ -234,6 +234,66 @@ const reviewer = async (req, res) => {
   }
 };
 
+const reviewerApprove = async (req, res) => {
+  let { reviewerEmail, acceptedByChair } = req.body;
+  try {
+    if (!reviewerEmail) {
+      res.json({ message: "Enter all data", status: false });
+    } else {
+      if (acceptedByChair) {
+        const data = await db.collection("reviewer").doc(reviewerEmail).get();
+        if (!data.exists) {
+          res.json({
+            msg: "User doesn't exist",
+          });
+        } else {
+          let upload = await db.collection("reviewer").doc(reviewerEmail).set(
+            {
+              acceptedByChair: acceptedByChair,
+            },
+            { merge: true }
+          );
+          if (upload) {
+            reviewerApproved(reviewerEmail)
+            res.json({
+              message: "accepted",
+              status: true,
+            });
+          } else {
+            res.json({
+              message: "process failed",
+              status: false,
+            });
+          }
+        }
+      } else {
+        const data = await db.collection("reviewer").doc(reviewerEmail).get();
+        if (!data.exists) {
+          reviewerRejected(reviewerEmail)
+          res.json({
+            msg: "User doesn't exist",
+          });
+        } else {
+          let upload = await db.collection("reviewer").doc(reviewerEmail).delete();
+          if (upload) {
+            res.json({
+              message: "rejected",
+              status: true,
+            });
+          } else {
+            res.json({
+              message: "process failed",
+              status: false,
+            });
+          }
+        }
+      }
+    }
+  } catch (error) {
+    res.json({ message: error.message, status: false });
+  }
+};
+
 const guest = async (req, res) => {
   try {
     const data = await db.collection("guest").get();
@@ -369,5 +429,6 @@ module.exports = {
   project,
   guest,
   studentApprove,
-  studentAddReviewer
+  studentAddReviewer,
+  reviewerApprove
 };

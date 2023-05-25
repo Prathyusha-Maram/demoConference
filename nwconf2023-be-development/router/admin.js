@@ -14,5 +14,6 @@ router.get("/reviewer", auth, admin.reviewer);
 router.get("/guest", auth, admin.guest);
 router.get("/reviewers", admin.reviewer);
 router.get("/approved/projects", admin.approvedProjects);
+router.post("/reviewerApprove", admin.reviewerApprove);
 
 module.exports = router;
