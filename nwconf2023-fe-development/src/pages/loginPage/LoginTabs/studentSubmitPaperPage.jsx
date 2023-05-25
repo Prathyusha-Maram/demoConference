@@ -17,6 +17,7 @@ const StudentSubmitPaperPage = () => {
   const [title, setTitle] = useState("");
   const [abstarct, setAbstarct] = useState("");
   const [file, setFile] = useState("");
+  const [poster, setPoster] = useState("");
   const [keywords, setKeywords] = useState([]);
   const [otherKeyword, setOtherKeyword] = useState("");
   const [groupEmail, setGroupEmail] = useState("");
@@ -41,6 +42,7 @@ const StudentSubmitPaperPage = () => {
           document: file,
           groupSubmission: isChecked,
           groupEmail: groupEmail,
+          poster: poster,
         },
         myheader
       )
@@ -114,6 +116,23 @@ const StudentSubmitPaperPage = () => {
     );
     if (u.data.status) {
       setFile(u.data.secureUrl);
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
+  };
+
+  const uploadPoster = async (e) => {
+    setLoading(true);
+    let formData = new FormData();
+    formData.append("image", e.target.files[0]);
+    let u = await axios.post(
+      `${API_ENDPOINT}/upload/image`,
+      formData,
+      myheader
+    );
+    if (u.data.status) {
+      setPoster(u.data.secureUrl);
       setLoading(false);
     } else {
       setLoading(false);
@@ -277,6 +296,17 @@ const StudentSubmitPaperPage = () => {
           onChange={(e) => uploadImage(e)}
         />
         
+        <label htmlFor="" style={{ color: "white" }}>
+          {" "}
+          Upload your Poster{" "}
+          <h4 style={{ color: "red" }}>{loading ? "loading" : ""}</h4>
+        </label>
+        <input
+          type="file"
+          accept="image/*"/*,.doc,.docx*/
+          onChange={(e) => uploadPoster(e)}
+        />
+
         <div className="form-btn-con">
           <div className="form-btns">
             <button onClick={sendPost} className="submit" disabled={disabled}>

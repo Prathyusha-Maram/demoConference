@@ -27,6 +27,7 @@ import StudentEditPaperPage from "./pages/loginPage/LoginTabs/studentEditSubmitP
 import CheckStatus from "./pages/loginPage/LoginTabs/CheckStatus";
 import CheckStudentStatus from "./pages/loginPage/LoginTabs/studentCheckStatus";
 import PaymentPage from "./pages/loginPage/LoginTabs/UserPaymentPage";
+import StudentPaymentPage from "./pages/loginPage/LoginTabs/studentPaymentPage";
 import ViewReview from "./pages/loginPage/components/ViewReview";
 import AdminLoginTab from "./pages/loginPage/LoginTabs/adminLoginTab";
 import AdminSignUpPage from "./pages/loginPage/LoginTabs/AdminSignUpPage";
@@ -70,6 +71,7 @@ function App() {
             <Route exact path="/editPost" element={<EditPaperPage />} />
             <Route exact path="/editStudentPost" element={<StudentEditPaperPage />} />
             <Route exact path="/payment" element={<PaymentPage />} />
+            <Route exact path="/studentPayment" element={<StudentPaymentPage />} />
             <Route exact path="/evaluate" element={<AdminLoginTab />} />
             <Route exact path="/discussion" element={<ReviewerChat />} />
             <Route exact path="/checkStatus" element={<CheckStatus />} />

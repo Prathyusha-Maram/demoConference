@@ -20,7 +20,12 @@ const CheckStatus = () => {
                   {state?.approved === "Approved" ? (
                     <>
                       <p className="approved">Approved</p>
-                      <button onClick={payment} >Payment to attend conference</button>
+                      {state?.payementStatus === "" ? (
+                        <>
+                          <button onClick={payment} >Payment to attend conference</button>
+                        </>
+                      ) : (<p className="approved">Thanks for completing registration</p>)
+                      }
                     </>
                   ) : state?.approved === "Rejected" ? (
                     <p className="approved" style={{ background: "red" }}>Rejected</p>
@@ -34,7 +39,7 @@ const CheckStatus = () => {
               return (
                 <div className="first-coon">
                   <div className="staus-wrap">
-                    <p>First Reviewer's Approval</p>
+                    <p>Reviewer's Approval</p>
                     <p>
                       {element.approve === "Pending" ? (
                         <p className="approved" style={{ background: "#F6BE00" }}>Pending</p>

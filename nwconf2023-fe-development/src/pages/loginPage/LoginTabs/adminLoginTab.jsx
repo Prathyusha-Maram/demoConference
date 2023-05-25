@@ -74,6 +74,7 @@ export default function FullWidthTabs() {
   const [reviewerEmail, setReviewerDetails] = useState([]);
   const [guestEmail, setGuestDetails] = useState([]);
   const [checked, setChecked] = useState([]);
+  const [allPapers, setAllPapers] = useState([]);
   const [assignPaper, setAssignPaper] = useState([]);
   const [evaluatePaper, setEvaluatePaper] = useState([]);
   const [checkDisable, setCheckdisble] = useState(false);
@@ -132,7 +133,7 @@ export default function FullWidthTabs() {
     },
     { id: "code", label: "Abstract" },
     { id: "code", label: "Document" },
-    // { id: "code", label: "Group Submission" },
+    { id: "code", label: "Poster" },
     {
       id: "population",
       label: "Assign Reviewers",
@@ -166,7 +167,7 @@ export default function FullWidthTabs() {
     axios
       .get(`${API_ENDPOINT}/admin/projects`, myadminheader)
       .then((response) => {
-        let array = response.data.project.filter((e) => e.document !== "");
+        let array = response.data.project.filter((e) => e.document !== "" || e.poster);
         let assign = [];
         let evaluate = [];
         array.forEach((e) => {
@@ -176,6 +177,8 @@ export default function FullWidthTabs() {
             assign.push(e);
           }
         });
+        console.log(array);
+        setAllPapers(array);
         setAssignPaper(assign);
         setEvaluatePaper(evaluate);
         setTableDetails(response.data.project.filter((e) => e.document !== ""));
@@ -199,6 +202,31 @@ export default function FullWidthTabs() {
       setCheckdisble(true);
     }
   };
+
+  function reviewerApproval(reviewerEmail, approval) {
+    axios
+      .post(
+        `${API_ENDPOINT}/admin/reviewerApprove`,
+        {
+          reviewerEmail: reviewerEmail,
+          acceptedByChair: approval,
+        },
+        myadminheader
+      )
+      .then(
+        (response) => {
+          console.log(response)
+          if (response.data.message === "accepted") {
+            alert("Reviewer accepted");
+          } else if (response.data.message === "rejected") {
+            alert("Reviewer rejected");
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
 
   function Approval(approval) {
     axios
@@ -383,7 +411,9 @@ export default function FullWidthTabs() {
               <Tab label="Assign Paper" {...a11yProps(0)} />
               <Tab label="Evaluated Paper" {...a11yProps(1)} />
               <Tab label="Reviewers List" {...a11yProps(2)} />
-              <Tab label="Guest List" {...a11yProps(3)} />
+              <Tab label="Author List" {...a11yProps(3)} />
+              <Tab label="Student List" {...a11yProps(4)} />
+              <Tab label="Guest List" {...a11yProps(5)} />
             </Tabs>
           </AppBar>
           <SwipeableViews
@@ -473,6 +503,18 @@ export default function FullWidthTabs() {
                                       >
                                         Download
                                       </Link>
+                                    </TableCell>
+                                    <TableCell>
+                                      { row.poster !== "" ? (
+                                        <Link
+                                          to={row.poster}
+                                          target="_blank"
+                                          download
+                                          className="download"
+                                        >
+                                          Download
+                                        </Link>) : null
+                                      }
                                     </TableCell>
                                     {/* <TableCell>
                                       {row.groupSubmission ? (
@@ -671,6 +713,10 @@ export default function FullWidthTabs() {
                     <li>
                       <b>Reviewer's Area Of Interest</b>
                     </li>
+
+                    <li>
+                      <b>Reviewer's Acceptance</b>
+                    </li>
                   </div>
                 </div>
                 {reviewerEmail.data?.map((product) => (
@@ -688,6 +734,15 @@ export default function FullWidthTabs() {
                         <li>
                           {product.areaOfInterest}
                         </li>
+
+                        <li>
+                          {product.acceptedByChair ? <p>Accpeted as reviewer</p> 
+                          : 
+                          <>
+                            <button className="reject" onClick={() => reviewerApproval(product.email, false)}>Reject{" "}</button>
+                            <button className="submit" onClick={() => reviewerApproval(product.email, true)}>Accept{" "}</button>
+                          </>}
+                        </li>
                       </div>
                     </div>
                   </>
@@ -695,6 +750,98 @@ export default function FullWidthTabs() {
               </div>
             </TabPanel>
             <TabPanel value={value} index={3} dir={theme.direction}>
+              <div>
+                <div className="assign-card-con popupnew">
+                  <div className="assign-cardNew">
+                    <li>
+                      <b>Author's Name</b>
+                    </li>
+
+                    <li>
+                      <b>Author's Email</b>
+                    </li>
+
+                    <li>
+                      <b>Author's Area Of Interest</b>
+                    </li>
+
+                    <li>
+                      <b>Author's Payment Status</b>
+                    </li>
+                  </div>
+                </div>
+                {allPapers.map((author) => ( author.submisstionType === "user" && author.approved === "Approved" ? (
+                  <>
+                    <div className="assign-card-con popupnew">
+                      <div className="assign-cardNew">
+                        <li>
+                          {author.firstName + " " + author.lastName}
+                        </li>
+
+                        <li>
+                          {author.email}
+                        </li>
+
+                        <li>
+                          {author.areaOfInterest}
+                        </li>
+
+                        <li>
+                          {author.payementStatus}
+                        </li>
+                      </div>
+                    </div>
+                  </>
+                ) : null))}
+              </div>
+            </TabPanel>
+            <TabPanel value={value} index={4} dir={theme.direction}>
+              <div>
+                <div className="assign-card-con popupnew">
+                  <div className="assign-cardNew">
+                    <li>
+                      <b>Student's Name</b>
+                    </li>
+
+                    <li>
+                      <b>Student's Email</b>
+                    </li>
+
+                    <li>
+                      <b>Student's Area Of Interest</b>
+                    </li>
+
+                    <li>
+                      <b>Student's Payment Status</b>
+                    </li>
+                  </div>
+                </div>
+                {allPapers.map((student) => ( student.submisstionType === "student" && student.approved === "Approved" ? (
+                  <>
+                    <div className="assign-card-con popupnew">
+                      <div className="assign-cardNew">
+                        <li>
+                          {student.firstName + " " + student.lastName}
+                        </li>
+
+                        <li>
+                          {student.email}
+                        </li>
+
+                        <li>
+                          {student.areaOfInterest}
+                        </li>
+
+                        <li>
+                          {student.payementStatus}
+                        </li>
+                      </div>
+                    </div>
+                  </>
+                ) : null ))}
+              </div>
+            </TabPanel>
+            <TabPanel value={value} index={5} dir={theme.direction}>
               <div>
                 <div className="assign-card-con popupnew">
                   <div className="assign-cardNew">
