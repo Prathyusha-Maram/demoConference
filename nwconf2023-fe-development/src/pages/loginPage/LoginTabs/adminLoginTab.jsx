@@ -208,6 +208,8 @@ export default function FullWidthTabs() {
           approved: approval,
           email: assigned.value.email,
           submisstionType: assigned.value.submisstionType,
+          title: assigned.value.title,
+          paperID: assigned.value.paperID,
         },
         myadminheader
       )
@@ -235,6 +237,8 @@ export default function FullWidthTabs() {
           reviewers: checked,
           email: postUserEmail,
           submisstionType: submisstionType,
+          title: assigned.value.title,
+          paperID: assigned.value.paperID,
         },
         myadminheader
       )
@@ -251,7 +255,7 @@ export default function FullWidthTabs() {
   }
 
   function sendReviewList(product) {
-    if ((postUserEmail !== product.email) && (postGroupEmail !== product.email)) {
+    if ((postUserEmail !== product.email) && (postGroupEmail !== product.email) && product.numberOfPapersAssigned < 3) {
       index++;
       return (
         <>
